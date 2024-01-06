@@ -284,7 +284,7 @@ public class GameController : MonoBehaviour
 
     public void HandleGameWin()
     {
-        GamePlayState.Pause();
+        //    GamePlayState.Pause();
 
         level++;
         UserData.current.userStatus.level = level;
