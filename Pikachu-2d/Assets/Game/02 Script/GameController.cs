@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameController : SingletonMonoBehaviour<GameController>
 {
     public TopPanelView topPanelView;
 
@@ -58,21 +58,16 @@ public class GameController : MonoBehaviour
 
         GameManager.Instance.OnBoardClear += HandleGameWin;//win game + level
 
-        //boardData = BoardTileData.Instance;// bảng xáo trộn qua mỗi màn 
+    }
 
+    public void InitLevel()
+    {
         LoadLevel();
 
         StartGame();
 
         cameraAligner.Initialize();
     }
-
-    private void Start()
-    {
-
-    }
-
-
 
     private void OnDestroy()
     {

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Const
 {
-    public static string SCENE_LOADING = "Loading";
-    public static string SCENE_GAME = "GamePlay";
+    public const string SCENE_LOADING = "Loading";
+    public const string SCENE_GAME = "GamePlay";
 }

@@ -16,6 +16,12 @@ public class CameraController : MonoBehaviour
 
     public SpriteRenderer backgroundRenderer;
 
+
+    private void Awake()
+    {
+        // cam = GetComponent<Camera>();
+    }
+
     public void Initialize()
     {
         var gameBoard = GameManager.Instance;

@@ -1,3 +1,4 @@
+using SS.View;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,7 +25,6 @@ public class Loading : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
-        SceneManager.LoadScene(Const.SCENE_GAME);
-
+        Manager.Load(DGame.SCENE_NAME);
     }
 }
