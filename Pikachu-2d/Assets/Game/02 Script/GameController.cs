@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
 
     public SpawnTileEffect tileSpawnEffect;
 
-    private TileData boardData => TileData.Instance;
+    // private TileData boardData => TileData.Instance;
 
     private BoardConfig boardConfig;
 
@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
         Application.targetFrameRate = 60;//Application.targetFrameRate: làm trò chơi chạy nhanh hơn 
 
 
-        UserData.Load();// load vàng , tên ,decor,level
+        //  UserData.Load();// load vàng , tên ,decor,level
 
         GamePlayState.GamePostRestartEvent += Replay;// chơi lại
         GamePlayState.GameNextLevelEvent += NextLevel;
@@ -117,15 +117,15 @@ public class GameController : MonoBehaviour
                 }
             };
 
-            // topPanelView.gameObject.SetActive(false);
-            //   boosterView.gameObject.SetActive(false);// tat top bot lv1
+            topPanelView.gameObject.SetActive(false);
+            //  boosterView.gameObject.SetActive(false);// tat top bot lv1
         }
         else // neu lv>1 thi 
         {
             levelConfig = LevelDataLoader.Instance.GetLevelConfig(level);//load level tu data
             boardConfig = LevelDataLoader.Instance.GetBoardData(level);//load bang level
 
-            //   topPanelView.gameObject.SetActive(true);// active top down
+            topPanelView.gameObject.SetActive(true);// active top down
             //  boosterView.gameObject.SetActive(true);
             tileSlideEffect.SetSlideOrder(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
             // hieu ung tren gach
@@ -139,7 +139,7 @@ public class GameController : MonoBehaviour
 
         timeCount = levelConfig.time > 0;
 
-        Debug.Log(levelConfig.boom + "-" + levelConfig.score);
+        //  Debug.Log(levelConfig.boom + "-" + levelConfig.score);
     }
 
     private void StartGame()
@@ -162,12 +162,12 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            //  topPanelView.SetTimeCount(false);// level k có time thì k bật 
+            topPanelView.SetTimeCount(false);// level k có time thì k bật 
         }
 
 
-        boardData.Initialize(levelConfig, boardConfig, 30);// khởi tạo mảng daata gồm cấp độ 
-        GameManager.Instance.SpawnTiles(boardData);// tajp barng
+        TileData.Instance.Initialize(levelConfig, boardConfig, 30);// khởi tạo mảng daata gồm cấp độ 
+        GameManager.Instance.SpawnTiles(TileData.Instance);// tajp barng
         tileSpawnEffect.Play();
 
         //   featureSpawner.ResetAllPools();
@@ -208,7 +208,7 @@ public class GameController : MonoBehaviour
 
     private IEnumerator PostTileMatchSucceededSchedule()
     {
-        //   yield return featureSpawner.PostTileMatchSucceeded();// spawm boom+búa
+        yield return featureSpawner.PostTileMatchSucceeded();// spawm boom+búa
 
         yield return tileSlideEffect.PlayCoroutine();// effect viên gạch
 
@@ -234,12 +234,12 @@ public class GameController : MonoBehaviour
 
                 if (remainingTime > 0f)
                 {
-                    // topPanelView.SetRemainingTime(remainingTime);
+                    topPanelView.SetRemainingTime(remainingTime);
                 }
                 else
                 {
                     remainingTime = 0f;
-                    //  topPanelView.SetRemainingTime(remainingTime);
+                    topPanelView.SetRemainingTime(remainingTime);
                     break;
                 }
             }
@@ -315,13 +315,14 @@ public class GameController : MonoBehaviour
         GamePlayState.NextLevel();
         //    }
 
-        if (level >= 3)
-        {
-        }
+        //if (level >= 3)
+        //{
+        //}
     }
 
     public void HandleGameLose()
     {
+        GamePlayState.Pause();
     }
 
 

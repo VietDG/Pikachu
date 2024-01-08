@@ -35,6 +35,7 @@ public class SerializeEventHandler : MonoBehaviour
 #if !UNITY_EDITOR
         saveData = true;
 #endif
+        Debug.LogError("Save");
         if (saveData)
         {
             UserData.Save();

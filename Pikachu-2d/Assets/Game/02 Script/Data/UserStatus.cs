@@ -52,9 +52,3 @@ public class GoldPigData
     public int coinAmount;
     public bool removed;
 }
-
-[Serializable]
-public class TempData
-{
-    public bool rate;
-}
