@@ -19,9 +19,9 @@ public class HammerController : MonoBehaviour
 
     public Animator hammerEffectAnimator2;
 
-    public ExplosionEffect explosionEffect1;
+    //public ExplosionEffect explosionEffect1;
 
-    public ExplosionEffect explosionEffect2;
+    //public ExplosionEffect explosionEffect2;
 
     private bool isTileActive = true;
 
@@ -82,13 +82,13 @@ public class HammerController : MonoBehaviour
                     OnComplete(() =>
                     {
                         isHammerAnimatorPlaying = true;
-                        hammerEffectAnimator1.Play("HammerBeat");
+                        //  hammerEffectAnimator1.Play("HammerBeat");
                     });
 
             hammerEffectTransform2.DOMove(tile2.transform.localPosition, 0.3f).SetEase(Ease.OutQuad).
                     OnComplete(() =>
                     {
-                        hammerEffectAnimator2.Play("HammerBeat");
+                        //  hammerEffectAnimator2.Play("HammerBeat");
                     });
 
             while (!isHammerAnimatorPlaying)
@@ -96,19 +96,19 @@ public class HammerController : MonoBehaviour
                 yield return null;
             }
 
-            while (hammerEffectAnimator1.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-            {
-                yield return null;
-            }
+            //while (hammerEffectAnimator1.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            //{
+            //    yield return null;
+            //}
 
-            yield return null;
+            //yield return null;
 
             hammerEffectAnimator1.gameObject.SetActive(false);
             hammerEffectAnimator2.gameObject.SetActive(false);
 
 
-            explosionEffect1.gameObject.SetActive(true);
-            explosionEffect2.gameObject.SetActive(true);
+            //explosionEffect1.gameObject.SetActive(true);
+            //explosionEffect2.gameObject.SetActive(true);
 
             GameManager.Instance.Remove(tile1.x, tile1.y);
             GameManager.Instance.Remove(tile2.x, tile2.y);
@@ -119,8 +119,8 @@ public class HammerController : MonoBehaviour
 
             yield return new WaitForSeconds(2.5f);
 
-            explosionEffect1.gameObject.SetActive(false);
-            explosionEffect2.gameObject.SetActive(false);
+            //explosionEffect1.gameObject.SetActive(false);
+            //explosionEffect2.gameObject.SetActive(false);
         }
 
         OnDespawn();

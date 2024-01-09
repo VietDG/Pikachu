@@ -16,13 +16,22 @@ public class TileSelectedEffect : MonoBehaviour
 
     private void OnTileSelected(ItemTile tile, bool selected)
     {
-        if (selected)
+        //if (selected)
+        //{
+        //    tile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+        //}
+        //else
+        //{
+        //    tile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+        //}
+
+        foreach (var item in GameManager.Instance.tileList)
         {
-            tile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
-        }
-        else
-        {
-            tile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+            item.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+            if (selected && item == tile)
+            {
+                tile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+            }
         }
     }
 

@@ -121,7 +121,7 @@ public class TopPanelView : MonoBehaviour
         collectedStarAmount = Mathf.Min(maxCollectStarAmount, collectedStarAmount + amount);
 
         starProgressTween = oldTween = starProgressImage.DOFillAmount(collectedStarAmount / maxCollectStarAmount, 0.5f).SetDelay(delayTime).
-            SetEase(Ease.OutCubic).OnUpdate(() =>
+            SetEase(Ease.Linear).OnUpdate(() =>
             {
                 for (int i = 0; i < starObjects.Length; i++)
                 {

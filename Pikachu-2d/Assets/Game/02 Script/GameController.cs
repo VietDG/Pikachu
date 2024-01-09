@@ -6,7 +6,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 {
     public TopPanelView topPanelView;
 
-    //public BoosterViewManager boosterView;
+    public BoosterViewManager boosterView;
 
     public CameraController cameraAligner;
 
@@ -38,7 +38,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     private UserData userData;
 
-    private void Awake()
+    public override void Awake()
     {
         Application.targetFrameRate = 60;//Application.targetFrameRate: làm trò chơi chạy nhanh hơn 
 
@@ -57,7 +57,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         bool bgmEnabled = PlayerPrefs.GetInt("bgm", 1) == 1;// tùy chọn sound
 
         GameManager.Instance.OnBoardClear += HandleGameWin;//win game + level
-
+        InitLevel();
     }
 
     public void InitLevel()
@@ -78,11 +78,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         TileMatchManager.TileSelectedEvent -= OnTileSelected;
         TileMatchManager.TileMatchSucceededEvent -= OnTileMatchSucceeded;
-
-    }
-
-    private void Update()
-    {
 
     }
 
@@ -113,15 +108,15 @@ public class GameController : SingletonMonoBehaviour<GameController>
             };
 
             topPanelView.gameObject.SetActive(false);
-            //  boosterView.gameObject.SetActive(false);// tat top bot lv1
+            boosterView.gameObject.SetActive(false);// tat top bot lv1
         }
         else // neu lv>1 thi 
         {
-            levelConfig = LevelDataLoader.Instance.GetLevelConfig(level);//load level tu data
-            boardConfig = LevelDataLoader.Instance.GetBoardData(level);//load bang level
+            levelConfig = LevelData.Instance.GetLevelConfig(level);//load level tu data
+            boardConfig = LevelData.Instance.GetBoardData(level);//load bang level
 
             topPanelView.gameObject.SetActive(true);// active top down
-            //  boosterView.gameObject.SetActive(true);
+            boosterView.gameObject.SetActive(true);
             tileSlideEffect.SetSlideOrder(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
             // hieu ung tren gach
             if (level == 2)
@@ -139,7 +134,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     private void StartGame()
     {
-
         topPanelView.SetLevel(UserData.current.userStatus.level);//hien ra level tu user data
         topPanelView.SetCollectedStar(0f, levelConfig.score);//hien level
         topPanelView.SetCollectedStarProgressMilestone(starProgressMilestone);// moc tien trinh
@@ -153,33 +147,28 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
             StartCoroutine(UpdateTime());// khởi động game time cout sẽ chạy
                                          // chay thời gian còn lại trong level
-
         }
         else
         {
             topPanelView.SetTimeCount(false);// level k có time thì k bật 
         }
-
-
         TileData.Instance.Initialize(levelConfig, boardConfig, 30);// khởi tạo mảng daata gồm cấp độ 
         GameManager.Instance.SpawnTiles(TileData.Instance);// tajp barng
         tileSpawnEffect.Play();
 
-        //   featureSpawner.ResetAllPools();
+        featureSpawner.ResetAllPools();
 
         if (levelConfig.boom > 0)
-            //    featureSpawner.CreateBomb(levelConfig.boom);// spam boom
+            featureSpawner.CreateBomb(levelConfig.boom);// spam boom
 
-            if (hammerLevel.Contains(level) || level >= 16)
-            {
-                levelConfig.hammer = 2;// tạo 2 búa
-            }
-            else levelConfig.hammer = 0;
+        if (hammerLevel.Contains(level) || level >= 16)
+        {
+            levelConfig.hammer = 2;// tạo 2 búa
+        }
+        else levelConfig.hammer = 0;
 
-        if (levelConfig.hammer > 0) ;
-        //   featureSpawner.CreateHammer(levelConfig.hammer);// tạo 1 búa
-
-
+        if (levelConfig.hammer > 0)
+            featureSpawner.CreateHammer(levelConfig.hammer);// tạo 1 búa
         //AdvertiseManager.Instance.ShowBanner();
     }
 
@@ -277,42 +266,59 @@ public class GameController : SingletonMonoBehaviour<GameController>
         //AdvertiseManager.Instance.ShowBanner();
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            HandleGameWin();
+            Debug.LogError("Win");
+        }
+    }
+
     public void HandleGameWin()
     {
         //    GamePlayState.Pause();
 
         level++;
         UserData.current.userStatus.level = level;
-        UserData.current.decorData.tilePackIndex++;
+        //  UserData.current.decorData.tilePackIndex++;
 
-        //if (level != 2)
-        //{
-        //    var goldPigData = UserData.current.goldPigData;// lấy dữ liệu con lợn vàng
-        //    int goldPigBonusCoin = UnityEngine.Random.Range(20, 25);
-        //    int goldPigPreviousCoin = goldPigData.coinAmount;
-        //    var stashRange = GoldPigUtility.GetSmashRange();
-        //    goldPigData.coinAmount = Mathf.Min(goldPigData.coinAmount + goldPigBonusCoin, stashRange.Item2);
-        //    var userStatus = UserData.current.userStatus;//
-        //    userStatus.coinCount += goldPigBonusCoin;//
-        //    EventDispatcher.Instance.NotifyEvent("coin_update", userStatus.coinCount);// + gold mỗi màn
 
-        //    //    topPanelView.GetCollectedStar(out float collectedStartAmount, out float maxAmount);
-        //    //  float percent = collectedStartAmount / maxAmount;
+        if (level != 2)
+        {
+            PopupWin.Instance.Show();
+            //var goldPigData = UserData.current.goldPigData;// lấy dữ liệu con lợn vàng
+            //int coin = UnityEngine.Random.Range(20, 25);
+            ////  int goldPigPreviousCoin = goldPigData.coinAmount;
+            //var stashRange = GoldPigUtility.GetSmashRange();
+            ////  goldPigData.coinAmount = Mathf.Min(goldPigData.coinAmount + goldPigBonusCoin, stashRange.Item2);
+            //var userStatus = UserData.current.userStatus;//
+            //userStatus.coinCount += coin;//
+            //EventDispatcher.Instance.NotifyEvent("coin_update", userStatus.coinCount);// + gold mỗi màn
 
-        //    int collectStartCount = 0;
-        //    //if (percent >= starProgressMilestone[0]) collectStartCount++;
-        //    //if (percent >= starProgressMilestone[1]) collectStartCount++;
-        //    //if (percent >= starProgressMilestone[2]) collectStartCount++;
+            ////    topPanelView.GetCollectedStar(out float collectedStartAmount, out float maxAmount);
+            ////  float percent = collectedStartAmount / maxAmount;
 
-        //}
-        //else
-        //{
-        GamePlayState.NextLevel();
-        //    }
+            //int collectStartCount = 0;
+            //if (percent >= starProgressMilestone[0]) collectStartCount++;
+            //if (percent >= starProgressMilestone[1]) collectStartCount++;
+            //if (percent >= starProgressMilestone[2]) collectStartCount++;
+
+        }
+        else
+        {
+            GamePlayState.NextLevel();
+        }
 
         //if (level >= 3)
         //{
         //}
+    }
+
+    private IEnumerator WaitWin()
+    {
+        yield return new WaitForSeconds(1.5f);
+        PopupWin.Instance.Show();
     }
 
     public void HandleGameLose()

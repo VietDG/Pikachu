@@ -28,7 +28,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private Dictionary<int, List<ItemTile>> tileGroups = new Dictionary<int, List<ItemTile>>();
 
-    private List<ItemTile> tileList = new List<ItemTile>();
+    public List<ItemTile> tileList = new List<ItemTile>();
 
     private List<BombController> bombList = new List<BombController>();
 
@@ -66,7 +66,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             {
                 for (int i = boardTileCount - tileList.Count - 1; i >= 0; i--)
                 {
-                    ItemTile tile = Instantiate(tilePrefab, this.transform);
+                    ItemTile tile = Instantiate(tilePrefab, mainTrans);
 
                     tileList.Add(tile);// thêm ô
                 }
@@ -172,6 +172,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public ShuffleData Shuffle() // trộn ô gach
     {
+
         if (GamePlayLocker.IsLocked() || GetTileCount() < 2)
             return null;
 
@@ -322,7 +323,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         if (boardTileData.GetTileCount() == 0)
         {
-            Debug.LogError("WIn");
             OnBoardClear?.Invoke();
         }
     }

@@ -5,5 +5,5 @@ using UnityEngine;
 public class Const
 {
     public const string SCENE_LOADING = "Loading";
-    public const string SCENE_GAME = "GamePlay";
+    public const string SCENE_GAME = "Game";
 }

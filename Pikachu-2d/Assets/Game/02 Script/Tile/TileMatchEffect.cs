@@ -31,17 +31,19 @@ public class TileMatchEffect : MonoBehaviour
 
     private List<GameObject> lineMatchObjectPool = new List<GameObject>();
 
-    private Vector3 _starCollectPos;
+    // private Vector3 _starCollectPos;
 
     private List<GameObject> _starPoolObj = new List<GameObject>();
 
     private int _matchStarCreatedCount = 0;
 
-    private float _starMoveDuration = 0.6f;
+    private float _starMoveDuration = 0.8f;
 
     private float _starMoveDelay = 0.25f;
 
     private SpriteRenderer[] hintMatchLines;
+
+    [SerializeField] Transform _starsTrans, _lineTrans;
 
     private void Awake()
     {
@@ -77,7 +79,7 @@ public class TileMatchEffect : MonoBehaviour
 
     private void OnTileMatchFailed(ItemTile tile1, ItemTile tile2)
     {
-
+        Debug.LogError("khong an duoc");
         if (cameraShakeCoroutine != null)
         {
             StopCoroutine(cameraShakeCoroutine);
@@ -182,7 +184,7 @@ public class TileMatchEffect : MonoBehaviour
     private void CreateStarts(Match match)
     {
         _matchStarCreatedCount = 0;
-        _starCollectPos = topPanelView.GetCollectStarPosition();
+        //_starCollectPos = topPanelView.GetCollectStarPosition();
 
         for (int i = 1; i < match.locations.Count; i++)
         {
@@ -225,7 +227,7 @@ public class TileMatchEffect : MonoBehaviour
         _matchStarCreatedCount++;
 
         starTransform.DOKill();
-        starTransform.DOMove(_starCollectPos, _starMoveDuration).
+        starTransform.DOMove(topPanelView.starObjects[0].transform.position, _starMoveDuration).
             SetDelay(_starMoveDelay).
             SetEase(Ease.InOutQuad).
             OnComplete(() => starTransform.gameObject.SetActive(false));
@@ -248,7 +250,7 @@ public class TileMatchEffect : MonoBehaviour
 
     private GameObject SpawnStarObject()
     {
-        GameObject go = Instantiate(starPrefab);
+        GameObject go = Instantiate(starPrefab, _starsTrans);
         go.SetActive(false);
         _starPoolObj.Add(go);
 
@@ -273,7 +275,7 @@ public class TileMatchEffect : MonoBehaviour
 
     private GameObject SpawnLineMatchObject()
     {
-        GameObject go = Instantiate(matchLineSegmentPrefab);
+        GameObject go = Instantiate(matchLineSegmentPrefab, _lineTrans);
         go.SetActive(false);
         lineMatchObjectPool.Add(go);
 

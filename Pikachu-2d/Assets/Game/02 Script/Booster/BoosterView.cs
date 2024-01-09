@@ -35,7 +35,8 @@ public abstract class BoosterView : MonoBehaviour
         }
         else
         {
-
+            //iconImage.gameObject.SetActive(false);
+            //freeImage.gameObject.SetActive(true);
         }
     }
 

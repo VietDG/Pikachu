@@ -21,6 +21,6 @@ public class BackgroundController : MonoBehaviour
 
     public void UpdateBackGroundSprite()
     {
-        GetComponent<SpriteRenderer>().sprite = themePool.GetThemeInfo(UserData.current.decorData.currentThemeID).sprite;
+        // GetComponent<SpriteRenderer>().sprite = themePool.GetThemeInfo(UserData.current.decorData.currentThemeID).sprite;
     }
 }

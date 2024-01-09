@@ -16,9 +16,6 @@ public class UserStatus
 public class DecorData
 {
     public int tilePackIndex = 0;
-
-    public string currentThemeID = "theme_11";
-    public List<string> unlockedThemeIDs;
 }
 
 [Serializable]
@@ -28,27 +25,19 @@ public class BoosterData
     public int shuffleAdsCount;
     public int swapTexAdsCount;
 
-    public int findMatchCount = 5;
-    public int shuffleCount = 5;
-    public int swapTexCount = 5;
+    public int findMatchCount = 100;
+    public int shuffleCount = 100;
+    public int swapTexCount = 100;
 }
 
-[Serializable]
-public class RewardData
-{
-    public int dailyBonusProgress;
-    public string lastReceiveDailyBonusTime;
+//[Serializable]
+//public class RewardData
+//{
+//    public int dailyBonusProgress;
+//    public string lastReceiveDailyBonusTime;
 
-    public int freeCoinProgress;
-    public string lastReceiveFinalFreeCoinTime;
+//    public int freeCoinProgress;
+//    public string lastReceiveFinalFreeCoinTime;
 
-    public bool removedAds;
-}
-
-[Serializable]
-public class GoldPigData
-{
-    public int level;
-    public int coinAmount;
-    public bool removed;
-}
+//    public bool removedAds;
+//}

@@ -17,9 +17,7 @@ public class UserData
 
     public BoosterData boosterData = new BoosterData();
 
-    public RewardData rewardData = new RewardData();
-
-    public GoldPigData goldPigData = new GoldPigData();
+    // public RewardData rewardData = new RewardData();
 
     public void OnBeforeSerialize()
     {
@@ -63,7 +61,6 @@ public class UserData
 
     public static bool Load(bool forceReload = false)
     {
-        Debug.LogError("Load");
         if (isLoaded == true && forceReload == false) return false;
 
         string filePath = directory + fileName;

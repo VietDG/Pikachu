@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Loading : MonoBehaviour
 {
     private int percent;
-    float loadTime = 1.5f;
+    //float loadTime = 1.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +25,7 @@ public class Loading : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
-        Manager.Load(DGame.SCENE_NAME);
+        //  Manager.Load(DGame.SCENE_NAME);
+        SceneManager.LoadScene(Const.SCENE_GAME);
     }
 }
