@@ -41,7 +41,7 @@ public class PopupWin : SingletonPopup<PopupWin>
         base.Hide(() =>
         {
             GamePlayState.NextLevel();
-            var userStatus = UserData.current.userStatus;//
+            var userStatus = PlayerData.current.userStatus;//
 
             userStatus.coinCount += _coin;//
 

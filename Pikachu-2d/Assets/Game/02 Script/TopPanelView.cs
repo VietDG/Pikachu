@@ -51,7 +51,7 @@ public class TopPanelView : MonoBehaviour
 
     private void Start()
     {
-        UpdateCoin(UserData.current.userStatus.coinCount);
+        UpdateCoin(PlayerData.current.userStatus.coinCount);
 
         EventDispatcher.Instance.RegisterEvent("coin_update", UpdateCoin);
     }
@@ -63,7 +63,7 @@ public class TopPanelView : MonoBehaviour
 
     public void SetLevel(int level)
     {
-        levelText.text = "Level " + UserData.current.userStatus.level.ToString();
+        levelText.text = "Level " + PlayerData.current.userStatus.level.ToString();
 
         shouldRecalculateCollectBasePosition = true;
     }

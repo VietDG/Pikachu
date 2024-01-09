@@ -5,29 +5,15 @@ using System.IO;
 using UnityEngine;
 
 [Serializable]
-public class UserData
+public class PlayerData
 {
-    public static UserData current;
+    public static PlayerData current;
 
-    public DateTime activeTime;
+    public UserProfile userStatus = new UserProfile();
 
-    public UserStatus userStatus = new UserStatus();
+    public SpriteData decorData = new SpriteData();
 
-    public DecorData decorData = new DecorData();
-
-    public BoosterData boosterData = new BoosterData();
-
-    // public RewardData rewardData = new RewardData();
-
-    public void OnBeforeSerialize()
-    {
-
-    }
-
-    public void OnAfterDeserialize()
-    {
-        activeTime = DateTime.UtcNow;
-    }
+    public DataBooster boosterData = new DataBooster();
 
     #region DeviceSerialization
     private static bool isLoaded = false;
@@ -53,8 +39,6 @@ public class UserData
 
         string filePath = directory + fileName;
 
-        current.OnBeforeSerialize();
-
         string json = JsonUtility.ToJson(current);
         File.WriteAllText(filePath, json);
     }
@@ -71,14 +55,12 @@ public class UserData
         sr.Close();
         fileStream.Close();
 
-        current = JsonUtility.FromJson<UserData>(playerDataJson);
+        current = JsonUtility.FromJson<PlayerData>(playerDataJson);
 
         if (current == null)
         {
-            current = new UserData();
+            current = new PlayerData();
         }
-
-        current.OnAfterDeserialize();
 
         isLoaded = true;
 

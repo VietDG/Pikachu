@@ -214,7 +214,7 @@ public class TileMatchEffect : MonoBehaviour
         Vector2Int lastLocation = match.locations[match.locations.Count - 1];
         CreateStarAtLocation(lastLocation.x, lastLocation.y);
 
-        UserData.current.userStatus.starCount += _matchStarCreatedCount;
+        PlayerData.current.userStatus.starCount += _matchStarCreatedCount;
         topPanelView.OnStarsCollected(_matchStarCreatedCount, _starMoveDuration + _starMoveDelay);
     }
 

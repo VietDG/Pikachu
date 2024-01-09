@@ -19,7 +19,7 @@ public class TileSwapTextureEffect : MonoBehaviour
     {
         GamePlayLocker.Retain();
         // tăng lookcount
-        UserData.current.decorData.tilePackIndex++;
+        PlayerData.current.decorData.tileSpriteIndex++;
         var spritePack = TileSpritePackManager.Instance.GetTileSpritePack();// thay ảnh 
 
         //for (int y = height - 1; y >= 0; y--)

@@ -7,12 +7,12 @@ public class SerializeEventHandler : MonoBehaviour
 {
     public bool saveData = true;
 
-    public UserData userData;
+    public PlayerData userData;
 
     private void Awake()
     {
-        UserData.Load();
-        userData = UserData.current;
+        PlayerData.Load();
+        userData = PlayerData.current;
 
         DontDestroyOnLoad(gameObject);
     }
@@ -37,7 +37,7 @@ public class SerializeEventHandler : MonoBehaviour
 #endif
         if (saveData)
         {
-            UserData.Save();
+            PlayerData.Save();
             PlayerPrefs.Save();
         }
     }

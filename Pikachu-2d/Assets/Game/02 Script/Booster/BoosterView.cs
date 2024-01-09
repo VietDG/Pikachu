@@ -14,7 +14,7 @@ public abstract class BoosterView : MonoBehaviour
 
     public Text countText;
 
-    [NonSerialized] public BoosterData boosterData;
+    [NonSerialized] public DataBooster boosterData;
 
     public Func<int> GetCount;
 

@@ -10,7 +10,7 @@ public class TileSpritePackManager : SingletonMonoBehaviour<TileSpritePackManage
 
     public TileSpritePack GetTileSpritePack()
     {
-        return tileSpritePacks[UserData.current.decorData.tilePackIndex % tileSpritePacks.Length];
+        return tileSpritePacks[PlayerData.current.decorData.tileSpriteIndex % tileSpritePacks.Length];
         // thay ground
     }
 }

@@ -36,7 +36,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     private float[] starProgressMilestone = new float[] { 0.455f, 0.73f, 0.99f };
 
-    private UserData userData;
+    private PlayerData userData;
 
     public override void Awake()
     {
@@ -83,7 +83,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     private void LoadLevel()
     {
-        level = UserData.current.userStatus.level;
+        level = PlayerData.current.userStatus.level;
 
         if (level <= 1)
         {
@@ -134,7 +134,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     private void StartGame()
     {
-        topPanelView.SetLevel(UserData.current.userStatus.level);//hien ra level tu user data
+        topPanelView.SetLevel(PlayerData.current.userStatus.level);//hien ra level tu user data
         topPanelView.SetCollectedStar(0f, levelConfig.score);//hien level
         topPanelView.SetCollectedStarProgressMilestone(starProgressMilestone);// moc tien trinh
 
@@ -280,7 +280,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         //    GamePlayState.Pause();
 
         level++;
-        UserData.current.userStatus.level = level;
+        PlayerData.current.userStatus.level = level;
         //  UserData.current.decorData.tilePackIndex++;
 
 

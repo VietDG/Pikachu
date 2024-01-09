@@ -13,18 +13,18 @@ public class BoosterViewManager : MonoBehaviour
 
     public void Start()
     {
-        var boosterData = UserData.current.boosterData;
+        var boosterData = PlayerData.current.boosterData;
 
-        boosterTileTexture.SetCount = (value) => boosterData.swapTexCount = value;
-        boosterTileTexture.GetCount = () => boosterData.swapTexCount;
+        boosterTileTexture.SetCount = (value) => boosterData.swap = value;
+        boosterTileTexture.GetCount = () => boosterData.swap;
         SetupBoosterView(boosterTileTexture);
 
-        boosterShuffle.SetCount = (value) => boosterData.shuffleCount = value;
-        boosterShuffle.GetCount = () => boosterData.shuffleCount;
+        boosterShuffle.SetCount = (value) => boosterData.shuffle = value;
+        boosterShuffle.GetCount = () => boosterData.shuffle;
         SetupBoosterView(boosterShuffle);
 
-        boosterFindMatch.SetCount = (value) => boosterData.findMatchCount = value;
-        boosterFindMatch.GetCount = () => boosterData.findMatchCount;
+        boosterFindMatch.SetCount = (value) => boosterData.findMatch = value;
+        boosterFindMatch.GetCount = () => boosterData.findMatch;
         SetupBoosterView(boosterFindMatch);
     }
 
