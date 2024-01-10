@@ -29,16 +29,10 @@ public static class StateGame
     {
         isPlay = false;
         isPause = true;
-
-        GamePauseEvent?.Invoke();
     }
 
     public static void NextLevels()
     {
-        GameNextLevelEvent?.Invoke();
+        EventAction.OnNextLevel?.Invoke();
     }
-
-    public static event Action GamePauseEvent;
-
-    public static event Action GameNextLevelEvent;
 }

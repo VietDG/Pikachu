@@ -43,7 +43,7 @@ public class PopupWin : SingletonPopup<PopupWin>
             StateGame.NextLevels();
             var userStatus = PlayerData.playerData.userProfile;
 
-            userStatus.totalCoin += _coin;
+            userStatus.coinCount += _coin;
 
             SceneManager.LoadScene(Const.SCENE_GAME);
 

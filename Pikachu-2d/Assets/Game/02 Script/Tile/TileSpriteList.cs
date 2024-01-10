@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class TileSpriteList : ScriptableObject
 {
-    [SerializeField] Sprite[] sprites;
+    [SerializeField] Sprite[] spr;
 
-    public Sprite Get(int id)
+    public Sprite GetSprite(int id)
     {
-        return sprites[id];
+        return spr[id];
     }
 }

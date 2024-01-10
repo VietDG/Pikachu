@@ -19,7 +19,7 @@ public class ChangeSprite : MonoBehaviour
     {
         MainController.Augment();
         PlayerData.playerData.spriteData.tileSpriteDataIndex++;
-        var pack = TileSpriteListManager.Instance.GetTileSpritePack();
+        var pack = TileSpriteListManager.Instance.GetTileSpriteList();
 
         for (int h = height - 1; h >= 0; h--)
         {
@@ -33,7 +33,7 @@ public class ChangeSprite : MonoBehaviour
                 if (itemTile)
                 {
                     var sequence = DOTween.Sequence();
-                    var t1 = itemTile.transform.DORotate(new Vector3(0f, 90f, 0), _duration * 0.5f).OnComplete(() => itemTile.SetAva(pack.Get(itemTile.idTile)));
+                    var t1 = itemTile.transform.DORotate(new Vector3(0f, 90f, 0), _duration * 0.5f).OnComplete(() => itemTile.SetAva(pack.GetSprite(itemTile.idTile)));
                     var t2 = itemTile.transform.DORotate(new Vector3(0f, 180f, 0f), _duration * 0.5f);
 
                     sequence.Append(t1);
@@ -58,7 +58,7 @@ public class ChangeSprite : MonoBehaviour
                 {
                     var sequence = DOTween.Sequence();
 
-                    var t1 = itemTile.transform.DORotate(new Vector3(0f, 90f, 0), _duration * 0.5f).OnComplete(() => itemTile.SetAva(pack.Get(itemTile.idTile)));
+                    var t1 = itemTile.transform.DORotate(new Vector3(0f, 90f, 0), _duration * 0.5f).OnComplete(() => itemTile.SetAva(pack.GetSprite(itemTile.idTile)));
                     var t2 = itemTile.transform.DORotate(new Vector3(0f, 0f, 0f), _duration * 0.5f);
 
                     sequence.Append(t1);

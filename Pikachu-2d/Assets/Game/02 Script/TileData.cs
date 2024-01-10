@@ -5,178 +5,172 @@ using UnityEngine;
 
 public class TileData : Singleton<TileData>
 {
-    public int[][] data;
+    public int[][] dataTile;
 
-    public const int EmptyTileCode = -1;
+    public const int tileCode = -1;
 
-    public int width = 6;
+    public int widths = 6;
 
-    public int height = 19;
+    public int heights = 19;
 
-    public bool canShuffleOnInit = true;
+    public bool isShuffle = true;
 
-    private int kind = 10;
+    private int type = 10;
 
-    private int tileCount;
+    private int amout;
 
-    private List<Vector2Int> shuffleLocations = new List<Vector2Int>();
+    private List<Vector2Int> newPos = new List<Vector2Int>();
 
-    public void Initialize(LevelConfig levelConfig, BoardConfig boardConfig, int maxKind)
+    public void Initialize(LoadLevelFormData loadlevelFormData, LoadBoardFormData loadBoardFormData, int maxValue)
     {
-        // tạo bảng levelconfig:hình dạnng thời gian,... ,bảng cấu hình boardconfig
-        shuffleLocations.Clear();//xóa list
-        tileCount = 0;
+        newPos.Clear();
+        amout = 0;
+        widths = Mathf.Max(2, loadBoardFormData.row);
+        heights = Mathf.Max(2, loadBoardFormData.col);
+        type = loadlevelFormData.kind;
+        isShuffle = !loadBoardFormData.containTileIndex;
 
-        width = Mathf.Max(2, boardConfig.row);// trả về giá trị lớn nhất 
-        height = Mathf.Max(2, boardConfig.col);// trả về giá trị lớn nhất 
-        kind = levelConfig.kind;//trả về kiểu int
-        canShuffleOnInit = !boardConfig.containTileIndex;// có thể  xáo trộn bảng 
-
-        data = new int[width][]; // tạo chiều rộng của bảng
-        for (int x = 0; x < width; x++)
+        dataTile = new int[widths][];
+        for (int i = 0; i < widths; i++)
         {
-            data[x] = new int[height];       // tạo ra chiều cao 
+            dataTile[i] = new int[heights];
         }
 
-        if (canShuffleOnInit)// có thể xáo trộn 
+        if (isShuffle)
         {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < widths; x++)
             {
-                for (int y = 0; y < height; y++)
+                for (int y = 0; y < heights; y++)
                 {
-                    int index = (height - y - 1) * width + x;// thay đổi vị trí chiều cao = chiều cao-y tăng dần -1 nhân chiều rộng + x
-                    if (boardConfig.datas[index] == 0)// khi trừ =0 thì
+                    int index = (heights - y - 1) * widths + x;
+                    if (loadBoardFormData.datas[index] == 0)
                     {
-                        shuffleLocations.Add(new Vector2Int(x, y));// add 1 vi trí mới 
+                        newPos.Add(new Vector2Int(x, y));
 
-                        tileCount++;
+                        amout++;
                     }
                     else
                     {
-                        data[x][y] = EmptyTileCode;
+                        dataTile[x][y] = tileCode;
                     }
                 }
             }
         }
-        else// k thể xáo trộn 
+        else
         {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < widths; x++)
             {
-                for (int y = 0; y < height; y++)
+                for (int y = 0; y < heights; y++)
                 {
-                    int index = (height - y - 1) * width + x;
-                    if (boardConfig.datas[index] >= 0)
+                    int index = (heights - y - 1) * widths + x;
+                    if (loadBoardFormData.datas[index] >= 0)
                     {
-                        data[x][y] = boardConfig.datas[index];// giữ nguyên k thay đổi 
+                        dataTile[x][y] = loadBoardFormData.datas[index];
 
-                        tileCount++;// tăng tilecount
+                        amout++;
                     }
                     else
                     {
-                        data[x][y] = EmptyTileCode;
+                        dataTile[x][y] = tileCode;
                     }
                 }
             }
         }
     }
 
-    public void ShuffleLocation()
+    public void ShufflePos()
     {
-        shuffleLocations.Shuffle();// tạo list ngẫu nhiên vị trí
+        newPos.Shuffle();
 
-        List<int> kinds = new List<int>();
-        for (int i = 0; i < kind; i++)
+        List<int> type = new List<int>();
+        for (int i = 0; i < this.type; i++)
         {
-            kinds.Add(i);
+            type.Add(i);
         }
-        kinds.Shuffle();// add thành phần mới vào list
+        type.Shuffle();
 
-        for (int i = 0; i < shuffleLocations.Count; i += 2)
+        for (int i = 0; i < newPos.Count; i += 2)
         {
-            int kindIndex = (i / 2) % kind;
+            int typeIndex = (i / 2) % this.type;
 
-            Vector2Int loc1 = shuffleLocations[i];
-            Vector2Int loc2 = shuffleLocations[i + 1];
+            Vector2Int l1 = newPos[i];
+            Vector2Int l2 = newPos[i + 1];
 
-            data[loc1.x][loc1.y] = kinds[kindIndex];
-            data[loc2.x][loc2.y] = kinds[kindIndex];
+            dataTile[l1.x][l1.y] = type[typeIndex];
+            dataTile[l2.x][l2.y] = type[typeIndex];
         }
     }
 
-    public int GetTileCount()
+    public int GetAmoutTile()
     {
-        return tileCount;// nhập số lượng ô 
+        return amout;
     }
 
-    public void ClearTile(int x, int y)
+    public void RemoveTile(int x, int y)
     {
-        data[x][y] = EmptyTileCode;
-        tileCount--;//xóa ô
+        dataTile[x][y] = tileCode;
+        amout--;
     }
 
-    public void SetTileData(int x, int y, int id)
+    public void SetData(int x, int y, int id)
     {
-        data[x][y] = id;// lấy ID cho mỗi ô gạch
+        dataTile[x][y] = id;
     }
 
-    public Match FindMatch(int xa, int ya, int xb, int yb)//tìm trận 
+    public MatchT Find(int x1, int y1, int x2, int y2)
     {
-        Match match = null;
-        // 1 hang
-        if (xa == xb || ya == yb)
+        MatchT matchTile = null;
+        if (x1 == x2 || y1 == y2)
         {
-            if (xa == xb && IsVerticalLineClear(xa, ya, yb))
+            if (x1 == x2 && IsRemoveLineV(x1, y1, y2))
             {
+                matchTile = new MatchT();
+                matchTile.AddPos(x1, y1);
+                matchTile.AddPos(x2, y2);
 
-                match = new Match();
-                match.AddLocation(xa, ya);
-                match.AddLocation(xb, yb);
-
-                return match;
+                return matchTile;
             }
-            else if (ya == yb && IsHorizontalLineClear(xa, xb, ya))
+            else if (y1 == y2 && IsRemoveLineH(x1, x2, y1))
             {
-                match = new Match();
-                match.AddLocation(xa, ya);
-                match.AddLocation(xb, yb);
-                return match;
+                matchTile = new MatchT();
+                matchTile.AddPos(x1, y1);
+                matchTile.AddPos(x2, y2);
+                return matchTile;
             }
         }
 
-        // 2 hafng
-        if (IsPerpendicularClear_VerticalSearch(xa, ya, xb, yb))
+        if (FindVertical(x1, y1, x2, y2))
         {
-            match = new Match();
-            match.AddLocation(xa, ya);
-            match.AddLocation(xa, yb);
-            match.AddLocation(xb, yb);
+            matchTile = new MatchT();
+            matchTile.AddPos(x1, y1);
+            matchTile.AddPos(x1, y2);
+            matchTile.AddPos(x2, y2);
 
-            return match;
+            return matchTile;
         }
-        else if (IsPerpendicularClear_HorizontalSearch(xa, ya, xb, yb))
+        else if (FindHorizontal(x1, y1, x2, y2))
         {
-            match = new Match();
-            match.AddLocation(xa, ya);
-            match.AddLocation(xb, ya);
-            match.AddLocation(xb, yb);
+            matchTile = new MatchT();
+            matchTile.AddPos(x1, y1);
+            matchTile.AddPos(x2, y1);
+            matchTile.AddPos(x2, y2);
 
-            return match;
+            return matchTile;
         }
 
-        //3 hàng
-        for (int x = xa - 1; x >= -1; x--)
+        for (int x = x1 - 1; x >= -1; x--)
         {
-            if (IsTileEmpty(x, ya))
+            if (IsNone(x, y1))
             {
-                if (IsPerpendicularClear_VerticalSearch(x, ya, xb, yb))
+                if (FindVertical(x, y1, x2, y2))
                 {
-                    match = new Match();
-                    match.AddLocation(xa, ya);
-                    match.AddLocation(x, ya);
-                    match.AddLocation(x, yb);
-                    match.AddLocation(xb, yb);
+                    matchTile = new MatchT();
+                    matchTile.AddPos(x1, y1);
+                    matchTile.AddPos(x, y1);
+                    matchTile.AddPos(x, y2);
+                    matchTile.AddPos(x2, y2);
 
-                    return match;
+                    return matchTile;
                 }
             }
             else
@@ -184,20 +178,19 @@ public class TileData : Singleton<TileData>
                 break;
             }
         }
-        //4 hàng
-        for (int x = xa + 1; x <= width; x++)
+        for (int x = x1 + 1; x <= widths; x++)
         {
-            if (IsTileEmpty(x, ya))
+            if (IsNone(x, y1))
             {
-                if (IsPerpendicularClear_VerticalSearch(x, ya, xb, yb))
+                if (FindVertical(x, y1, x2, y2))
                 {
-                    match = new Match();
-                    match.AddLocation(xa, ya);
-                    match.AddLocation(x, ya);
-                    match.AddLocation(x, yb);
-                    match.AddLocation(xb, yb);
+                    matchTile = new MatchT();
+                    matchTile.AddPos(x1, y1);
+                    matchTile.AddPos(x, y1);
+                    matchTile.AddPos(x, y2);
+                    matchTile.AddPos(x2, y2);
 
-                    return match;
+                    return matchTile;
                 }
             }
             else
@@ -205,20 +198,18 @@ public class TileData : Singleton<TileData>
                 break;
             }
         }
-        //5 hàng
-        for (int y = ya - 1; y >= -1; y--)
+        for (int y = y1 - 1; y >= -1; y--)
         {
-            if (IsTileEmpty(xa, y))
+            if (IsNone(x1, y))
             {
-                if (IsPerpendicularClear_HorizontalSearch(xa, y, xb, yb))
+                if (FindHorizontal(x1, y, x2, y2))
                 {
-                    match = new Match();
-                    match.AddLocation(xa, ya);
-                    match.AddLocation(xa, y);
-                    match.AddLocation(xb, y);
-                    match.AddLocation(xb, yb);
-
-                    return match;
+                    matchTile = new MatchT();
+                    matchTile.AddPos(x1, y1);
+                    matchTile.AddPos(x1, y);
+                    matchTile.AddPos(x2, y);
+                    matchTile.AddPos(x2, y2);
+                    return matchTile;
                 }
             }
             else
@@ -226,20 +217,19 @@ public class TileData : Singleton<TileData>
                 break;
             }
         }
-        // 6 hàng
-        for (int y = ya + 1; y <= height; y++)
+        for (int y = y1 + 1; y <= heights; y++)
         {
-            if (IsTileEmpty(xa, y))
+            if (IsNone(x1, y))
             {
-                if (IsPerpendicularClear_HorizontalSearch(xa, y, xb, yb))
+                if (FindHorizontal(x1, y, x2, y2))
                 {
-                    match = new Match();
-                    match.AddLocation(xa, ya);
-                    match.AddLocation(xa, y);
-                    match.AddLocation(xb, y);
-                    match.AddLocation(xb, yb);
+                    matchTile = new MatchT();
+                    matchTile.AddPos(x1, y1);
+                    matchTile.AddPos(x1, y);
+                    matchTile.AddPos(x2, y);
+                    matchTile.AddPos(x2, y2);
 
-                    return match;
+                    return matchTile;
                 }
             }
             else
@@ -251,10 +241,9 @@ public class TileData : Singleton<TileData>
         return null;
     }
 
-    private bool IsPerpendicularClear_VerticalSearch(int xa, int ya, int xb, int yb)
+    private bool FindVertical(int x1, int y1, int x2, int y2)
     {
-        // tìm kiếm hàng dọc vuông góc
-        if (IsTileEmpty(xa, yb) && IsVerticalLineClear(xa, ya, yb) && IsHorizontalLineClear(xa, xb, yb))
+        if (IsNone(x1, y2) && IsRemoveLineV(x1, y1, y2) && IsRemoveLineH(x1, x2, y2))
         {
             return true;
         }
@@ -262,9 +251,9 @@ public class TileData : Singleton<TileData>
         return false;
     }
 
-    private bool IsPerpendicularClear_HorizontalSearch(int xa, int ya, int xb, int yb)
+    private bool FindHorizontal(int x1, int y1, int x2, int y2)
     {
-        if (IsTileEmpty(xb, ya) && IsVerticalLineClear(xb, ya, yb) && IsHorizontalLineClear(xa, xb, ya))
+        if (IsNone(x2, y1) && IsRemoveLineV(x2, y1, y2) && IsRemoveLineH(x1, x2, y1))
         {
             return true;
         }
@@ -272,74 +261,74 @@ public class TileData : Singleton<TileData>
         return false;
     }
 
-    private bool IsHorizontalLineClear(int xa, int xb, int y)
+    private bool IsRemoveLineH(int x1, int x2, int y)
     {
-        int x1 = xa;
-        int x2 = xb;
+        int index1 = x1;
+        int index2 = x2;
 
-        if (xb < xa)
+        if (x2 < x1)
         {
-            x1 = xb;
-            x2 = xa;
+            index1 = x2;
+            index2 = x1;
         }
 
-        for (int x = x1 + 1; x < x2; x++)
+        for (int x = index1 + 1; x < index2; x++)
         {
-            if (!IsTileEmpty(x, y))
+            if (!IsNone(x, y))
                 return false;
         }
 
         return true;
     }
 
-    private bool IsVerticalLineClear(int x, int ya, int yb)
+    private bool IsRemoveLineV(int x, int y1, int y2)
     {
-        int y1 = ya;
-        int y2 = yb;
+        int value1 = y1;
+        int value2 = y2;
 
-        if (yb < ya)
+        if (y2 < y1)
         {
-            y1 = yb;
-            y2 = ya;
+            value1 = y2;
+            value2 = y1;
         }
 
-        for (int y = y1 + 1; y < y2; y++)
+        for (int y = value1 + 1; y < value2; y++)
         {
-            if (!IsTileEmpty(x, y))
+            if (!IsNone(x, y))
                 return false;
         }
 
         return true;
     }
 
-    private bool IsTileEmpty(int x, int y)
+    private bool IsNone(int x, int y)
     {
-        return x < 0 || x >= width || y < 0 || y >= height || data[x][y] == EmptyTileCode;
+        return x < 0 || x >= widths || y < 0 || y >= heights || dataTile[x][y] == tileCode;
     }
 }
 
-public class Match
+public class MatchT
 {
-    public void AddLocation(int x, int y)
+    public void AddPos(int x, int y)
     {
-        locations.Add(new Vector2Int(x, y));
+        posList.Add(new Vector2Int(x, y));
     }
 
-    public List<Vector2Int> locations = new List<Vector2Int>();
+    public List<Vector2Int> posList = new List<Vector2Int>();
 }
 
-public static class IListExtensions
+public static class IList
 {
-    public static void Shuffle<T>(this IList<T> ts)
+    public static void Shuffle<T>(this IList<T> list)
     {
-        var count = ts.Count;
-        var last = count - 1;
-        for (var i = 0; i < last; ++i)
+        var max = list.Count;
+        var min = max - 1;
+        for (var i = 0; i < min; ++i)
         {
-            var r = UnityEngine.Random.Range(i, count);
-            var tmp = ts[i];
-            ts[i] = ts[r];
-            ts[r] = tmp;
+            var a = UnityEngine.Random.Range(i, max);
+            var tmp = list[i];
+            list[i] = list[a];
+            list[a] = tmp;
         }
     }
 }

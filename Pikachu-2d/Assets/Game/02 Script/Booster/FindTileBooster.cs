@@ -33,7 +33,7 @@ public class FindTileBooster : BoosterView
 
     public override bool isUseBooster()
     {
-        Match matchTile = GameManager.Instance.FindAllTile();
+        MatchT matchTile = GameManager.Instance.FindAllTile();
 
         if (matchTile != null)
         {

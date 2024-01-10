@@ -46,18 +46,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public void OnSpawnTile(TileData tileData)
     {
-        if (this.tileData != tileData || Width != tileData.width || Height != tileData.height || itemTileList.Count != this.tileData.GetTileCount())
+        if (this.tileData != tileData || Width != tileData.widths || Height != tileData.heights || itemTileList.Count != this.tileData.GetAmoutTile())
         {
             this.tileData = tileData;
-            Width = this.tileData.width;
-            Height = this.tileData.height;
+            Width = this.tileData.widths;
+            Height = this.tileData.heights;
 
             itemTiles = new ItemTile[Width][];
             for (int x = 0; x < Width; x++)
             {
                 itemTiles[x] = new ItemTile[Height];
             }
-            int boardTileCount = this.tileData.GetTileCount();
+            int boardTileCount = this.tileData.GetAmoutTile();
 
             if (boardTileCount > itemTileList.Count)
             {
@@ -74,19 +74,19 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
         else
         {
-            Width = this.tileData.width;
-            Height = this.tileData.height;
+            Width = this.tileData.widths;
+            Height = this.tileData.heights;
         }
 
-        TileSpriteList tileSpritePack = TileSpriteListManager.Instance.GetTileSpritePack();
+        TileSpriteList tileSpritePack = TileSpriteListManager.Instance.GetTileSpriteList();
         int index = 0;
         originalPos = new Vector2(-Width * space * 0.5f, -Height * space * 0.5f);
         tileDict.Clear();
 
         do
         {
-            if (this.tileData.canShuffleOnInit)
-                this.tileData.ShuffleLocation();
+            if (this.tileData.isShuffle)
+                this.tileData.ShufflePos();
 
             for (int x = 0; x < Width; x++)
             {
@@ -94,13 +94,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 {
                     itemTiles[x][y] = null;
 
-                    int tileCode = this.tileData.data[x][y];
-                    if (tileCode != TileData.EmptyTileCode)
+                    int tileCode = this.tileData.dataTile[x][y];
+                    if (tileCode != TileData.tileCode)
                     {
                         ItemTile tile = itemTileList[index++];
                         tile.gameObject.SetActive(true);
                         tile.SetTileId(tileCode);
-                        tile.SetAva(tileSpritePack.Get(tileCode));
+                        tile.SetAva(tileSpritePack.GetSprite(tileCode));
                         tile.index = x;
                         tile.value = y;
                         tile.transform.position = GetPosTile(x, y);
@@ -120,12 +120,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 }
             }
 
-            if (index != this.tileData.GetTileCount())
+            if (index != this.tileData.GetAmoutTile())
             {
                 Debug.LogError("Index and board tile count is not match.Something is wrong!");
             }
         }
-        while (FindAllTile() == null && this.tileData.canShuffleOnInit);
+        while (FindAllTile() == null && this.tileData.isShuffle);
     }
 
     public ItemTile[][] GetItemTile()
@@ -138,12 +138,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         if (itemTile == itemTiles[itemTile.index][itemTile.value])
         {
             itemTiles[itemTile.index][itemTile.value] = null;
-            tileData.SetTileData(itemTile.index, itemTile.value, TileData.EmptyTileCode);
+            tileData.SetData(itemTile.index, itemTile.value, TileData.tileCode);
 
             itemTile.index = x1;
             itemTile.value = y1;
             itemTiles[x1][y1] = itemTile;
-            tileData.SetTileData(x1, y1, itemTile.idTile);
+            tileData.SetData(x1, y1, itemTile.idTile);
         }
         else
         {
@@ -163,7 +163,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public int GetTileCount()
     {
-        return tileData.GetTileCount();
+        return tileData.GetAmoutTile();
     }
 
     public DataShuf Shuffle()
@@ -181,7 +181,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
                 if (data)
                 {
-                    tileData.SetTileData(w, h, TileData.EmptyTileCode);
+                    tileData.SetData(w, h, TileData.tileCode);
                     itemTile.Add(data);
                 }
             }
@@ -202,7 +202,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             for (int i = 0; i < itemTileShuffle.Count; i++)
             {
                 ItemTile targetTile = itemTileShuffle[i];
-                tileData.SetTileData(targetTile.index, targetTile.value, itemTile[i].idTile);
+                tileData.SetData(targetTile.index, targetTile.value, itemTile[i].idTile);
                 itemTiles[targetTile.index][targetTile.value] = itemTile[i];
 
                 newPos[i] = new Vector2Int(targetTile.index, targetTile.value);
@@ -244,7 +244,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         };
     }
 
-    public Match FindAllTile()
+    public MatchT FindAllTile()
     {
         ItemTile t1 = null;
         ItemTile t2 = null;
@@ -275,7 +275,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     // lay kich thuoc man hinh
     public Vector2 GetSizeTile()
     {
-        return new Vector2(tileData.width * space, tileData.height * space);
+        return new Vector2(tileData.widths * space, tileData.heights * space);
     }
 
 
@@ -309,16 +309,16 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
 
         itemTiles[index][value] = null;
-        tileData.ClearTile(index, value);
+        tileData.RemoveTile(index, value);
 
-        if (tileData.GetTileCount() == 0)
+        if (tileData.GetAmoutTile() == 0)
         {
             EventAction.WinGame?.Invoke();
         }
     }
 
-    public Match FindTileMatch(int x1, int y1, int x2, int y2)
+    public MatchT FindTileMatch(int x1, int y1, int x2, int y2)
     {
-        return tileData.FindMatch(x1, y1, x2, y2);
+        return tileData.Find(x1, y1, x2, y2);
     }
 }

@@ -65,7 +65,7 @@ public class MatchTile : MonoBehaviour
         EventAction.OnMatchTileFail -= OnMatchTileFail;
     }
 
-    private void OnMatchTile(Match matchTile)
+    private void OnMatchTile(MatchT matchTile)
     {
         CreateLine(matchTile);
 
@@ -85,14 +85,14 @@ public class MatchTile : MonoBehaviour
         _camCro = StartCoroutine(VibrateCam());
     }
 
-    public SpriteRenderer[] CreateLine(Match matchTile, bool isFade = true)
+    public SpriteRenderer[] CreateLine(MatchT matchTile, bool isFade = true)
     {
-        Vector3[] pos = new Vector3[matchTile.locations.Count];
-        SpriteRenderer[] sprite = new SpriteRenderer[matchTile.locations.Count - 1];
+        Vector3[] pos = new Vector3[matchTile.posList.Count];
+        SpriteRenderer[] sprite = new SpriteRenderer[matchTile.posList.Count - 1];
 
         for (int i = 0; i < pos.Length; i++)
         {
-            Vector2Int localPos = matchTile.locations[i];
+            Vector2Int localPos = matchTile.posList[i];
             pos[i] = GameManager.Instance.GetPosTile(localPos.x, localPos.y);
         }
 
@@ -126,7 +126,7 @@ public class MatchTile : MonoBehaviour
         return sprite;
     }
 
-    public void CreateMatchLine(Match match, bool isFade)
+    public void CreateMatchLine(MatchT match, bool isFade)
     {
         _lineHint = CreateLine(match, isFade);
 
@@ -175,14 +175,14 @@ public class MatchTile : MonoBehaviour
         _camCro = null;
     }
 
-    private void CreateStarts(Match matchTile)
+    private void CreateStarts(MatchT matchTile)
     {
         _matchStarCount = 0;
 
-        for (int i = 1; i < matchTile.locations.Count; i++)
+        for (int i = 1; i < matchTile.posList.Count; i++)
         {
-            Vector2Int l1 = matchTile.locations[i - 1];
-            Vector2Int l2 = matchTile.locations[i];
+            Vector2Int l1 = matchTile.posList[i - 1];
+            Vector2Int l2 = matchTile.posList[i];
 
             if (l1.x == l2.x)
             {
@@ -204,10 +204,10 @@ public class MatchTile : MonoBehaviour
             }
         }
 
-        Vector2Int finalLocalPos = matchTile.locations[matchTile.locations.Count - 1];
+        Vector2Int finalLocalPos = matchTile.posList[matchTile.posList.Count - 1];
         CreatStarPos(finalLocalPos.x, finalLocalPos.y);
 
-        PlayerData.playerData.userProfile.totalStar += _matchStarCount;
+        PlayerData.playerData.userProfile.starCount += _matchStarCount;
         uiGamePlayManager.StarCollected(_matchStarCount, _moveDuration + _moveDelay);
     }
 

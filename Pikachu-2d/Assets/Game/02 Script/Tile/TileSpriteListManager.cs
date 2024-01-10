@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TileSpriteListManager : SingletonMonoBehaviour<TileSpriteListManager>
 {
-    [SerializeField] TileSpriteList[] tileSpritePacks;
+    [SerializeField] TileSpriteList[] _tileSpriteList;
 
-    public TileSpriteList GetTileSpritePack()
+    public TileSpriteList GetTileSpriteList()
     {
-        return tileSpritePacks[PlayerData.playerData.spriteData.tileSpriteDataIndex % tileSpritePacks.Length];
+        return _tileSpriteList[PlayerData.playerData.spriteData.tileSpriteDataIndex % _tileSpriteList.Length];
     }
 }
