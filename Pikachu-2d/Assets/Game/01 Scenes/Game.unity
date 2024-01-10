@@ -260,11 +260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535a2db2df8358944b4d4675958ef2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boosterType: 48
-  iconImage: {fileID: 1516548478}
-  freeImage: {fileID: 1953044476}
-  countText: {fileID: 762313588}
-  tileMatchEffect: {fileID: 589777288}
+  icon: {fileID: 1516548478}
+  ads: {fileID: 1953044476}
+  amoutText: {fileID: 762313588}
+  matchTile: {fileID: 589777289}
 --- !u!1 &49951591
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,11 +401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8c3189b58052d40a870a53d315b2b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boosterType: 23
-  iconImage: {fileID: 971441838}
-  freeImage: {fileID: 305653465}
-  countText: {fileID: 272364128}
-  tileSwapEffect: {fileID: 1215059559}
+  icon: {fileID: 971441838}
+  ads: {fileID: 305653465}
+  amoutText: {fileID: 272364128}
+  changeSprite: {fileID: 1215059559}
 --- !u!1 &136017572
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +438,6 @@ Transform:
   - {fileID: 570302831}
   - {fileID: 275598618}
   - {fileID: 602159073}
-  - {fileID: 1964215572}
   - {fileID: 983320754}
   m_Father: {fileID: 730838470}
   m_RootOrder: 5
@@ -720,11 +717,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965b9b430ba173f4399ec6763c4d9819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boosterType: 35
-  iconImage: {fileID: 1356490520}
-  freeImage: {fileID: 1815116719}
-  countText: {fileID: 1054253936}
-  tileShuffleEffect: {fileID: 275598619}
+  icon: {fileID: 1356490520}
+  ads: {fileID: 1815116719}
+  amoutText: {fileID: 1054253936}
+  shuffleTile: {fileID: 275598619}
 --- !u!1 &223727669
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,11 +750,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a0efe4db0c869488dab39cc7e98c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1930926838}
-  canvas: {fileID: 1673055226}
-  topPanelTransform: {fileID: 587779349}
-  botPanelTransform: {fileID: 1932355407}
-  backgroundRenderer: {fileID: 1759632119}
+  _cam: {fileID: 1930926838}
+  _canvas: {fileID: 1673055226}
+  _topTrans: {fileID: 587779349}
+  _botTrans: {fileID: 1932355407}
+  _bg: {fileID: 1759632119}
 --- !u!4 &223727671
 Transform:
   m_ObjectHideFlags: 0
@@ -865,7 +861,7 @@ GameObject:
   - component: {fileID: 275598618}
   - component: {fileID: 275598619}
   m_Layer: 0
-  m_Name: TileShuffleEffect
+  m_Name: ShuffleTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -895,7 +891,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 275598617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3954b316fc18eda479a04896e1aa67a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 356f42b8a4f9a384d9f55df94b233ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.5
@@ -912,7 +908,7 @@ GameObject:
   - component: {fileID: 305653466}
   - component: {fileID: 305653465}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: ads
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1063,7 +1059,7 @@ GameObject:
   - component: {fileID: 470114122}
   - component: {fileID: 470114123}
   m_Layer: 0
-  m_Name: GamePlayLocked
+  m_Name: MainController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1093,7 +1089,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 470114121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6d48c7666d31f4691c58d185bb2f38, type: 3}
+  m_Script: {fileID: 11500000, guid: f9ce4c47744dcb84eba20cb1c33e1345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &570302830
@@ -1105,9 +1101,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 570302831}
-  - component: {fileID: 570302832}
+  - component: {fileID: 570302833}
   m_Layer: 0
-  m_Name: TileSlideEffect
+  m_Name: SliderTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1129,7 +1125,7 @@ Transform:
   m_Father: {fileID: 136017573}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &570302832
+--- !u!114 &570302833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1138,10 +1134,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 570302830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94e40f14f0081a249a6d4f5df12a2321, type: 3}
+  m_Script: {fileID: 11500000, guid: e50a3f85a33b29748abea104a0746cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.25
 --- !u!1 &578931791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,9 +1258,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 589777287}
-  - component: {fileID: 589777288}
+  - component: {fileID: 589777289}
   m_Layer: 0
-  m_Name: TileMatchEffect
+  m_Name: MatchLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1288,7 +1283,7 @@ Transform:
   m_Father: {fileID: 136017573}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &589777288
+--- !u!114 &589777289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1297,40 +1292,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 589777286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84667ab2d82e6a440a439b8f0f1f44f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 2748f87cfce8b914e9403ff968051df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matchLineSegmentPrefab: {fileID: 1976132493207998888, guid: ca5625b27ce0b3d44910c4180dbc01e9, type: 3}
-  spawnStar: 1
-  starPrefab: {fileID: 7534263362439026553, guid: 3fd1a5c89d6d3954cb544a1f2a4aa093, type: 3}
-  topPanelView: {fileID: 1947783541}
-  fadeTime: 0.25
-  shakeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  cameraShakeDuration: 0.25
-  cameraShakeMagnitude: 0.01
+  _line: {fileID: 1976132493207998888, guid: ca5625b27ce0b3d44910c4180dbc01e9, type: 3}
+  isSpawnStars: 1
+  _starPref: {fileID: 7534263362439026553, guid: 3fd1a5c89d6d3954cb544a1f2a4aa093, type: 3}
+  uiGamePlayManager: {fileID: 1947783545}
+  _durationFade: 0.25
+  _camVibrateDuration: 0.25
+  _camVibrateLevel: 0.1
   _starsTrans: {fileID: 182585859}
   _lineTrans: {fileID: 169955691}
 --- !u!1 &600038619
@@ -1479,7 +1450,7 @@ GameObject:
   - component: {fileID: 602159073}
   - component: {fileID: 602159074}
   m_Layer: 0
-  m_Name: SpawnTileEffect
+  m_Name: TileSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,7 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de30f6a443fb62144896194ffb83ba9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.5
+  _duration: 0.5
 --- !u!1 &626414214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,8 +1725,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 4395513793685773256, guid: ca6ed9d88d6b4ad4e92d54f7cbe64427, type: 3}
-  spacing: 0.9
+  space: 0.9
   mainTrans: {fileID: 1440537810}
+  itemTileList: []
 --- !u!4 &730838470
 Transform:
   m_ObjectHideFlags: 0
@@ -1901,14 +1873,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c814274588c5f0446be99f4228ccf592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topPanelView: {fileID: 1947783541}
-  boosterView: {fileID: 989514638}
-  cameraAligner: {fileID: 223727670}
-  featureSpawner: {fileID: 983320755}
-  tileMatchEffect: {fileID: 589777288}
-  tileSlideEffect: {fileID: 570302832}
-  tileShuffleEffect: {fileID: 275598619}
-  tileSpawnEffect: {fileID: 602159074}
+  uiGamePlayManager: {fileID: 1947783545}
+  boosterManager: {fileID: 989514638}
+  camController: {fileID: 223727670}
+  specialTile: {fileID: 983320756}
+  matchTile: {fileID: 589777289}
+  sliderTile: {fileID: 570302833}
+  shuffleTile: {fileID: 275598619}
+  tileSpawn: {fileID: 602159074}
 --- !u!1 &821382086
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,7 +2048,7 @@ GameObject:
   - component: {fileID: 971441839}
   - component: {fileID: 971441838}
   m_Layer: 0
-  m_Name: Image
+  m_Name: ava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2149,9 +2121,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 983320754}
-  - component: {fileID: 983320755}
+  - component: {fileID: 983320756}
   m_Layer: 0
-  m_Name: FeatureSpawner
+  m_Name: SpeacialTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2170,9 +2142,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 136017573}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &983320755
+--- !u!114 &983320756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2181,11 +2153,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 983320753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c36df39a2414c2d4f922446c5879b155, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ca91dee055fa464a91e111c9e02d50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombPrefab: {fileID: 2282371357193537682, guid: ef4c55fc849bbac44a3bf453b220ae7c, type: 3}
-  hammerPrefab: {fileID: 2807519234066742163, guid: f4913265615fbad4eb49aa3b35f56e7d, type: 3}
+  hamTilePrefab: {fileID: 2807519234066742163, guid: f4913265615fbad4eb49aa3b35f56e7d, type: 3}
 --- !u!1 &989514634
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,7 +2576,7 @@ GameObject:
   - component: {fileID: 1215059558}
   - component: {fileID: 1215059559}
   m_Layer: 0
-  m_Name: TileSwapTextureEffect
+  m_Name: ChangeSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2638,8 +2609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792d67626e7c7204087b897b563461ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.28
-  delayInterval: 0.05
+  _duration: 0.3
+  _delayTime: 0.05
 --- !u!1 &1356490518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2652,7 +2623,7 @@ GameObject:
   - component: {fileID: 1356490521}
   - component: {fileID: 1356490520}
   m_Layer: 0
-  m_Name: Image
+  m_Name: ava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2727,7 +2698,7 @@ GameObject:
   - component: {fileID: 1402866069}
   - component: {fileID: 1402866070}
   m_Layer: 0
-  m_Name: TileSelectedEffect
+  m_Name: TileSelected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3211,7 +3182,7 @@ GameObject:
   - component: {fileID: 1516548479}
   - component: {fileID: 1516548478}
   m_Layer: 0
-  m_Name: Image
+  m_Name: ava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3286,7 +3257,7 @@ GameObject:
   - component: {fileID: 1579690350}
   - component: {fileID: 1579690351}
   m_Layer: 0
-  m_Name: TileSpritePackManager
+  m_Name: TileSpriteListManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3316,13 +3287,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1579690349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 796742e4e78124a498a46fef9b502fb7, type: 3}
+  m_Script: {fileID: 11500000, guid: d86d79e5ecae93446a29cb44a95f2f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tileSpritePacks:
-  - {fileID: 11400000, guid: 2309f21c2453b7e4ca4fa2cfd5231bc1, type: 2}
-  - {fileID: 11400000, guid: b728dbffe3eacb3419f76711a0ba64a2, type: 2}
-  - {fileID: 11400000, guid: da81a93c8c83ec941803d45904e4392c, type: 2}
+  - {fileID: 11400000, guid: 34b9a2dc4df092a498c1f304bdde40e8, type: 2}
+  - {fileID: 11400000, guid: 9b8818fa2c551574a80eb2c7036c7f41, type: 2}
+  - {fileID: 11400000, guid: 84615b7156ed8fd43814ef67fddba44f, type: 2}
 --- !u!1 &1673055224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3599,7 +3570,7 @@ GameObject:
   - component: {fileID: 1815116720}
   - component: {fileID: 1815116719}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: ads
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3891,7 +3862,7 @@ GameObject:
   - component: {fileID: 1947783542}
   - component: {fileID: 1947783544}
   - component: {fileID: 1947783543}
-  - component: {fileID: 1947783541}
+  - component: {fileID: 1947783545}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -3899,28 +3870,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1947783541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947783540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e45df48ab93a94ab7e8c4ddbf5c79a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelText: {fileID: 600038622}
-  coinText: {fileID: 626414217}
-  timeProgressImage: {fileID: 578931793}
-  timeText: {fileID: 1490836650}
-  timeObject: {fileID: 882277037}
-  starProgressImage: {fileID: 209109897}
-  starObjects:
-  - {fileID: 1417800680}
-  - {fileID: 1763301140}
-  - {fileID: 1498996094}
 --- !u!224 &1947783542
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3984,6 +3933,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947783540}
   m_CullTransparentMesh: 1
+--- !u!114 &1947783545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947783540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d4bf0f53f5c91468be8adbcadbaeaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelTxt: {fileID: 600038622}
+  _coinTxt: {fileID: 626414217}
+  _timeTxt: {fileID: 1490836650}
+  _timeSliderImg: {fileID: 578931793}
+  _timeObj: {fileID: 882277037}
+  _starSlider: {fileID: 209109897}
+  _starObj:
+  - {fileID: 1417800680}
+  - {fileID: 1763301140}
+  - {fileID: 1498996094}
 --- !u!1 &1953044474
 GameObject:
   m_ObjectHideFlags: 0
@@ -3996,7 +3967,7 @@ GameObject:
   - component: {fileID: 1953044477}
   - component: {fileID: 1953044476}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: ads
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4060,51 +4031,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953044474}
   m_CullTransparentMesh: 1
---- !u!1 &1964215571
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1964215572}
-  - component: {fileID: 1964215573}
-  m_Layer: 0
-  m_Name: TileRemoveEffect
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1964215572
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964215571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 136017573}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1964215573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964215571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9865813806e66ba4496b8cdc4c90295c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 5175298715019625693, guid: 43ce929c3f6346546bfb9d58fad01181, type: 3}
 --- !u!1 &1981563596
 GameObject:
   m_ObjectHideFlags: 0

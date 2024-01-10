@@ -6,81 +6,74 @@ using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
-    public Camera cam;
+    [SerializeField] Camera _cam;
 
-    public Canvas canvas;
+    [SerializeField] Canvas _canvas;
 
-    public RectTransform topPanelTransform;
+    [SerializeField] RectTransform _topTrans;
 
-    public RectTransform botPanelTransform;
+    [SerializeField] RectTransform _botTrans;
 
-    public SpriteRenderer backgroundRenderer;
+    [SerializeField] SpriteRenderer _bg;
 
-
-    private void Awake()
+    public void InitCam()
     {
-        // cam = GetComponent<Camera>();
+        var gameManager = GameManager.Instance;
+        var gameSize = gameManager.GetSizeTile() + new Vector2(gameManager.space * 1.2f, gameManager.space * 1.2f);
+        var canvasSize = SetCanvasSize();
+
+        float topSizeY = canvasSize.y + _topTrans.anchoredPosition.y;
+        float BotSizeY = _botTrans.anchoredPosition.y;
+        float gameSizeY = (topSizeY - BotSizeY) / canvasSize.y;
+        Vector2 camSpace = new Vector2(_cam.aspect * _cam.orthographicSize * 2f, _cam.orthographicSize * 2f * gameSizeY);
+
+        float size = camSpace.x / camSpace.y;
+        Vector2 bigSize = gameSize;
+        Vector2 smallSize = new Vector2(bigSize.x, bigSize.x / size);
+
+        if (smallSize.y < bigSize.y)
+        {
+            smallSize *= bigSize.y / smallSize.y;
+        }
+        _cam.orthographicSize *= smallSize.x / camSpace.x;
+
+        float gamePos = (topSizeY + BotSizeY) * 0.5f / canvasSize.y;
+        Vector3 camPos = _cam.transform.localPosition;
+        _cam.transform.localPosition = new Vector3(camPos.x, -(gamePos - 0.5f) * _cam.orthographicSize * 2f, camPos.z);
+
+        Vector2 camSize = new Vector2(_cam.aspect * _cam.orthographicSize * 2f, _cam.orthographicSize * 2f);
+
+        SetBgSize(camSize);
     }
 
-    public void Initialize()
+    private Vector2 SetCanvasSize()
     {
-        var gameBoard = GameManager.Instance;
-        var boardSize = gameBoard.GetSize() + new Vector2(gameBoard.spacing * 1.2f, gameBoard.spacing * 1.2f);
-        var canvasSize = GetCanvasSize();
+        var canvasSize = _canvas.GetComponent<CanvasScaler>();
 
-        float topBoundY = canvasSize.y + topPanelTransform.anchoredPosition.y/* - topPanelTransform.sizeDelta.y * 0.5f*/;
-        float bottomBoundY = botPanelTransform.anchoredPosition.y/* + botPanelTransform.sizeDelta.y * 0.5f*/;
-        float boardSizeRatioY = (topBoundY - bottomBoundY) / canvasSize.y;
-        Vector2 cameraSizeBoardSpace = new Vector2(cam.aspect * cam.orthographicSize * 2f, cam.orthographicSize * 2f * boardSizeRatioY);
+        float x = Screen.width / canvasSize.referenceResolution.x;
+        float y = Screen.height / canvasSize.referenceResolution.y;
+        float matchSize = canvasSize.matchWidthOrHeight;
+        float scaleSize = Mathf.Pow(x, 1f - matchSize) * Mathf.Pow(y, matchSize);
+        return new Vector2(Screen.width / scaleSize, Screen.height / scaleSize);
+    }
 
-        float sizeRatio = cameraSizeBoardSpace.x / cameraSizeBoardSpace.y;
-        Vector2 parentSize = boardSize;
-        Vector2 predictSize = new Vector2(parentSize.x, parentSize.x / sizeRatio);
+    private void SetBgSize(Vector2 cameraSize)
+    {
+        Vector2 bgSize = _bg.bounds.size;
 
-        if (predictSize.y < parentSize.y)
+        float spriteSize = bgSize.x / bgSize.y;
+        Vector2 bigSize = cameraSize;
+        Vector2 smallSize = new Vector2(bigSize.x, bigSize.x / spriteSize);
+
+        if (smallSize.y < bigSize.y)
         {
-            predictSize *= parentSize.y / predictSize.y;
+            smallSize *= bigSize.y / smallSize.y;
         }
 
-        cam.orthographicSize *= predictSize.x / cameraSizeBoardSpace.x;
+        _bg.transform.localScale *= smallSize.x / bgSize.x;
 
-        float boardPositionRatioYInCanvasSpace = (topBoundY + bottomBoundY) * 0.5f / canvasSize.y;
-        Vector3 cameraPosition = cam.transform.localPosition;
-        cam.transform.localPosition = new Vector3(cameraPosition.x, -(boardPositionRatioYInCanvasSpace - 0.5f) * cam.orthographicSize * 2f, cameraPosition.z);
-
-        Vector2 cameraSize = new Vector2(cam.aspect * cam.orthographicSize * 2f, cam.orthographicSize * 2f);
-
-        AlignBgSize(cameraSize);
-    }
-
-    private Vector2 GetCanvasSize()
-    {
-        var canvasScale = canvas.GetComponent<CanvasScaler>();
-
-        float rw = Screen.width / canvasScale.referenceResolution.x;
-        float rh = Screen.height / canvasScale.referenceResolution.y;
-        float match = canvasScale.matchWidthOrHeight;
-        float scale = Mathf.Pow(rw, 1f - match) * Mathf.Pow(rh, match);
-        return new Vector2(Screen.width / scale, Screen.height / scale);
-    }
-
-    private void AlignBgSize(Vector2 cameraSize)
-    {
-        Vector2 bgSize = backgroundRenderer.bounds.size;
-
-        float spriteSizeRatio = bgSize.x / bgSize.y;
-        Vector2 parentSize = cameraSize;
-        Vector2 predictSize = new Vector2(parentSize.x, parentSize.x / spriteSizeRatio);
-
-        if (predictSize.y < parentSize.y)
-        {
-            predictSize *= parentSize.y / predictSize.y;
-        }
-
-        backgroundRenderer.transform.localScale *= predictSize.x / bgSize.x;
-
-        Vector3 backgroundPosition = backgroundRenderer.transform.localPosition;
-        Vector3 cameraPosition = cam.transform.localPosition;
-        backgroundRenderer.transform.localPosition = new Vector3(cameraPosition.x, cameraPosition.y, backgroundPosition.y);
+        Vector3 bgPos = _bg.transform.localPosition;
+        Vector3 camPos = _cam.transform.localPosition;
+        _bg.transform.localPosition = new Vector3(camPos.x, camPos.y, bgPos.y);
     }
 }

@@ -7,47 +7,38 @@ using UnityEngine;
 [Serializable]
 public class PlayerData
 {
-    public static PlayerData current;
+    public static PlayerData playerData;
 
-    public UserProfile userStatus = new UserProfile();
+    public UserProfile userProfile = new UserProfile();
 
-    public SpriteData decorData = new SpriteData();
+    public TileSpriteData spriteData = new TileSpriteData();
 
-    public DataBooster boosterData = new DataBooster();
+    public DataBooster dataBooster = new DataBooster();
 
-    #region DeviceSerialization
-    private static bool isLoaded = false;
+    private static bool isLoad = false;
 
 #if UNITY_EDITOR
-    private static readonly string directory = @"E:\Data\LevelDataPikachu";
+    private static readonly string _url = @"E:\Data\LevelDataPikachu";
 #else
     private static readonly string directory = Application.persistentDataPath;
 #endif
-    private static string fileName = "userdata_tilesconnect" + ".txt";
-
-    public static bool IsLoaded
-    {
-        get
-        {
-            return isLoaded;
-        }
-    }
+    private static string _fileName = "UserData" + "" + ".txt";
 
     public static void Save()
     {
-        if (current == null || !isLoaded) return;
+        if (playerData == null || !isLoad) return;
 
-        string filePath = directory + fileName;
+        string filePath = _url + _fileName;
 
-        string json = JsonUtility.ToJson(current);
+        string json = JsonUtility.ToJson(playerData);
         File.WriteAllText(filePath, json);
     }
 
-    public static bool Load(bool forceReload = false)
+    public static bool Load(bool isLoadAgain = false)
     {
-        if (isLoaded == true && forceReload == false) return false;
+        if (isLoad == true && isLoadAgain == false) return false;
 
-        string filePath = directory + fileName;
+        string filePath = _url + _fileName;
 
         FileStream fileStream = File.Open(filePath, FileMode.OpenOrCreate);
         StreamReader sr = new StreamReader(fileStream);
@@ -55,16 +46,15 @@ public class PlayerData
         sr.Close();
         fileStream.Close();
 
-        current = JsonUtility.FromJson<PlayerData>(playerDataJson);
+        playerData = JsonUtility.FromJson<PlayerData>(playerDataJson);
 
-        if (current == null)
+        if (playerData == null)
         {
-            current = new PlayerData();
+            playerData = new PlayerData();
         }
 
-        isLoaded = true;
+        isLoad = true;
 
-        return isLoaded;
+        return isLoad;
     }
-    #endregion
 }

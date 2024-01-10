@@ -11,8 +11,16 @@ public class EventAction
 
     #region GamePlay
 
+    public static Action WinGame;
     #endregion
 
+    #region Tile
+
+    public static Action OnReMoveTile;
+    public static Action<ItemTile, bool> OnSelectTile;
+    public static Action<Match> OnMatchTile;
+    public static Action<ItemTile, ItemTile> OnMatchTileFail;
+    #endregion
     #region Line
 
     #endregion

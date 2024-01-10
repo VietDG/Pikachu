@@ -7,36 +7,32 @@ using UnityEngine.EventSystems;
 
 public class ItemTile : MonoBehaviour, IPointerClickHandler
 {
-    public int id;
+    public SpriteRenderer ava;
 
-    public int x;
+    public int index;
 
-    public int y;
+    public int value;
 
-    public SpriteRenderer spriteRenderer;
+    public int idTile;
 
-    public event Action RemovedEvent;
+    public void SetTileId(int index)
+    {
+        this.idTile = index;
+    }
+
+    public void SetAva(UnityEngine.Sprite sprite)
+    {
+        ava.sprite = sprite;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        TileMatchManager.SelectTile(this);
+        TileManager.SelectTile(this);
     }
 
-    public void SetId(int id)
+    public void OnRemoveTile()
     {
-        this.id = id;
-    }
-
-    public void SetSprite(Sprite sprite)
-    {
-        spriteRenderer.sprite = sprite;
-    }
-
-    public void OnRemoved()
-    {
-        RemovedEvent?.Invoke();
-        RemovedEvent = null;
-
-        TileRemoveEffect.Instance.ActivateEffectDelayDespawn(transform.localPosition, 1.5f);
+        EventAction.OnReMoveTile?.Invoke();
+        EventAction.OnReMoveTile = null;
     }
 }

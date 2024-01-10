@@ -9,8 +9,8 @@ public class ThemePool : ScriptableObject
     [Serializable]
     public class ThemeInfo
     {
-        public Sprite sprite;
-        public Sprite icon;
+        public UnityEngine.Sprite sprite;
+        public UnityEngine.Sprite icon;
         public string id;
 
         [NonSerialized] public int index;

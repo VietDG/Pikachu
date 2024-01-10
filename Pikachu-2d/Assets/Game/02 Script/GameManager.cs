@@ -4,150 +4,146 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class DataShuf
+{
+    public ItemTile[] itemTiles;
+    public Vector3[] pos;
+}
+
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-    public class ShuffleData         // trộn dữ liệu 
-    {
-        public ItemTile[] tiles;    // gạch
-        public Vector3[] positions;
-    }
-
+    [Header("--------------Reference-----------------")]
     public ItemTile tilePrefab;
 
-    public ItemTile[][] tiles;
+    public ItemTile[][] itemTiles;
 
-    public float spacing = 0.9f;
-
-    public int width { get; set; }
-
-    public int height { get; set; }
-
-    private Vector2 originPosition;
-
-    private TileData boardTileData;
-
-    private Dictionary<int, List<ItemTile>> tileGroups = new Dictionary<int, List<ItemTile>>();
-
-    public List<ItemTile> tileList = new List<ItemTile>();
-
-    private List<BombController> bombList = new List<BombController>();
-
-    public event Action OnBoardClear;
+    public float space = 0.9f;
 
     [SerializeField] Transform mainTrans;
 
-    public Dictionary<int, List<ItemTile>> GetTileGroups()
+    [Header("--------------Value---------------")]
+    public List<ItemTile> itemTileList = new List<ItemTile>();
+
+    private Vector2 originalPos;
+
+    private TileData tileData;
+
+    private Dictionary<int, List<ItemTile>> tileDict = new Dictionary<int, List<ItemTile>>();
+
+    public int Width { get; set; }
+
+    public int Height { get; set; }
+
+    public Dictionary<int, List<ItemTile>> GetTileDict()
     {
-        return tileGroups;
+        return tileDict;
     }
 
     private void OnDestroy()
     {
-        boardTileData = null;
+        tileData = null;
     }
 
-    public void SpawnTiles(TileData boardData)
+    public void OnSpawnTile(TileData tileData)
     {
-        if (boardTileData != boardData || width != boardData.width || height != boardData.height || tileList.Count != boardTileData.GetTileCount())
+        if (this.tileData != tileData || Width != tileData.width || Height != tileData.height || itemTileList.Count != this.tileData.GetTileCount())
         {
-            boardTileData = boardData;
-            width = boardTileData.width;
-            height = boardTileData.height;//
+            this.tileData = tileData;
+            Width = this.tileData.width;
+            Height = this.tileData.height;
 
-            tiles = new ItemTile[width][];// tạo ra bảng có chiều rộng, chưa có chiều cao 
-            for (int x = 0; x < width; x++)
+            itemTiles = new ItemTile[Width][];
+            for (int x = 0; x < Width; x++)
             {
-                tiles[x] = new ItemTile[height];// tạo chiều cao cho bảng 
+                itemTiles[x] = new ItemTile[Height];
             }
+            int boardTileCount = this.tileData.GetTileCount();
 
-            int boardTileCount = boardTileData.GetTileCount();// tạo bảng nhập số lượng ô
-
-            if (boardTileCount > tileList.Count)
+            if (boardTileCount > itemTileList.Count)
             {
-                for (int i = boardTileCount - tileList.Count - 1; i >= 0; i--)
+                for (int i = boardTileCount - itemTileList.Count - 1; i >= 0; i--)
                 {
                     ItemTile tile = Instantiate(tilePrefab, mainTrans);
-
-                    tileList.Add(tile);// thêm ô
+                    itemTileList.Add(tile);
                 }
             }
             else
             {
-                tileList.RemoveRange(boardTileCount, tileList.Count - boardTileCount);// xóa phạm vi
+                itemTileList.RemoveRange(boardTileCount, itemTileList.Count - boardTileCount);
             }
         }
         else
         {
-            width = boardTileData.width;
-            height = boardTileData.height;
+            Width = this.tileData.width;
+            Height = this.tileData.height;
         }
 
-        TileSpritePack tileSpritePack = TileSpritePackManager.Instance.GetTileSpritePack();// lấy dữ liệu data map chơi 
+        TileSpriteList tileSpritePack = TileSpriteListManager.Instance.GetTileSpritePack();
         int index = 0;
-        originPosition = new Vector2(-width * spacing * 0.5f, -height * spacing * 0.5f);// khoảng cách 
-        tileGroups.Clear();// xóa list
+        originalPos = new Vector2(-Width * space * 0.5f, -Height * space * 0.5f);
+        tileDict.Clear();
 
         do
         {
-            if (boardTileData.canShuffleOnInit) // nếu xáo bảng 
-                boardTileData.ShuffleLocation();// tạo bảng vị trí ngẫu nhiên
+            if (this.tileData.canShuffleOnInit)
+                this.tileData.ShuffleLocation();
 
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < Width; x++)
             {
-                for (int y = 0; y < height; y++)
+                for (int y = 0; y < Height; y++)
                 {
-                    tiles[x][y] = null;
+                    itemTiles[x][y] = null;
 
-                    int tileCode = boardTileData.data[x][y];
+                    int tileCode = this.tileData.data[x][y];
                     if (tileCode != TileData.EmptyTileCode)
                     {
-                        ItemTile tile = tileList[index++];
+                        ItemTile tile = itemTileList[index++];
                         tile.gameObject.SetActive(true);
-                        tile.SetId(tileCode);
-                        tile.SetSprite(tileSpritePack.Get(tileCode));
-                        tile.x = x;
-                        tile.y = y;
-                        tile.transform.position = GetPosition(x, y);
-                        tiles[x][y] = tile;
+                        tile.SetTileId(tileCode);
+                        tile.SetAva(tileSpritePack.Get(tileCode));
+                        tile.index = x;
+                        tile.value = y;
+                        tile.transform.position = GetPosTile(x, y);
+                        itemTiles[x][y] = tile;
 
-                        if (tileGroups.ContainsKey(tileCode))
+                        if (tileDict.ContainsKey(tileCode))
                         {
-                            tileGroups[tileCode].Add(tile);
+                            tileDict[tileCode].Add(tile);
                         }
                         else
                         {
                             var tiles = new List<ItemTile>();
                             tiles.Add(tile);
-                            tileGroups[tileCode] = tiles;
+                            tileDict[tileCode] = tiles;
                         }
                     }
                 }
             }
 
-            if (index != boardTileData.GetTileCount())
+            if (index != this.tileData.GetTileCount())
             {
                 Debug.LogError("Index and board tile count is not match.Something is wrong!");
             }
         }
-        while (CheckAnyMatch() == null && boardTileData.canShuffleOnInit);
+        while (FindAllTile() == null && this.tileData.canShuffleOnInit);
     }
 
-    public ItemTile[][] GetTiles()
+    public ItemTile[][] GetItemTile()
     {
-        return tiles;
+        return itemTiles;
     }
 
-    public void MoveTile(int xt, int yt, ItemTile tile)// di chuyển ô gạch khi cần gợi ý 
+    public void TileMovement(int x1, int y1, ItemTile itemTile)
     {
-        if (tile == tiles[tile.x][tile.y])
+        if (itemTile == itemTiles[itemTile.index][itemTile.value])
         {
-            tiles[tile.x][tile.y] = null;
-            boardTileData.SetTileData(tile.x, tile.y, TileData.EmptyTileCode);
+            itemTiles[itemTile.index][itemTile.value] = null;
+            tileData.SetTileData(itemTile.index, itemTile.value, TileData.EmptyTileCode);
 
-            tile.x = xt;
-            tile.y = yt;
-            tiles[xt][yt] = tile;
-            boardTileData.SetTileData(xt, yt, tile.id);
+            itemTile.index = x1;
+            itemTile.value = y1;
+            itemTiles[x1][y1] = itemTile;
+            tileData.SetTileData(x1, y1, itemTile.idTile);
         }
         else
         {
@@ -157,123 +153,117 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public int GetWidth()
     {
-        return width;
+        return Width;
     }
 
     public int GetHeight()
     {
-        return height;
+        return Height;
     }
 
-    public int GetTileCount()// số lượng ô gạch 
+    public int GetTileCount()
     {
-        return boardTileData.GetTileCount();
+        return tileData.GetTileCount();
     }
 
-    public ShuffleData Shuffle() // trộn ô gach
+    public DataShuf Shuffle()
     {
-
-        if (GamePlayLocker.IsLocked() || GetTileCount() < 2)
+        if (MainController.Block() || GetTileCount() < 2)
             return null;
 
-        //List<Vector2Int> b = new List<Vector2Int>();
+        List<ItemTile> itemTile = new List<ItemTile>();
 
-        List<ItemTile> currentTiles = new List<ItemTile>();
-
-        for (int y = 0; y < height; y++)
+        for (int h = 0; h < Height; h++)
         {
-            for (int x = 0; x < width; x++)
+            for (int w = 0; w < Width; w++)
             {
-                ItemTile tile = tiles[x][y];
+                ItemTile data = itemTiles[w][h];
 
-                if (tile)
+                if (data)
                 {
-                    boardTileData.SetTileData(x, y, TileData.EmptyTileCode);
-                    currentTiles.Add(tile);
+                    tileData.SetTileData(w, h, TileData.EmptyTileCode);
+                    itemTile.Add(data);
                 }
             }
         }
 
-        List<ItemTile> shuffledCurrentTiles;
-        Vector2Int[] shuffledLocations;
+        List<ItemTile> itemTileShuffle;
+        Vector2Int[] newPos;
 
-        int shuffleCount = 0;
+        int count = 0;
 
         while (true)
         {
-            shuffledCurrentTiles = new List<ItemTile>(currentTiles);
-            shuffledCurrentTiles.Shuffle();// thuật toán random vị trí 
+            itemTileShuffle = new List<ItemTile>(itemTile);
+            itemTileShuffle.Shuffle();
 
-            shuffledLocations = new Vector2Int[shuffledCurrentTiles.Count];
+            newPos = new Vector2Int[itemTileShuffle.Count];
 
-            for (int i = 0; i < shuffledCurrentTiles.Count; i++)
+            for (int i = 0; i < itemTileShuffle.Count; i++)
             {
-                ItemTile targetTile = shuffledCurrentTiles[i];
-                boardTileData.SetTileData(targetTile.x, targetTile.y, currentTiles[i].id);
-                tiles[targetTile.x][targetTile.y] = currentTiles[i];
+                ItemTile targetTile = itemTileShuffle[i];
+                tileData.SetTileData(targetTile.index, targetTile.value, itemTile[i].idTile);
+                itemTiles[targetTile.index][targetTile.value] = itemTile[i];
 
-                shuffledLocations[i] = new Vector2Int(targetTile.x, targetTile.y);// spam lại list
+                newPos[i] = new Vector2Int(targetTile.index, targetTile.value);
             }
 
-            for (int i = 0; i < currentTiles.Count; i++)
+            for (int i = 0; i < itemTile.Count; i++)
             {
-                ItemTile sourceTile = currentTiles[i];// lưu vị trí các ô mới 
-                sourceTile.x = shuffledLocations[i].x;
-                sourceTile.y = shuffledLocations[i].y;
+                ItemTile data = itemTile[i];
+                data.index = newPos[i].x;
+                data.value = newPos[i].y;
             }
 
-            var match = CheckAnyMatch();
+            var match = FindAllTile();
             if (match != null)
             {
                 break;
             }
             else
             {
-                if (shuffleCount == 1000)
+                if (count == 1000)
                 {
                     break;
                 }
-
-                shuffleCount++;
-                Debug.LogWarning("Can not find match, shuffle again");
+                count++;
             }
-            // check điều kiện đổi vị trí 
         }
 
-        Vector3[] tileShuffleTargetPositions = new Vector3[currentTiles.Count];// sắp xếp xáo trộn vị trí 
-        for (int i = 0; i < currentTiles.Count; i++)
+        Vector3[] targetPos = new Vector3[itemTile.Count];
+        for (int i = 0; i < itemTile.Count; i++)
         {
-            ItemTile currentTile = currentTiles[i];
-            tileShuffleTargetPositions[i] = GetPosition(currentTile.x, currentTile.y);// vị trí trộn đã lưu
+            ItemTile data = itemTile[i];
+            targetPos[i] = GetPosTile(data.index, data.value);
         }
 
-        return new ShuffleData()
+        return new DataShuf()
         {
-            tiles = currentTiles.ToArray(),
-            positions = tileShuffleTargetPositions // lưu vị trí mới sau khi sắp xếp
+            itemTiles = itemTile.ToArray(),
+            pos = targetPos
         };
     }
 
-    public Match CheckAnyMatch()// check trận
+    public Match FindAllTile()
     {
-        ItemTile tile1 = null;
-        ItemTile tile2 = null;
+        ItemTile t1 = null;
+        ItemTile t2 = null;
 
-        foreach (var list in tileGroups.Values)
+        foreach (var list in tileDict.Values)
         {
             for (int i = 0; i < list.Count - 1; i++)
             {
-                tile1 = list[i];
+                t1 = list[i];
 
                 for (int j = i + 1; j < list.Count; j++)
                 {
-                    tile2 = list[j];
+                    t2 = list[j];
 
-                    var match = FindMatch(tile1.x, tile1.y, tile2.x, tile2.y);
+                    var matchTile = FindTileMatch(t1.index, t1.value, t2.index, t2.value);
 
-                    if (match != null)
+                    if (matchTile != null)
                     {
-                        return match;
+                        return matchTile;
                     }
                 }
             }
@@ -282,53 +272,53 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         return null;
     }
 
-    public Vector2 GetSize()//kích thước
+    // lay kich thuoc man hinh
+    public Vector2 GetSizeTile()
     {
-        return new Vector2(boardTileData.width * spacing, boardTileData.height * spacing);
+        return new Vector2(tileData.width * space, tileData.height * space);
     }
 
-    public Vector3 GetPosition(int x, int y)// vị trí 
+
+    //lay vi tri cua tile
+    public Vector3 GetPosTile(int index, int value)
     {
-        return new Vector3((x + 0.5f) * spacing + originPosition.x, (y + 0.5f) * spacing + originPosition.y, 0f);
+        return new Vector3((index + 0.5f) * space + originalPos.x, (value + 0.5f) * space + originalPos.y, 0f);
     }
 
-    public Vector3 GetPosition(Vector2Int location)// địa điểm 
-    {
-        return GetPosition(location.x, location.y);
-    }
 
-    public void Remove(int x, int y)// xóa
+    //xoa tile
+    public void RemoveTile(int index, int value)
     {
-        ItemTile tile = tiles[x][y];
+        ItemTile itemTile = itemTiles[index][value];
 
-        if (tile)
+        if (itemTile)
         {
-            if (tileGroups.ContainsKey(tile.id))
+            if (tileDict.ContainsKey(itemTile.idTile))
             {
-                var list = tileGroups[tile.id];
-                list.Remove(tile);
+                var list = tileDict[itemTile.idTile];
+                list.Remove(itemTile);
 
                 if (list.Count < 2)
                 {
-                    tileGroups.Remove(tile.id);
+                    tileDict.Remove(itemTile.idTile);
                 }
             }
 
-            tile.gameObject.SetActive(false);
-            tile.OnRemoved();
+            itemTile.gameObject.SetActive(false);
+            itemTile.OnRemoveTile();
         }
 
-        tiles[x][y] = null;
-        boardTileData.ClearTile(x, y);
+        itemTiles[index][value] = null;
+        tileData.ClearTile(index, value);
 
-        if (boardTileData.GetTileCount() == 0)
+        if (tileData.GetTileCount() == 0)
         {
-            OnBoardClear?.Invoke();
+            EventAction.WinGame?.Invoke();
         }
     }
 
-    public Match FindMatch(int xa, int ya, int xb, int yb)// tải trận
+    public Match FindTileMatch(int x1, int y1, int x2, int y2)
     {
-        return boardTileData.FindMatch(xa, ya, xb, yb);
+        return tileData.FindMatch(x1, y1, x2, y2);
     }
 }

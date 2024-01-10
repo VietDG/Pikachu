@@ -20,7 +20,7 @@ public class PopupWin : SingletonPopup<PopupWin>
 
     public void InitReward()
     {
-        GamePlayState.Pause();
+        StateGame.PauseGame();
         int coin = UnityEngine.Random.Range(20, 25);
         _coinTxt.text = $"{coin}";
         _coin = coin;
@@ -33,19 +33,18 @@ public class PopupWin : SingletonPopup<PopupWin>
 
     private void Start()
     {
-        _coinTxt.text = "20";
+        _coinTxt.text = $"{_coin}";
     }
 
     public void NextLevel()
     {
         base.Hide(() =>
         {
-            GamePlayState.NextLevel();
-            var userStatus = PlayerData.current.userStatus;//
+            StateGame.NextLevels();
+            var userStatus = PlayerData.playerData.userProfile;
 
-            userStatus.coinCount += _coin;//
+            userStatus.totalCoin += _coin;
 
-            EventDispatcher.Instance.NotifyEvent("coin_update", userStatus.coinCount);// + gold mỗi màn
             SceneManager.LoadScene(Const.SCENE_GAME);
 
         });

@@ -6,32 +6,30 @@ using UnityEngine.UI;
 
 public abstract class BoosterView : MonoBehaviour
 {
-    public BoosterType boosterType;
+    public Image icon;
 
-    public Image iconImage;
+    public Image ads;
 
-    public Image freeImage;
+    public Text amoutText;
 
-    public Text countText;
+    [NonSerialized] public DataBooster dataBooster;
 
-    [NonSerialized] public DataBooster boosterData;
+    public Func<int> getCount;
 
-    public Func<int> GetCount;
+    public Action<int> setCount;
 
-    public Action<int> SetCount;
+    public abstract bool isUseBooster();
 
-    public abstract bool Use();
-
-    public void OnClick()
+    public void UseBooster()
     {
-        int count = GetCount();
+        int count = getCount();
 
         if (count > 0)
         {
-            if (Use())
-                SetCount(count - 1);
+            if (isUseBooster())
+                setCount(count - 1);
 
-            UpdateState();
+            StartAction();
         }
         else
         {
@@ -40,21 +38,21 @@ public abstract class BoosterView : MonoBehaviour
         }
     }
 
-    public void UpdateState()
+    public void StartAction()
     {
-        int count = GetCount();
+        int count = getCount();
 
         if (count != 0)
         {
-            countText.gameObject.SetActive(true);
-            countText.text = count.ToString();
-            freeImage.gameObject.SetActive(false);
+            amoutText.gameObject.SetActive(true);
+            amoutText.text = count.ToString();
+            ads.gameObject.SetActive(false);
         }
         else
         {
-            countText.gameObject.SetActive(false);
-            countText.text = count.ToString();
-            freeImage.gameObject.SetActive(true);
+            amoutText.gameObject.SetActive(false);
+            amoutText.text = count.ToString();
+            ads.gameObject.SetActive(true);
         }
     }
 }

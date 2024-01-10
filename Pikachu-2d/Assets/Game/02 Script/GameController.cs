@@ -4,88 +4,71 @@ using UnityEngine;
 
 public class GameController : SingletonMonoBehaviour<GameController>
 {
-    public TopPanelView topPanelView;
+    public UiGamePLayManager uiGamePlayManager;
 
-    public BoosterViewManager boosterView;
+    public BoosterManager boosterManager;
 
-    public CameraController cameraAligner;
+    public CameraController camController;
 
-    public FeatureSpawner featureSpawner;
+    public SpecialTile specialTile;
 
-    //  public TutorialController tutorialController;
+    public MatchTile matchTile;
 
-    public TileMatchEffect tileMatchEffect;
+    public SliderTile sliderTile;
 
-    public TileSliderEffect tileSlideEffect;
+    public ShuffleTile shuffleTile;
 
-    public TileShuffleEffect tileShuffleEffect;
-
-    public SpawnTileEffect tileSpawnEffect;
-
-    // private TileData boardData => TileData.Instance;
+    public TileSpawn tileSpawn;
 
     private BoardConfig boardConfig;
 
     private LevelConfig levelConfig;
 
-    private int level;
+    private int totalLevel;
 
-    private float remainingTime;
+    private float time;
 
     private bool timeCount = true;
 
-    private float[] starProgressMilestone = new float[] { 0.455f, 0.73f, 0.99f };
+    private float[] starProgress = new float[] { 0.455f, 0.73f, 0.99f };
 
-    private PlayerData userData;
+    //  private PlayerData userData;
 
     public override void Awake()
     {
-        Application.targetFrameRate = 60;//Application.targetFrameRate: làm trò chơi chạy nhanh hơn 
-
+        // Application.targetFrameRate = 60;//Application.targetFrameRate: làm trò chơi chạy nhanh hơn 
 
         //  UserData.Load();// load vàng , tên ,decor,level
 
-        GamePlayState.GamePostRestartEvent += Replay;// chơi lại
-        GamePlayState.GameNextLevelEvent += NextLevel;
-        GamePlayState.GamePauseEvent += GamePause;
-        GamePlayState.GameContinueEvent += GameContinue;
+        StateGame.GameNextLevelEvent += OnCLickNextLevel;
 
-        TileMatchManager.TileSelectedEvent += OnTileSelected;// event click vào ô trên bảng
-        TileMatchManager.TileMatchSucceededEvent += OnTileMatchSucceeded;
-
-        bool sfxEnabled = PlayerPrefs.GetInt("sfx", 1) == 1;// tùy chọn âm thanh
-        bool bgmEnabled = PlayerPrefs.GetInt("bgm", 1) == 1;// tùy chọn sound
-
-        GameManager.Instance.OnBoardClear += HandleGameWin;//win game + level
+        EventAction.OnMatchTile += OnTileMatchSucceeded;
+        EventAction.WinGame += HandleGameWin;
         InitLevel();
     }
 
     public void InitLevel()
     {
-        LoadLevel();
+        LoadLevelData();
 
-        StartGame();
+        InitDataStart();
 
-        cameraAligner.Initialize();
+        camController.InitCam();
     }
 
     private void OnDestroy()
     {
-        GamePlayState.GamePostRestartEvent -= Replay;
-        GamePlayState.GameNextLevelEvent -= NextLevel;
-        GamePlayState.GamePauseEvent -= GamePause;
-        GamePlayState.GameContinueEvent -= GameContinue;
+        StateGame.GameNextLevelEvent -= OnCLickNextLevel;
 
-        TileMatchManager.TileSelectedEvent -= OnTileSelected;
-        TileMatchManager.TileMatchSucceededEvent -= OnTileMatchSucceeded;
-
+        EventAction.OnMatchTile -= OnTileMatchSucceeded;
+        EventAction.WinGame -= HandleGameWin;
     }
 
-    private void LoadLevel()
+    private void LoadLevelData()
     {
-        level = PlayerData.current.userStatus.level;
+        totalLevel = PlayerData.playerData.userProfile.totalLevel;
 
-        if (level <= 1)
+        if (totalLevel <= 1)
         {
             levelConfig = new LevelConfig()
             {
@@ -107,82 +90,63 @@ public class GameController : SingletonMonoBehaviour<GameController>
                 }
             };
 
-            topPanelView.gameObject.SetActive(false);
-            boosterView.gameObject.SetActive(false);// tat top bot lv1
+            uiGamePlayManager.gameObject.SetActive(false);
+            boosterManager.gameObject.SetActive(false);// tat top bot lv1
         }
         else // neu lv>1 thi 
         {
-            levelConfig = LevelData.Instance.GetLevelConfig(level);//load level tu data
-            boardConfig = LevelData.Instance.GetBoardData(level);//load bang level
+            levelConfig = LevelData.Instance.GetLevelConfig(totalLevel);//load level tu data
+            boardConfig = LevelData.Instance.GetBoardData(totalLevel);//load bang level
 
-            topPanelView.gameObject.SetActive(true);// active top down
-            boosterView.gameObject.SetActive(true);
-            tileSlideEffect.SetSlideOrder(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
-            // hieu ung tren gach
-            if (level == 2)
+            uiGamePlayManager.gameObject.SetActive(true);// active top down
+            boosterManager.gameObject.SetActive(true);
+            sliderTile.SetSlider(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
+
+            if (totalLevel == 2)
             {
                 levelConfig.time = 0;
             }
         }
 
-        tileMatchEffect.spawnStar = level > 1;// neu level > 1 spawm sao qua moi man
+        matchTile.isSpawnStars = totalLevel > 1;// neu level > 1 spawm sao qua moi man
 
         timeCount = levelConfig.time > 0;
-
-        //  Debug.Log(levelConfig.boom + "-" + levelConfig.score);
     }
 
-    private void StartGame()
+    private void InitDataStart()
     {
-        topPanelView.SetLevel(PlayerData.current.userStatus.level);//hien ra level tu user data
-        topPanelView.SetCollectedStar(0f, levelConfig.score);//hien level
-        topPanelView.SetCollectedStarProgressMilestone(starProgressMilestone);// moc tien trinh
+        uiGamePlayManager.InitLevel();
+        uiGamePlayManager.SetStarCollect(0f, levelConfig.score);//hien level
+        uiGamePlayManager.SetProgressStarCollected(starProgress);// moc tien trinh
 
         if (timeCount)
         {
-            topPanelView.SetTimeCount(true);
-            remainingTime = levelConfig.time;
-            topPanelView.SetLevelTime(levelConfig.time);
-            topPanelView.SetRemainingTime(levelConfig.time);
+            uiGamePlayManager.SetModeTime(true);
+            time = levelConfig.time;
+            uiGamePlayManager.InitTimeToLevel(levelConfig.time);
+            uiGamePlayManager.SetTime(levelConfig.time);
 
             StartCoroutine(UpdateTime());// khởi động game time cout sẽ chạy
                                          // chay thời gian còn lại trong level
         }
         else
         {
-            topPanelView.SetTimeCount(false);// level k có time thì k bật 
+            uiGamePlayManager.SetModeTime(false);// level k có time thì k bật 
         }
         TileData.Instance.Initialize(levelConfig, boardConfig, 30);// khởi tạo mảng daata gồm cấp độ 
-        GameManager.Instance.SpawnTiles(TileData.Instance);// tajp barng
-        tileSpawnEffect.Play();
+        GameManager.Instance.OnSpawnTile(TileData.Instance);// tajp barng
+        tileSpawn.StartSpawn();
 
-        featureSpawner.ResetAllPools();
+        specialTile.HamOff();
 
-        if (levelConfig.boom > 0)
-            featureSpawner.CreateBomb(levelConfig.boom);// spam boom
-
-        if (hammerLevel.Contains(level) || level >= 16)
+        if (totalLevel >= 16)
         {
             levelConfig.hammer = 2;// tạo 2 búa
         }
         else levelConfig.hammer = 0;
 
         if (levelConfig.hammer > 0)
-            featureSpawner.CreateHammer(levelConfig.hammer);// tạo 1 búa
-        //AdvertiseManager.Instance.ShowBanner();
-    }
-
-    private List<int> hammerLevel = new List<int>() { 7, 8, 10, 12, 13, 15 };
-
-    private void OnTileSelected(ItemTile tile, bool selected)
-    {
-        if (selected)
-        {
-            if (!GamePlayState.IsPlaying())
-            {
-                GamePlayState.Play();
-            }
-        }
+            specialTile.CreateHam(levelConfig.hammer);// tạo 1 búa
     }
 
     private void OnTileMatchSucceeded(Match match)
@@ -192,16 +156,16 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     private IEnumerator PostTileMatchSucceededSchedule()
     {
-        yield return featureSpawner.PostTileMatchSucceeded();// spawm boom+búa
+        yield return specialTile.StartMoveHam();// spawm boom+búa
 
-        yield return tileSlideEffect.PlayCoroutine();// effect viên gạch
+        yield return sliderTile.StartGetSize();// effect viên gạch
 
-        if (GameManager.Instance.CheckAnyMatch() == null)
+        if (GameManager.Instance.FindAllTile() == null)
         {
             var shuffleData = GameManager.Instance.Shuffle();// trộn gạch
             if (shuffleData != null)
             {
-                yield return tileShuffleEffect.PlayEffect(shuffleData.tiles, shuffleData.positions);// effect gạch
+                yield return shuffleTile.PlayEffect(shuffleData.itemTiles, shuffleData.pos);// effect gạch
             }
         }
     }
@@ -212,18 +176,18 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         while (true)
         {
-            if (GamePlayState.IsPlaying())
+            if (StateGame.IsPlay())
             {
-                remainingTime -= Time.deltaTime;
+                time -= Time.deltaTime;
 
-                if (remainingTime > 0f)
+                if (time > 0f)
                 {
-                    topPanelView.SetRemainingTime(remainingTime);
+                    uiGamePlayManager.SetTime(time);
                 }
                 else
                 {
-                    remainingTime = 0f;
-                    topPanelView.SetRemainingTime(remainingTime);
+                    time = 0f;
+                    uiGamePlayManager.SetTime(time);
                     break;
                 }
             }
@@ -234,36 +198,24 @@ public class GameController : SingletonMonoBehaviour<GameController>
         HandleGameLose();
     }
 
-    public void Replay()
+    public void OnClickReplay()
     {
         StopAllCoroutines();
 
-        StartGame();
+        InitDataStart();
     }
 
-    public void NextLevel()
+    public void OnCLickNextLevel()
     {
         StopAllCoroutines();
 
-        LoadLevel();
+        LoadLevelData();
 
-        GamePlayState.Pause();
+        StateGame.PauseGame();
 
-        StartGame();
+        InitDataStart();
 
-        cameraAligner.Initialize();// chưa đọc 
-    }
-
-    public void GamePause()
-    {
-
-        //AdvertiseManager.Instance.HideBanner();
-    }
-
-    public void GameContinue()
-    {
-
-        //AdvertiseManager.Instance.ShowBanner();
+        camController.InitCam();// chưa đọc 
     }
 
     public void Update()
@@ -279,40 +231,19 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         //    GamePlayState.Pause();
 
-        level++;
-        PlayerData.current.userStatus.level = level;
+        totalLevel++;
+        PlayerData.playerData.userProfile.totalLevel = totalLevel;
         //  UserData.current.decorData.tilePackIndex++;
 
 
-        if (level != 2)
+        if (totalLevel != 2)
         {
             PopupWin.Instance.Show();
-            //var goldPigData = UserData.current.goldPigData;// lấy dữ liệu con lợn vàng
-            //int coin = UnityEngine.Random.Range(20, 25);
-            ////  int goldPigPreviousCoin = goldPigData.coinAmount;
-            //var stashRange = GoldPigUtility.GetSmashRange();
-            ////  goldPigData.coinAmount = Mathf.Min(goldPigData.coinAmount + goldPigBonusCoin, stashRange.Item2);
-            //var userStatus = UserData.current.userStatus;//
-            //userStatus.coinCount += coin;//
-            //EventDispatcher.Instance.NotifyEvent("coin_update", userStatus.coinCount);// + gold mỗi màn
-
-            ////    topPanelView.GetCollectedStar(out float collectedStartAmount, out float maxAmount);
-            ////  float percent = collectedStartAmount / maxAmount;
-
-            //int collectStartCount = 0;
-            //if (percent >= starProgressMilestone[0]) collectStartCount++;
-            //if (percent >= starProgressMilestone[1]) collectStartCount++;
-            //if (percent >= starProgressMilestone[2]) collectStartCount++;
-
         }
         else
         {
-            GamePlayState.NextLevel();
+            StateGame.NextLevels();
         }
-
-        //if (level >= 3)
-        //{
-        //}
     }
 
     private IEnumerator WaitWin()
@@ -323,7 +254,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public void HandleGameLose()
     {
-        GamePlayState.Pause();
+        StateGame.PauseGame();
     }
 
 

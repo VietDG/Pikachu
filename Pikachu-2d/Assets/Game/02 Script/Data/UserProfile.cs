@@ -6,15 +6,15 @@ using UnityEngine;
 [Serializable]
 public class UserProfile
 {
-    public int level = 1;
-    public int coinCount;
-    public int starCount;
+    public int totalLevel = 1;
+    public int totalCoin;
+    public int totalStar;
 }
 
 [Serializable]
-public class SpriteData
+public class TileSpriteData
 {
-    public int tileSpriteIndex = 0;
+    public int tileSpriteDataIndex = 0;
 }
 
 [Serializable]
