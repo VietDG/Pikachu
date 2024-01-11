@@ -46,11 +46,5 @@ public static class TileManager
                 EventAction.OnSelectTile?.Invoke(itemTile, true);
             }
         }
-        else
-        {
-#if UNITY_EDITOR
-            Debug.LogWarning("Please wait !!!!!!!!!!");
-#endif
-        }
     }
 }

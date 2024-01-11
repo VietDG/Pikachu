@@ -21,7 +21,7 @@ public class TileData : Singleton<TileData>
 
     private List<Vector2Int> newPos = new List<Vector2Int>();
 
-    public void Initialize(LoadLevelFormData loadlevelFormData, LoadBoardFormData loadBoardFormData, int maxValue)
+    public void Initialize(LevelConfig loadlevelFormData, BoardConfig loadBoardFormData, int maxValue)
     {
         newPos.Clear();
         amout = 0;

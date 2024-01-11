@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : SingletonMonoBehaviour<GameController>
 {
@@ -40,7 +42,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         //  UserData.Load();// load vàng , tên ,decor,level
 
-        StateGame.GameNextLevelEvent += OnCLickNextLevel;
+        EventAction.OnNextLevel += OnCLickNextLevel;
 
         EventAction.OnMatchTile += OnTileMatchSucceeded;
         EventAction.WinGame += HandleGameWin;
@@ -58,7 +60,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     private void OnDestroy()
     {
-        StateGame.GameNextLevelEvent -= OnCLickNextLevel;
+        EventAction.OnNextLevel -= OnCLickNextLevel;
 
         EventAction.OnMatchTile -= OnTileMatchSucceeded;
         EventAction.WinGame -= HandleGameWin;
@@ -100,7 +102,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
             uiGamePlayManager.gameObject.SetActive(true);// active top down
             boosterManager.gameObject.SetActive(true);
-            sliderTile.SetSlider(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
+            // sliderTile.SetSlider(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
 
             if (totalLevel == 2)
             {
@@ -149,7 +151,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
             specialTile.CreateHam(levelConfig.hammer);// tạo 1 búa
     }
 
-    private void OnTileMatchSucceeded(Match match)
+    private void OnTileMatchSucceeded(MatchT match)
     {
         StartCoroutine(PostTileMatchSucceededSchedule());// sắp xếp thành công
     }
@@ -209,13 +211,15 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         StopAllCoroutines();
 
-        LoadLevelData();
+        //LoadLevelData();
 
-        StateGame.PauseGame();
+        //StateGame.Play();
 
-        InitDataStart();
+        //InitDataStart();
 
-        camController.InitCam();// chưa đọc 
+        //camController.InitCam();
+
+        SceneManager.LoadScene(Const.SCENE_GAME);
     }
 
     public void Update()
@@ -229,27 +233,20 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public void HandleGameWin()
     {
-        //    GamePlayState.Pause();
-
+        StateGame.PauseGame();
         totalLevel++;
         PlayerData.playerData.userProfile.totalLevel = totalLevel;
-        //  UserData.current.decorData.tilePackIndex++;
-
+        int coin = 20;
+        PlayerData.playerData.userProfile.totalCoin += coin;
 
         if (totalLevel != 2)
         {
-            PopupWin.Instance.Show();
+            PopupWin.Instance.Show(coin);
         }
         else
         {
             StateGame.NextLevels();
         }
-    }
-
-    private IEnumerator WaitWin()
-    {
-        yield return new WaitForSeconds(1.5f);
-        PopupWin.Instance.Show();
     }
 
     public void HandleGameLose()

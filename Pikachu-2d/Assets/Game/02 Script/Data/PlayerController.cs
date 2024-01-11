@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
         PlayerData.Load();
         userData = PlayerData.playerData;
 
-        DontDestroyOnLoad(gameObject);
+        //    DontDestroyOnLoad(gameObject);
     }
 
     public void OnApplicationQuit()

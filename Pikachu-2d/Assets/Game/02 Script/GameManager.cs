@@ -119,11 +119,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                     }
                 }
             }
-
-            if (index != this.tileData.GetAmoutTile())
-            {
-                Debug.LogError("Index and board tile count is not match.Something is wrong!");
-            }
         }
         while (FindAllTile() == null && this.tileData.isShuffle);
     }
@@ -144,10 +139,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             itemTile.value = y1;
             itemTiles[x1][y1] = itemTile;
             tileData.SetData(x1, y1, itemTile.idTile);
-        }
-        else
-        {
-            Debug.Log("Can not move tile");
         }
     }
 
@@ -278,13 +269,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         return new Vector2(tileData.widths * space, tileData.heights * space);
     }
 
-
     //lay vi tri cua tile
     public Vector3 GetPosTile(int index, int value)
     {
         return new Vector3((index + 0.5f) * space + originalPos.x, (value + 0.5f) * space + originalPos.y, 0f);
     }
-
 
     //xoa tile
     public void RemoveTile(int index, int value)

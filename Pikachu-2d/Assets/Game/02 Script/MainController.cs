@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainController : MonoBehaviour
 {
     private static MainController Instance;
+    private int count;
 
     private void Awake()
     {
@@ -15,8 +16,6 @@ public class MainController : MonoBehaviour
     {
         Instance = null;
     }
-
-    private int count;
 
     public static bool Block()
     {

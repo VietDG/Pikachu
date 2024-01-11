@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms;
 
 public class PopupWin : SingletonPopup<PopupWin>
 {
@@ -12,20 +11,12 @@ public class PopupWin : SingletonPopup<PopupWin>
 
     private int _coin;
 
-    public void Show()
+    public void Show(int value)
     {
         base.Show();
-        InitReward();
+        _coinTxt.text = $"{value}";
     }
 
-    public void InitReward()
-    {
-        StateGame.PauseGame();
-        int coin = UnityEngine.Random.Range(20, 25);
-        _coinTxt.text = $"{coin}";
-        _coin = coin;
-
-    }
     public void Close()
     {
         base.Hide();
@@ -41,12 +32,6 @@ public class PopupWin : SingletonPopup<PopupWin>
         base.Hide(() =>
         {
             StateGame.NextLevels();
-            var userStatus = PlayerData.playerData.userProfile;
-
-            userStatus.coinCount += _coin;
-
-            SceneManager.LoadScene(Const.SCENE_GAME);
-
         });
     }
 }
