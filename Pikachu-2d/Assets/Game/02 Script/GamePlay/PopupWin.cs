@@ -22,11 +22,6 @@ public class PopupWin : SingletonPopup<PopupWin>
         base.Hide();
     }
 
-    private void Start()
-    {
-        _coinTxt.text = $"{_coin}";
-    }
-
     public void NextLevel()
     {
         base.Hide(() =>

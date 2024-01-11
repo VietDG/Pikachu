@@ -56,6 +56,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
         InitDataStart();
 
         camController.InitCam();
+
+        StateGame.Play();
     }
 
     private void OnDestroy()
@@ -92,8 +94,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
                 }
             };
 
-            uiGamePlayManager.gameObject.SetActive(false);
-            boosterManager.gameObject.SetActive(false);// tat top bot lv1
+            // uiGamePlayManager.gameObject.SetActive(false);
+            // boosterManager.gameObject.SetActive(false);// tat top bot lv1
         }
         else // neu lv>1 thi 
         {
@@ -102,7 +104,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
             uiGamePlayManager.gameObject.SetActive(true);// active top down
             boosterManager.gameObject.SetActive(true);
-            // sliderTile.SetSlider(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
+            sliderTile.SetSlider(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
 
             if (totalLevel == 2)
             {
@@ -110,7 +112,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
             }
         }
 
-        matchTile.isSpawnStars = totalLevel > 1;// neu level > 1 spawm sao qua moi man
+        //  matchTile.isSpawnStars = totalLevel > 1;// neu level > 1 spawm sao qua moi man
 
         timeCount = levelConfig.time > 0;
     }
@@ -211,14 +213,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         StopAllCoroutines();
 
-        //LoadLevelData();
-
-        //StateGame.Play();
-
-        //InitDataStart();
-
-        //camController.InitCam();
-
         SceneManager.LoadScene(Const.SCENE_GAME);
     }
 
@@ -233,20 +227,28 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public void HandleGameWin()
     {
+        //StateGame.PauseGame();
+        //totalLevel++;
+        //PlayerData.playerData.userProfile.totalLevel = totalLevel;
+        //int coin = 20;
+        //PlayerData.playerData.userProfile.totalCoin += coin;
+
+        //PopupWin.Instance.Show(coin);
+        ////    StateGame.NextLevels();
+        StartCoroutine(WaitWin());
+    }
+
+    public IEnumerator WaitWin()
+    {
+        yield return new WaitForSeconds(2f);
         StateGame.PauseGame();
         totalLevel++;
         PlayerData.playerData.userProfile.totalLevel = totalLevel;
         int coin = 20;
         PlayerData.playerData.userProfile.totalCoin += coin;
 
-        if (totalLevel != 2)
-        {
-            PopupWin.Instance.Show(coin);
-        }
-        else
-        {
-            StateGame.NextLevels();
-        }
+        PopupWin.Instance.Show(coin);
+        //    StateGame.NextLevels();
     }
 
     public void HandleGameLose()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ public abstract class BoosterView : MonoBehaviour
 
     public Image ads;
 
-    public Text amoutText;
+    public TMP_Text amoutText;
 
     [NonSerialized] public DataBooster dataBooster;
 
