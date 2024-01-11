@@ -38,7 +38,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public override void Awake()
     {
-        // Application.targetFrameRate = 60;//Application.targetFrameRate: làm trò chơi chạy nhanh hơn 
+        Application.targetFrameRate = 60;//Application.targetFrameRate: làm trò chơi chạy nhanh hơn 
 
         //  UserData.Load();// load vàng , tên ,decor,level
 
