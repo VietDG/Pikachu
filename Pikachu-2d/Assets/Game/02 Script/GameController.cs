@@ -67,7 +67,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     private void LoadLevelData()
     {
-        totalLevel = PlayerData.playerData.userProfile.totalLevel;
+        totalLevel = PlayerData.Instance.HighestLevel;
 
         if (totalLevel <= 1)
         {
@@ -228,9 +228,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
         yield return new WaitForSeconds(1f);
         StateGame.PauseGame();
         totalLevel++;
-        PlayerData.playerData.userProfile.totalLevel = totalLevel;
+        PlayerData.Instance.HighestLevel = totalLevel;
         int coin = 20;
-        PlayerData.playerData.userProfile.totalCoin += coin;
+        PlayerData.Instance.TotalCoin += coin;
 
         PopupWin.Instance.Show(coin);
     }

@@ -207,7 +207,7 @@ public class MatchTile : MonoBehaviour
         Vector2Int finalLocalPos = matchTile.posList[matchTile.posList.Count - 1];
         CreatStarPos(finalLocalPos.x, finalLocalPos.y);
 
-        PlayerData.playerData.userProfile.totalStar += _matchStarCount;
+        PlayerData.Instance.TotalStar += _matchStarCount;
         uiGamePlayManager.StarCollected(_matchStarCount, _moveDuration + _moveDelay);
     }
 

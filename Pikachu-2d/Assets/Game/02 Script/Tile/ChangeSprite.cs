@@ -18,7 +18,7 @@ public class ChangeSprite : MonoBehaviour
     private IEnumerator ActionChange(ItemTile[][] itemTiles, int width, int height, Action callBack)
     {
         MainController.Augment();
-        PlayerData.playerData.spriteData.tileSpriteDataIndex++;
+        PlayerData.Instance.TileSpriteIndex++;
         var pack = TileSpriteListManager.Instance.GetTileSpriteList();
 
         for (int h = height - 1; h >= 0; h--)

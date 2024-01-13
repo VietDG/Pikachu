@@ -40,12 +40,12 @@ public class UiGamePLayManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateCoin(PlayerData.playerData.userProfile.totalCoin);
+        UpdateCoin(PlayerData.Instance.TotalCoin);
     }
 
     public void InitLevel()
     {
-        _levelTxt.text = "Level " + PlayerData.playerData.userProfile.totalLevel.ToString();
+        _levelTxt.text = "Level " + PlayerData.Instance.HighestLevel.ToString();
     }
 
     public void InitTimeToLevel(float time)

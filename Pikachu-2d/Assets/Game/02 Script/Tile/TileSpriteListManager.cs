@@ -8,6 +8,6 @@ public class TileSpriteListManager : SingletonMonoBehaviour<TileSpriteListManage
 
     public TileSpriteList GetTileSpriteList()
     {
-        return _tileSpriteList[PlayerData.playerData.spriteData.tileSpriteDataIndex % _tileSpriteList.Length];
+        return _tileSpriteList[PlayerData.Instance.TileSpriteIndex % _tileSpriteList.Length];
     }
 }

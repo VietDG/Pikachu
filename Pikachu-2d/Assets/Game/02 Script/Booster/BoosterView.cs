@@ -13,8 +13,6 @@ public abstract class BoosterView : MonoBehaviour
 
     public TMP_Text amoutText;
 
-    [NonSerialized] public DataBooster dataBooster;
-
     public Func<int> getCount;
 
     public Action<int> setCount;
