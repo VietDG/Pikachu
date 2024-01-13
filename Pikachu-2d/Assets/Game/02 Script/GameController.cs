@@ -34,18 +34,15 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     private float[] starProgress = new float[] { 0.455f, 0.73f, 0.99f };
 
-    //  private PlayerData userData;
 
     public override void Awake()
     {
-        Application.targetFrameRate = 60;//Application.targetFrameRate: làm trò chơi chạy nhanh hơn 
-
-        //  UserData.Load();// load vàng , tên ,decor,level
+        Application.targetFrameRate = 60;
 
         EventAction.OnNextLevel += OnCLickNextLevel;
 
-        EventAction.OnMatchTile += OnTileMatchSucceeded;
-        EventAction.WinGame += HandleGameWin;
+        EventAction.OnMatchTile += OnTileMatched;
+        EventAction.WinGame += CheckWin;
         InitLevel();
     }
 
@@ -64,8 +61,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         EventAction.OnNextLevel -= OnCLickNextLevel;
 
-        EventAction.OnMatchTile -= OnTileMatchSucceeded;
-        EventAction.WinGame -= HandleGameWin;
+        EventAction.OnMatchTile -= OnTileMatched;
+        EventAction.WinGame -= CheckWin;
     }
 
     private void LoadLevelData()
@@ -94,17 +91,15 @@ public class GameController : SingletonMonoBehaviour<GameController>
                 }
             };
 
-            // uiGamePlayManager.gameObject.SetActive(false);
-            // boosterManager.gameObject.SetActive(false);// tat top bot lv1
         }
-        else // neu lv>1 thi 
+        else
         {
-            levelConfig = LevelData.Instance.GetLevelConfig(totalLevel);//load level tu data
-            boardConfig = LevelData.Instance.GetBoardData(totalLevel);//load bang level
+            levelConfig = LevelData.Instance.GetLevelConfig(totalLevel);
+            boardConfig = LevelData.Instance.GetBoardData(totalLevel);
 
-            uiGamePlayManager.gameObject.SetActive(true);// active top down
-            boosterManager.gameObject.SetActive(true);
-            sliderTile.SetSlider(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
+            //uiGamePlayManager.gameObject.SetActive(true);
+            //boosterManager.gameObject.SetActive(true);
+            //  sliderTile.SetSlider(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
 
             if (totalLevel == 2)
             {
@@ -120,8 +115,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
     private void InitDataStart()
     {
         uiGamePlayManager.InitLevel();
-        uiGamePlayManager.SetStarCollect(0f, levelConfig.score);//hien level
-        uiGamePlayManager.SetProgressStarCollected(starProgress);// moc tien trinh
+        uiGamePlayManager.SetStarCollect(0f, levelConfig.score);
+        uiGamePlayManager.SetProgressStarCollected(starProgress);
 
         if (timeCount)
         {
@@ -130,46 +125,45 @@ public class GameController : SingletonMonoBehaviour<GameController>
             uiGamePlayManager.InitTimeToLevel(levelConfig.time);
             uiGamePlayManager.SetTime(levelConfig.time);
 
-            StartCoroutine(UpdateTime());// khởi động game time cout sẽ chạy
-                                         // chay thời gian còn lại trong level
+            StartCoroutine(UpdateTime());
         }
         else
         {
-            uiGamePlayManager.SetModeTime(false);// level k có time thì k bật 
+            uiGamePlayManager.SetModeTime(false);
         }
-        TileData.Instance.Initialize(levelConfig, boardConfig, 30);// khởi tạo mảng daata gồm cấp độ 
-        GameManager.Instance.OnSpawnTile(TileData.Instance);// tajp barng
+        TileData.Instance.Initialize(levelConfig, boardConfig, 30);
+        GameManager.Instance.OnSpawnTile(TileData.Instance);
         tileSpawn.StartSpawn();
 
-        specialTile.HamOff();
+        //  specialTile.HamOff();
 
-        if (totalLevel >= 16)
-        {
-            levelConfig.hammer = 2;// tạo 2 búa
-        }
-        else levelConfig.hammer = 0;
+        //if (totalLevel >= 16)
+        //{
+        //    levelConfig.hammer = 2;
+        //}
+        //else levelConfig.hammer = 0;
 
-        if (levelConfig.hammer > 0)
-            specialTile.CreateHam(levelConfig.hammer);// tạo 1 búa
+        //if (levelConfig.hammer > 0)
+        //    specialTile.CreateHam(levelConfig.hammer);
     }
 
-    private void OnTileMatchSucceeded(MatchT match)
+    private void OnTileMatched(MatchT match)
     {
-        StartCoroutine(PostTileMatchSucceededSchedule());// sắp xếp thành công
+        StartCoroutine(PosTileMatched());
     }
 
-    private IEnumerator PostTileMatchSucceededSchedule()
+    private IEnumerator PosTileMatched()
     {
-        yield return specialTile.StartMoveHam();// spawm boom+búa
+        yield return specialTile.StartMoveHam();
 
-        yield return sliderTile.StartGetSize();// effect viên gạch
+        yield return sliderTile.StartGetSize();
 
         if (GameManager.Instance.FindAllTile() == null)
         {
-            var shuffleData = GameManager.Instance.Shuffle();// trộn gạch
+            var shuffleData = GameManager.Instance.Shuffle();
             if (shuffleData != null)
             {
-                yield return shuffleTile.PlayEffect(shuffleData.itemTiles, shuffleData.pos);// effect gạch
+                yield return shuffleTile.StartShuffleTile(shuffleData.itemTiles, shuffleData.pos);
             }
         }
     }
@@ -199,7 +193,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
             yield return null;
         }
 
-        HandleGameLose();
+        SetLose();
     }
 
     public void OnClickReplay()
@@ -220,27 +214,18 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            HandleGameWin();
-            Debug.LogError("Win");
+            CheckWin();
         }
     }
 
-    public void HandleGameWin()
+    public void CheckWin()
     {
-        //StateGame.PauseGame();
-        //totalLevel++;
-        //PlayerData.playerData.userProfile.totalLevel = totalLevel;
-        //int coin = 20;
-        //PlayerData.playerData.userProfile.totalCoin += coin;
-
-        //PopupWin.Instance.Show(coin);
-        ////    StateGame.NextLevels();
         StartCoroutine(WaitWin());
     }
 
     public IEnumerator WaitWin()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         StateGame.PauseGame();
         totalLevel++;
         PlayerData.playerData.userProfile.totalLevel = totalLevel;
@@ -248,13 +233,10 @@ public class GameController : SingletonMonoBehaviour<GameController>
         PlayerData.playerData.userProfile.totalCoin += coin;
 
         PopupWin.Instance.Show(coin);
-        //    StateGame.NextLevels();
     }
 
-    public void HandleGameLose()
+    public void SetLose()
     {
         StateGame.PauseGame();
     }
-
-
 }

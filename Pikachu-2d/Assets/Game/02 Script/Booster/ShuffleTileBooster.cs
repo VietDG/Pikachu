@@ -14,7 +14,7 @@ public class ShuffleTileBooster : BoosterView
         var tile = GameManager.Instance.Shuffle();
         if (tile != null)
         {
-            StartCoroutine(shuffleTile.PlayEffect(tile.itemTiles, tile.pos));
+            StartCoroutine(shuffleTile.StartShuffleTile(tile.itemTiles, tile.pos));
         }
 
         return true;

@@ -30,7 +30,6 @@ public class LevelData : SingletonMonoBehaviour<LevelData>
     public BoardConfig GetBoardData(int level)
     {
         int boardId = GetLevelConfig(level).shapeid;
-        Debug.Log("Level - BoardId: " + level + "-" + boardId);
         var boardData = JsonUtility.FromJson<BoardConfig>(Resources.Load<TextAsset>("Text/Shape" + boardId.ToString()).text);
 
         return boardData;

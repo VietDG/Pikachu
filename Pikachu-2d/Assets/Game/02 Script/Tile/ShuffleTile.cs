@@ -1,8 +1,8 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class ShuffleTile : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class ShuffleTile : MonoBehaviour
 
     private float t;
 
-    public IEnumerator PlayEffect(ItemTile[] tiles, Vector3[] targetPositions, Action CompleteAction = null)
+    public IEnumerator StartShuffleTile(ItemTile[] tiles, Vector3[] targetPositions, Action CompleteAction = null)
     {
         MainController.Augment();
 
@@ -34,6 +34,6 @@ public class ShuffleTile : MonoBehaviour
 
         yield return new WaitForSeconds(moveDuration + delayTime);
 
-        MainController.SetAllTileSize();// độ dài đường thẳng từ điểm đầu tới điểm cuối
+        MainController.SetAllTileSize();
     }
 }
