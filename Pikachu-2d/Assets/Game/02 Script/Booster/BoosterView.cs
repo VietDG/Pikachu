@@ -32,6 +32,7 @@ public abstract class BoosterView : MonoBehaviour
         }
         else
         {
+            Debug.LogError("Popup Buy booster");
             //iconImage.gameObject.SetActive(false);
             //freeImage.gameObject.SetActive(true);
         }
