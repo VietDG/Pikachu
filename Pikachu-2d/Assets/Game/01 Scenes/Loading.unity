@@ -629,6 +629,7 @@ MonoBehaviour:
   transparentAmount: 0.9
   prefabs:
   - {fileID: 1314548905088514590, guid: cb1716aca926ed64999e4e5a6b796b64, type: 3}
+  - {fileID: 763073926394924513, guid: 6c9e6645e5c930e4db088c885dbb0209, type: 3}
   transparent: {fileID: 609486190}
   parent: {fileID: 1408495353}
   hasPopupShowing: 0
@@ -1289,6 +1290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664615275}
   - component: {fileID: 1664615276}
+  - component: {fileID: 1664615277}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -1323,4 +1325,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16667fe0d6a38748b666d54c272a5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData: 1
+--- !u!114 &1664615277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664615274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1184520326823e48adf15e9e03048c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textAsset: {fileID: 0}

@@ -22,7 +22,7 @@ public class DGame : Controller
 
     public override void OnShown()
     {
-        GameController.Instance.InitLevel();
+        //GameController.Instance.InitLevel();
     }
 
     public override void OnHidden()

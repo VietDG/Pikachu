@@ -26,7 +26,7 @@ public class BoosterManager : MonoBehaviour
         SetupBoosterView(boosterFindMatch);
     }
 
-    private void SetupBoosterView(BoosterView boosterView)
+    private void SetupBoosterView(BoosterController boosterView)
     {
         var button = boosterView.GetComponent<Button>();
         button.onClick.RemoveAllListeners();

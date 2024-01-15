@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeSpriteBooster : BoosterView
+public class ChangeSpriteBooster : BoosterController
 {
     public ChangeSprite changeSprite;
 

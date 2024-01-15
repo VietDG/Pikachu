@@ -5,7 +5,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class BoosterView : MonoBehaviour
+public enum TypeBooster
+{
+    Swap,
+    Shuffle,
+    Hint,
+}
+
+public abstract class BoosterController : MonoBehaviour
 {
     public Image icon;
 
@@ -16,6 +23,8 @@ public abstract class BoosterView : MonoBehaviour
     public Func<int> getCount;
 
     public Action<int> setCount;
+
+    public TypeBooster typeBooster;
 
     public abstract bool isUseBooster();
 
@@ -33,8 +42,27 @@ public abstract class BoosterView : MonoBehaviour
         else
         {
             Debug.LogError("Popup Buy booster");
-            //iconImage.gameObject.SetActive(false);
-            //freeImage.gameObject.SetActive(true);
+            //xem quang cao
+            SetBoosterAds();
+        }
+    }
+
+    public void SetBoosterAds()
+    {
+        switch (typeBooster)
+        {
+            case TypeBooster.Swap:
+                PlayerData.Instance.BoosterSwap += 1;
+                StartAction();
+                break;
+            case TypeBooster.Shuffle:
+                PlayerData.Instance.BoosterShuffle += 1;
+                StartAction();
+                break;
+            case TypeBooster.Hint:
+                PlayerData.Instance.BoosterFindMatch += 1;
+                StartAction();
+                break;
         }
     }
 

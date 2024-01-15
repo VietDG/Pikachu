@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FindTileBooster : BoosterView
+public class FindTileBooster : BoosterController
 {
     public MatchTile matchTile;
 

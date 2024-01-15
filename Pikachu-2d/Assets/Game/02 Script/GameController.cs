@@ -216,10 +216,15 @@ public class GameController : SingletonMonoBehaviour<GameController>
         {
             CheckWin();
         }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PopupLose.Instance.Show();
+        }
     }
 
     public void CheckWin()
     {
+        PlayerData.Save();
         StartCoroutine(WaitWin());
     }
 
@@ -238,5 +243,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public void SetLose()
     {
         StateGame.PauseGame();
+        Debug.LogError("Lose Game");
+        PopupLose.Instance.Show();
     }
 }

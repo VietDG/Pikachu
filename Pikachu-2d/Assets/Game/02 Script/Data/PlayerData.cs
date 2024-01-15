@@ -104,6 +104,12 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
 #endif
     private static string _fileName = "UserData" + "" + ".txt";
 
+    [SerializeField] TextAsset _textAsset;
+
+    private void Start()
+    {
+        Load();
+    }
 
     public static bool IsLoad
     {
