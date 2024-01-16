@@ -97,18 +97,19 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
 
     private static bool isLoad = false;
 
-#if UNITY_EDITOR
-    private static readonly string directory = @"E:\Data\LevelDataPikachu";
-#else
-    private static readonly string directory = Application.persistentDataPath;
-#endif
-    private static string _fileName = "UserData" + "" + ".txt";
+    //#if UNITY_EDITOR
+    //    private static readonly string directory = @"E:\Data\LevelDataPikachu";
+    //#else
+    //    private static readonly string directory = Application.persistentDataPath;
+    //#endif
+    //    private static string _fileName = "UserData" + "" + ".txt";
 
-    [SerializeField] TextAsset _textAsset;
+    private static string path;
 
     private void Start()
     {
-        Load();
+        //   Load();
+        Save();
     }
 
     public static bool IsLoad
@@ -123,32 +124,40 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
     {
         if (playerData == null || !isLoad) return;
 
-        string filePath = directory + _fileName;
+        // string filePath = directory + _fileName;
 
-        string json = JsonUtility.ToJson(playerData);
-        File.WriteAllText(filePath, json);
+        // path = Application.persistentDataPath + "UserData.txt";
+
+        string json = JsonUtility.ToJson(playerData, true);
+        File.WriteAllText(Application.dataPath + "/UserData.json", json);
+        Debug.LogError("Save");
     }
 
     public static bool Load(bool isLoadAgain = false)
     {
         if (isLoad == true && isLoadAgain == false) return false;
 
-        string filePath = directory + _fileName;
+        //string filePath = directory + _fileName;
 
-        FileStream fileStream = File.Open(filePath, FileMode.OpenOrCreate);
-        StreamReader sr = new StreamReader(fileStream);
-        string playerDataJson = sr.ReadToEnd();
-        sr.Close();
-        fileStream.Close();
+        //FileStream fileStream = File.Open(filePath, FileMode.OpenOrCreate);
+        //StreamReader sr = new StreamReader(fileStream);
+        //string playerDataJson = sr.ReadToEnd();
+        //sr.Close();
+        //fileStream.Close();
 
-        playerData = JsonUtility.FromJson<PlayerData>(playerDataJson);
+        //  path = Application.persistentDataPath + "UserData.txt";
 
         if (playerData == null)
         {
-            playerData = new PlayerData();
+            //playerData = new PlayerData();
+            string fileContent = File.ReadAllText(Application.dataPath + "/UserData.json");
+
+            playerData = JsonUtility.FromJson<PlayerData>(fileContent);
         }
 
         isLoad = true;
+
+        Debug.LogError("Load");
 
         return isLoad;
     }

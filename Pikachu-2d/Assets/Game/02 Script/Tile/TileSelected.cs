@@ -19,6 +19,7 @@ public class TileSelected : MonoBehaviour
         foreach (var item in GameManager.Instance.itemTileList)
         {
             item.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+            item.SetAnim(false);
             if (selected && item == tile)
             {
                 tile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;

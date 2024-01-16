@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,6 +15,8 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
     public int value;
 
     public int idTile;
+
+    [SerializeField] Animator _animator;
 
     public void SetTileId(int index)
     {
@@ -34,5 +37,17 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
     {
         EventAction.OnReMoveTile?.Invoke();
         EventAction.OnReMoveTile = null;
+    }
+
+    public void SetAnim(bool isPlayAnim)
+    {
+        if (isPlayAnim)
+        {
+            _animator.enabled = true;
+        }
+        else
+        {
+            _animator.enabled = false;
+        }
     }
 }

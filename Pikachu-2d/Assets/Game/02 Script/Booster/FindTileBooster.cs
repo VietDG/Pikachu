@@ -42,4 +42,9 @@ public class FindTileBooster : BoosterController
 
         return true;
     }
+
+    public void AnimTileFind()
+    {
+
+    }
 }

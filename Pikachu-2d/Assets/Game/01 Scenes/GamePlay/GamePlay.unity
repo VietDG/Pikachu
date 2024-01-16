@@ -3307,8 +3307,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tileSpriteList:
   - {fileID: 11400000, guid: 34b9a2dc4df092a498c1f304bdde40e8, type: 2}
-  - {fileID: 11400000, guid: 9b8818fa2c551574a80eb2c7036c7f41, type: 2}
-  - {fileID: 11400000, guid: 84615b7156ed8fd43814ef67fddba44f, type: 2}
 --- !u!1 &1704687805
 GameObject:
   m_ObjectHideFlags: 0

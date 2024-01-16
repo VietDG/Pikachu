@@ -85,7 +85,20 @@ public class MatchTile : MonoBehaviour
         _camCro = StartCoroutine(VibrateCam());
     }
 
-    public SpriteRenderer[] CreateLine(MatchT matchTile, bool isFade = true)
+    private Vector2Int Pos;
+
+    public void SetAnim(bool isPlayAnim)
+    {
+        foreach (var item in GameManager.Instance.itemTileList)
+        {
+            if (Pos.x == item.index && Pos.y == item.value)
+            {
+                item.SetAnim(isPlayAnim);
+            }
+        }
+    }
+
+    public SpriteRenderer[] CreateLine(MatchT matchTile, bool isFade = true, bool isHint = false)
     {
         Vector3[] pos = new Vector3[matchTile.posList.Count];
         SpriteRenderer[] sprite = new SpriteRenderer[matchTile.posList.Count - 1];
@@ -94,6 +107,10 @@ public class MatchTile : MonoBehaviour
         {
             Vector2Int localPos = matchTile.posList[i];
             pos[i] = GameManager.Instance.GetPosTile(localPos.x, localPos.y);
+            Pos.x = localPos.x;
+            Pos.y = localPos.y;
+            SetAnim(true);
+
         }
 
         for (int i = 1; i < pos.Length; i++)
