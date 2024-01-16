@@ -31,12 +31,17 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         TileManager.SelectTile(this);
+        ScaleTile();
     }
 
     public void OnRemoveTile()
     {
         EventAction.OnReMoveTile?.Invoke();
         EventAction.OnReMoveTile = null;
+    }
+
+    public void ScaleTile()
+    {
     }
 
     public void SetAnim(bool isPlayAnim)

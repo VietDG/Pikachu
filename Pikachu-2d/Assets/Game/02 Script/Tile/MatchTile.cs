@@ -159,6 +159,10 @@ public class MatchTile : MonoBehaviour
         {
             if (Input.touchCount > 0 || Input.GetMouseButtonDown(0))
             {
+                foreach (var item in GameManager.Instance.itemTileList)
+                {
+                    item.SetAnim(false);
+                }
                 if (_lineHint != null && _lineHint.Length > 0)
                 {
                     for (int i = 0; i < _lineHint.Length; i++)
