@@ -99,6 +99,7 @@ MonoBehaviour:
   value: 0
   idTile: 0
   _animator: {fileID: 7512858223785832629}
+  Lerp: {x: 0.8, y: 0.8}
 --- !u!1 &2838077307460643023
 GameObject:
   m_ObjectHideFlags: 0

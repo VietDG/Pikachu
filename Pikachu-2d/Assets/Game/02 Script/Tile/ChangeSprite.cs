@@ -34,7 +34,7 @@ public class ChangeSprite : MonoBehaviour
                 {
                     var sequence = DOTween.Sequence();
                     var t1 = itemTile.transform.DORotate(new Vector3(0f, 90f, 0), _duration * 0.5f).OnComplete(() => itemTile.SetAva(pack.GetSprite(itemTile.idTile)));
-                    var t2 = itemTile.transform.DORotate(new Vector3(0f, 180f, 0f), _duration * 0.5f);
+                    var t2 = itemTile.transform.DORotate(new Vector3(0f, 0f, 0f), _duration * 0.5f);
 
                     sequence.Append(t1);
                     sequence.Append(t2);

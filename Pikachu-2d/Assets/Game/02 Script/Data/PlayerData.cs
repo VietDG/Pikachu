@@ -108,7 +108,7 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
 
     private void Start()
     {
-        //   Load();
+        //Load();
         Save();
     }
 
@@ -130,7 +130,6 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
 
         string json = JsonUtility.ToJson(playerData, true);
         File.WriteAllText(Application.dataPath + "/UserData.json", json);
-        Debug.LogError("Save");
     }
 
     public static bool Load(bool isLoadAgain = false)

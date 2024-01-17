@@ -90,15 +90,16 @@ public class GameController : SingletonMonoBehaviour<GameController>
                     5, 7, -1, -1, -1 // vi tri button lv 1
                 }
             };
-
+            //    uiGamePlayManager.gameObject.SetActive(false);
+            //    boosterManager.gameObject.SetActive(false);
         }
         else
         {
             levelConfig = LevelData.Instance.GetLevelConfig(totalLevel);
             boardConfig = LevelData.Instance.GetBoardData(totalLevel);
 
-            //uiGamePlayManager.gameObject.SetActive(true);
-            //boosterManager.gameObject.SetActive(true);
+            //    uiGamePlayManager.gameObject.SetActive(true);
+            //   boosterManager.gameObject.SetActive(true);
             //  sliderTile.SetSlider(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
 
             if (totalLevel == 2)
@@ -107,7 +108,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
             }
         }
 
-        //  matchTile.isSpawnStars = totalLevel > 1;// neu level > 1 spawm sao qua moi man
+        matchTile.isSpawnStars = totalLevel > 1;// neu level > 1 spawm sao qua moi man
 
         timeCount = levelConfig.time > 0;
     }
@@ -177,7 +178,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
             if (StateGame.IsPlay())
             {
                 time -= Time.deltaTime;
-
                 if (time > 0f)
                 {
                     uiGamePlayManager.SetTime(time);
@@ -192,7 +192,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
             yield return null;
         }
-
+        uiGamePlayManager.SetTime(time);
         SetLose();
     }
 
@@ -235,6 +235,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         totalLevel++;
         PlayerData.Instance.HighestLevel = totalLevel;
         int coin = 20;
+        Debug.LogError(totalLevel);
         PlayerData.Instance.TotalCoin += coin;
 
         PopupWin.Instance.Show(coin);
@@ -242,7 +243,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public void SetLose()
     {
-        StateGame.PauseGame();
+        //StateGame.PauseGame();
         Debug.LogError("Lose Game");
         PopupLose.Instance.Show();
     }

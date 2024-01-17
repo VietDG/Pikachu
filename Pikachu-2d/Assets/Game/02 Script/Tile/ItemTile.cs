@@ -18,6 +18,8 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] Animator _animator;
 
+    public Vector2 Lerp;
+
     public void SetTileId(int index)
     {
         this.idTile = index;
@@ -42,6 +44,10 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
 
     public void ScaleTile()
     {
+        //this.transform.DOScale(Lerp, 0.2f).SetEase(Ease.OutBack).OnComplete(() =>
+        //{
+        //    this.transform.localScale = Vector2.one;
+        //});
     }
 
     public void SetAnim(bool isPlayAnim)

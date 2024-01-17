@@ -22,7 +22,7 @@ public class TileSelected : MonoBehaviour
             //  item.SetAnim(false);
             if (selected && item == tile)
             {
-                tile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+                tile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
             }
         }
     }

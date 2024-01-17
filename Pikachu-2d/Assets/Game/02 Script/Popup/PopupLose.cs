@@ -9,7 +9,7 @@ public class PopupLose : SingletonPopup<PopupLose>
     public void Show()
     {
         base.Show();
-        StateGame.PauseGame();
+        //StateGame.PauseGame();
     }
 
     public void Close()

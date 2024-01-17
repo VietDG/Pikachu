@@ -241,7 +241,7 @@ public class MatchTile : MonoBehaviour
         _matchStarCount++;
 
         starTrans.DOKill();
-        starTrans.DOMove(uiGamePlayManager._starObj[0].transform.position, _moveDuration).SetDelay(_moveDelay).SetEase(Ease.InOutQuad).
+        starTrans.DOMove(uiGamePlayManager._starObj[0].transform.position, _moveDuration).SetDelay(_moveDelay).SetEase(Ease.Linear).
             OnComplete(() => starTrans.gameObject.SetActive(false));
     }
 
