@@ -29,7 +29,7 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
         this.idTile = index;
     }
 
-    public void SetAva(UnityEngine.Sprite sprite)
+    public void SetAva(Sprite sprite)
     {
         ava.sprite = sprite;
     }
@@ -37,24 +37,12 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         TileManager.SelectTile(this);
-        ScaleTile();
     }
 
     public void OnRemoveTile()
     {
-        //EventAction.OnReMoveTile?.Invoke();
-        //EventAction.OnReMoveTile = null;
-
         OnRemoveTileEvent?.Invoke();
         OnRemoveTileEvent = null;
-    }
-
-    public void ScaleTile()
-    {
-        //this.transform.DOScale(Lerp, 0.2f).SetEase(Ease.OutBack).OnComplete(() =>
-        //{
-        //    this.transform.localScale = Vector2.one;
-        //});
     }
 
     public void SetAnim(bool isPlayAnim)
@@ -66,6 +54,7 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
         else
         {
             _animator.enabled = false;
+            _animator.gameObject.transform.localScale = new Vector2(0.67f, 0.67f);
         }
     }
 

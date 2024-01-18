@@ -19,7 +19,6 @@ public class Loading : MonoBehaviour
 
     IEnumerator Load()
     {
-        int ran = UnityEngine.Random.Range(75, 90);
         while (percent < 150)
         {
             percent++;
@@ -28,8 +27,9 @@ public class Loading : MonoBehaviour
             _loadingtxt.text = (percent >= 100) ? "100%" : $"{percent}%";
             yield return new WaitForSeconds(0.01f);
         }
-        Manager.Load(DGame.SCENE_NAME);
-
-        // SceneManager.LoadScene(Const.SCENE_GAME);
+        if (PlayerData.Instance.HighestLevel > 5)
+            Manager.Load(DHome.SCENE_NAME);
+        else
+            Manager.Load(DGame.SCENE_NAME);
     }
 }

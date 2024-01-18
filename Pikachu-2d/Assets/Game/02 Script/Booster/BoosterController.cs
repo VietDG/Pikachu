@@ -16,7 +16,9 @@ public abstract class BoosterController : MonoBehaviour
 {
     public Image icon;
 
-    public Image ads;
+    public GameObject ads;
+
+    public GameObject redDot;
 
     public TMP_Text amoutText;
 
@@ -41,7 +43,6 @@ public abstract class BoosterController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Popup Buy booster");
             //xem quang cao
             SetBoosterAds();
         }
@@ -72,15 +73,15 @@ public abstract class BoosterController : MonoBehaviour
 
         if (count != 0)
         {
-            amoutText.gameObject.SetActive(true);
+            redDot.SetActive(true);
             amoutText.text = count.ToString();
-            ads.gameObject.SetActive(false);
+            ads.SetActive(false);
         }
         else
         {
-            amoutText.gameObject.SetActive(false);
+            redDot.SetActive(false);
             amoutText.text = count.ToString();
-            ads.gameObject.SetActive(true);
+            ads.SetActive(true);
         }
     }
 }
