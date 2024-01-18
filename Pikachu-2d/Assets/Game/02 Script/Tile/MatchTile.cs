@@ -33,7 +33,7 @@ public class MatchTile : MonoBehaviour
 
     private int _matchStarCount = 0;
 
-    private float _moveDuration = 0.8f;
+    private float _moveDuration = 1f;
 
     private float _moveDelay = 0.25f;
 
@@ -241,7 +241,7 @@ public class MatchTile : MonoBehaviour
         _matchStarCount++;
 
         starTrans.DOKill();
-        starTrans.DOMove(uiGamePlayManager._starObj[0].transform.position, _moveDuration).SetDelay(_moveDelay).SetEase(Ease.Linear).
+        starTrans.DOMove(uiGamePlayManager._starObj[0].transform.position, _moveDuration)/*.SetDelay(_moveDelay)*/.SetEase(Ease.OutBack).
             OnComplete(() => starTrans.gameObject.SetActive(false));
     }
 

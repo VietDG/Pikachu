@@ -15,7 +15,7 @@ public class DataExecutorWindow : EditorWindow
         GetWindow(typeof(DataExecutorWindow));
     }
 
-    private BoardConfig[] boardDatas = new BoardConfig[606];
+    private MapData[] boardDatas = new MapData[606];
 
     void OnGUI()
     {
@@ -36,7 +36,7 @@ public class DataExecutorWindow : EditorWindow
         {
             var text = Resources.Load<TextAsset>("Text/Map" + (i + 1).ToString());
 
-            boardDatas[i] = JsonUtility.FromJson<BoardConfig>(text.text);
+            boardDatas[i] = JsonUtility.FromJson<MapData>(text.text);
 
             var board = boardDatas[i];
 

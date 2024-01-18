@@ -1,4 +1,4 @@
-{"levelConfigs" : [ 
+{"loadLevelFormData" : [ 
     {"atlasid":156,"shapeid":1,"time":180,"boom":0,"kind":10,"repeat":3,"up":false,"down":false,"left":false,"right":false,"score":20,"movenum":0,"props":[], "multilayer":[],"recover":[]},
     {"atlasid":157,"shapeid":151,"time":180,"boom":0,"kind":10,"repeat":4,"up":false,"down":false,"left":false,"right":false,"score":20,"movenum":0,"props":[], "multilayer":[],"recover":[]},
     {"atlasid":158,"shapeid":7,"time":163,"boom":0,"kind":10,"repeat":4,"up":false,"down":false,"left":false,"right":false,"score":30,"movenum":0,"props":[], "multilayer":[],"recover":[]},

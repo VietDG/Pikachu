@@ -16,8 +16,6 @@ public class EventAction
     #endregion
 
     #region Tile
-
-    public static Action OnReMoveTile;
     public static Action<ItemTile, bool> OnSelectTile;
     public static Action<MatchT> OnMatchTile;
     public static Action<ItemTile, ItemTile> OnMatchTileFail;

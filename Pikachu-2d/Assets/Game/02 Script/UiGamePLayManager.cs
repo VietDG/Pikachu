@@ -57,7 +57,7 @@ public class UiGamePLayManager : MonoBehaviour
     {
         _timeSliderImg.fillAmount = timer / _totalTime;// slider time 
 
-        timer += 1f;
+        timer += 0f;
 
         if (_runTime != (int)timer)
         {
@@ -66,6 +66,7 @@ public class UiGamePLayManager : MonoBehaviour
             _timeTxt.text = _stringBuilder.ToString();
         }
     }
+
 
     public void SetProgressStarCollected(float[] progressValue)
     {
@@ -88,7 +89,7 @@ public class UiGamePLayManager : MonoBehaviour
     {
         _starCollect = Mathf.Min(_starCollectCount, _starCollect + value);
 
-        _starTween = _endTween = _starSlider.DOFillAmount(_starCollect / _starCollectCount, 0.5f).SetDelay(time).
+        _starTween = _endTween = _starSlider.DOFillAmount(_starCollect / _starCollectCount, 0.5f)/*.SetDelay(time)*/.
         SetEase(Ease.Linear).OnUpdate(() =>
             {
                 for (int i = 0; i < _starObj.Length; i++)

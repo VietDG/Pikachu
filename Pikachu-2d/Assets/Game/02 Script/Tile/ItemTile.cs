@@ -16,9 +16,13 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
 
     public int idTile;
 
-    [SerializeField] Animator _animator;
+    public Animator _animator;
+
+    [SerializeField] ParticleSystem _effect;
 
     public Vector2 Lerp;
+
+    public event Action OnRemoveTileEvent;
 
     public void SetTileId(int index)
     {
@@ -38,8 +42,11 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
 
     public void OnRemoveTile()
     {
-        EventAction.OnReMoveTile?.Invoke();
-        EventAction.OnReMoveTile = null;
+        //EventAction.OnReMoveTile?.Invoke();
+        //EventAction.OnReMoveTile = null;
+
+        OnRemoveTileEvent?.Invoke();
+        OnRemoveTileEvent = null;
     }
 
     public void ScaleTile()
@@ -60,5 +67,11 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
         {
             _animator.enabled = false;
         }
+    }
+
+    public void PlayVfx()
+    {
+        _effect.Play();
+        _animator.gameObject.SetActive(false);
     }
 }

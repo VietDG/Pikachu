@@ -7,29 +7,21 @@ using UnityEngine;
 public class HamTile : MonoBehaviour
 {
     [Header("------------REFERENCE------------")]
+    [NonSerialized]
+    public ItemTile itemTile;
     public SpriteRenderer ava;
     public Transform startTrans;
     public Transform endTrans;
-    /// <summary>
-    /// value
-    /// </summary>
-    public ItemTile itemTile { get; set; }
+
+    public Animator hammerEffectAnimator1;
+
+    public Animator hammerEffectAnimator2;
+
     private bool isActive = true;
 
     public static List<HamTile> hamList = new List<HamTile>();
 
     public static int animCount = 0;
-
-    public void Update()
-    {
-        this.transform.localPosition = itemTile.transform.localPosition;
-
-        if (itemTile.gameObject.activeSelf != isActive)
-        {
-            isActive = itemTile.gameObject.activeSelf;
-            ava.gameObject.SetActive(isActive);
-        }
-    }
 
     public void InitHam()
     {
@@ -37,7 +29,7 @@ public class HamTile : MonoBehaviour
         endTrans.localPosition = Vector3.zero;
         isActive = !itemTile.gameObject.activeSelf;
         ava.gameObject.SetActive(itemTile.gameObject.activeSelf);
-        EventAction.OnReMoveTile += RemoveTile;
+        itemTile.OnRemoveTileEvent += RemoveTile;
     }
 
     public void HamMovement()
@@ -62,18 +54,40 @@ public class HamTile : MonoBehaviour
 
             MainController.Augment();
 
+            hammerEffectAnimator1.gameObject.SetActive(true);
+            hammerEffectAnimator2.gameObject.SetActive(true);
+
+            bool isHamerPlay = false;
+
             startTrans.DOMove(t1.transform.localPosition, 0.3f).SetEase(Ease.OutQuad).OnComplete(() =>
                     {
-                        GameManager.Instance.RemoveTile(t1.index, t1.value);
+                        isHamerPlay = true;
+                        // hammerEffectAnimator1.Play()
                     });
 
             endTrans.DOMove(t2.transform.localPosition, 0.3f).SetEase(Ease.OutQuad).OnComplete(() =>
             {
-                GameManager.Instance.RemoveTile(t2.index, t2.value);
+                // hammerEffectAnimator1.Play("HammerBeat");
             });
 
-            MainController.SetAllTileSize();
+            while (!isHamerPlay)
+            {
+                yield return null;
+            }
 
+            while (hammerEffectAnimator1.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            {
+                yield return null;
+            }
+            yield return null;
+
+            hammerEffectAnimator1.gameObject.SetActive(false);
+            hammerEffectAnimator2.gameObject.SetActive(false);
+
+            GameManager.Instance.RemoveTile(t1.index, t1.value);
+            GameManager.Instance.RemoveTile(t2.index, t2.value);
+
+            MainController.SetAllTileSize();
             animCount--;
 
             yield return new WaitForSeconds(2.5f);
@@ -86,11 +100,22 @@ public class HamTile : MonoBehaviour
     public void HamActive()
     {
         gameObject.SetActive(false);
-        EventAction.OnReMoveTile -= RemoveTile;
+        itemTile.OnRemoveTileEvent -= RemoveTile;
     }
 
     private void RemoveTile()
     {
         hamList.Add(this);
+    }
+
+    public void Update()
+    {
+        this.transform.localPosition = itemTile.transform.localPosition;
+
+        if (itemTile.gameObject.activeSelf != isActive)
+        {
+            isActive = itemTile.gameObject.activeSelf;
+            ava.gameObject.SetActive(isActive);
+        }
     }
 }

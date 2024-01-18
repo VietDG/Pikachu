@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class LevelConfig 
+public class LoadLevelFormData
 {
     public int shapeid;
     public int time;

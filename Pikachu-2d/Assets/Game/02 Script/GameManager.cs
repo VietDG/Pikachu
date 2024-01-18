@@ -294,8 +294,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 }
             }
 
-            itemTile.gameObject.SetActive(false);
+            itemTile.PlayVfx();
             itemTile.OnRemoveTile();
+            StartCoroutine(RemoveTile(itemTile));
         }
 
         itemTiles[index][value] = null;
@@ -305,6 +306,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             EventAction.WinGame?.Invoke();
         }
+    }
+
+    private IEnumerator RemoveTile(ItemTile itemTile)
+    {
+        yield return new WaitForSeconds(1f);
+        itemTile.gameObject.SetActive(false);
     }
 
     public MatchT FindTileMatch(int x1, int y1, int x2, int y2)

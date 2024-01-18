@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class BoardConfig
+public class MapData
 {
     public bool containTileIndex;
     public int row;

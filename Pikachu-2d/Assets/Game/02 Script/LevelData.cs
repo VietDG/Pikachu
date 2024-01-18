@@ -7,31 +7,31 @@ public class LevelData : SingletonMonoBehaviour<LevelData>
 {
     public TextAsset textAsset;
 
-    private LevelConfig[] levelConfigs;
+    private LoadLevelFormData[] loadLevelFormData;
 
-    private class LevelDataConfigContainer
+    private class LevelDataContain
     {
-        public LevelConfig[] levelConfigs;
+        public LoadLevelFormData[] loadLevelFormData;
     }
 
     public override void Awake()
     {
         base.Awake();
 
-        var levelDataConfigContainer = JsonUtility.FromJson<LevelDataConfigContainer>(textAsset.text);
-        levelConfigs = levelDataConfigContainer.levelConfigs;
+        var levelDataContent = JsonUtility.FromJson<LevelDataContain>(textAsset.text);
+        loadLevelFormData = levelDataContent.loadLevelFormData;
     }
 
-    public LevelConfig GetLevelConfig(int level)
+    public LoadLevelFormData GetLevelConfig(int level)
     {
-        return levelConfigs[level - 1];
+        return loadLevelFormData[level - 1];
     }
 
-    public BoardConfig GetBoardData(int level)
+    public MapData GetBoardData(int level)
     {
-        int boardId = GetLevelConfig(level).shapeid;
-        var boardData = JsonUtility.FromJson<BoardConfig>(Resources.Load<TextAsset>("Text/Shape" + boardId.ToString()).text);
+        int mapID = GetLevelConfig(level).shapeid;
+        var mapData = JsonUtility.FromJson<MapData>(Resources.Load<TextAsset>("Text/Shape" + mapID.ToString()).text);
 
-        return boardData;
+        return mapData;
     }
 }

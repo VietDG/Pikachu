@@ -6,7 +6,7 @@ public class SpecialTile : MonoBehaviour
 {
     public HamTile hamTilePrefab;
 
-    private List<HamTile> hamList = new List<HamTile>();
+    public List<HamTile> hamPool = new List<HamTile>();
 
     public void CreateHam(int value)
     {
@@ -27,22 +27,22 @@ public class SpecialTile : MonoBehaviour
     {
         yield return null;
 
-        while (hamList.Count > 0)
+        while (HamTile.hamList.Count > 0)
         {
-            for (int i = 0; i < hamList.Count; i++)
+            for (int i = 0; i < HamTile.hamList.Count; i++)
             {
-                hamList[i].HamMovement();
+                HamTile.hamList[i].HamMovement();
             }
-            hamList.Clear();
+            HamTile.hamList.Clear();
             yield return new WaitUntil(() => HamTile.animCount <= 0);
         }
     }
 
     public void HamOff()
     {
-        for (int i = 0; i < hamList.Count; i++)
+        for (int i = 0; i < hamPool.Count; i++)
         {
-            var ham = hamList[i];
+            var ham = hamPool[i];
             if (ham.gameObject.activeSelf)
             {
                 ham.HamActive();
@@ -53,12 +53,12 @@ public class SpecialTile : MonoBehaviour
 
     private HamTile GetHamTile()
     {
-        for (int i = 0; i < hamList.Count; i++)
+        for (int i = 0; i < hamPool.Count; i++)
         {
-            if (hamList[i].gameObject.activeSelf == false)
+            if (hamPool[i].gameObject.activeSelf == false)
             {
-                hamList[i].gameObject.SetActive(true);
-                return hamList[i];
+                hamPool[i].gameObject.SetActive(true);
+                return hamPool[i];
             }
         }
         return SpawnHamTile();
@@ -68,7 +68,7 @@ public class SpecialTile : MonoBehaviour
     {
         HamTile ham = Instantiate(hamTilePrefab);
         ham.gameObject.SetActive(false);
-        hamList.Add(ham);
+        hamPool.Add(ham);
         return ham;
     }
 }

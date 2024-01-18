@@ -179,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 2807519232868453884}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ec139917375a4941b7bf4d529af89ed, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -272,6 +272,8 @@ MonoBehaviour:
   ava: {fileID: 2807519232835575455}
   startTrans: {fileID: 2807519234238187614}
   endTrans: {fileID: 2807519234274742433}
+  hammerEffectAnimator1: {fileID: 2807519232868453887}
+  hammerEffectAnimator2: {fileID: 2807519234357534069}
 --- !u!1 &2807519234238187613
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +433,7 @@ Animator:
   m_GameObject: {fileID: 2807519234357534058}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ec139917375a4941b7bf4d529af89ed, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

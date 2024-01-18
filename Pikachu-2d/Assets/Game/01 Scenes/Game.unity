@@ -1932,6 +1932,7 @@ MonoBehaviour:
   sliderTile: {fileID: 570302833}
   shuffleTile: {fileID: 275598619}
   tileSpawn: {fileID: 602159074}
+  totalLevel: 1000
 --- !u!1 &821382086
 GameObject:
   m_ObjectHideFlags: 0
@@ -2209,6 +2210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hamTilePrefab: {fileID: 2807519234066742163, guid: f4913265615fbad4eb49aa3b35f56e7d, type: 3}
+  hamPool: []
 --- !u!1 &989514634
 GameObject:
   m_ObjectHideFlags: 0

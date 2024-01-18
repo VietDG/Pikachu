@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Windows.WebCam;
 
 public class GameController : SingletonMonoBehaviour<GameController>
 {
@@ -22,11 +23,11 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public TileSpawn tileSpawn;
 
-    private BoardConfig boardConfig;
+    private MapData mapData;
 
-    private LevelConfig levelConfig;
+    private LoadLevelFormData loadLevelFormData;
 
-    private int totalLevel;
+    public int totalLevel;
 
     private float time;
 
@@ -38,6 +39,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public override void Awake()
     {
         Application.targetFrameRate = 60;
+        CameraDestroy.Instance.SetCam(false);
 
         EventAction.OnNextLevel += OnCLickNextLevel;
 
@@ -71,12 +73,12 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         if (totalLevel <= 1)
         {
-            levelConfig = new LevelConfig()
+            loadLevelFormData = new LoadLevelFormData()
             {
                 time = -1
             };
 
-            boardConfig = new BoardConfig()
+            mapData = new MapData()
             {
                 containTileIndex = true,
                 row = 5,
@@ -95,36 +97,36 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
         else
         {
-            levelConfig = LevelData.Instance.GetLevelConfig(totalLevel);
-            boardConfig = LevelData.Instance.GetBoardData(totalLevel);
+            loadLevelFormData = LevelData.Instance.GetLevelConfig(totalLevel);
+            mapData = LevelData.Instance.GetBoardData(totalLevel);
 
             //    uiGamePlayManager.gameObject.SetActive(true);
             //   boosterManager.gameObject.SetActive(true);
-            //  sliderTile.SetSlider(levelConfig.up, levelConfig.down, levelConfig.left, levelConfig.right);
+            sliderTile.SetSlider(loadLevelFormData.up, loadLevelFormData.down, loadLevelFormData.left, loadLevelFormData.right);
 
             if (totalLevel == 2)
             {
-                levelConfig.time = 0;
+                loadLevelFormData.time = 0;
             }
         }
 
         matchTile.isSpawnStars = totalLevel > 1;// neu level > 1 spawm sao qua moi man
 
-        timeCount = levelConfig.time > 0;
+        timeCount = loadLevelFormData.time > 0;
     }
 
     private void InitDataStart()
     {
         uiGamePlayManager.InitLevel();
-        uiGamePlayManager.SetStarCollect(0f, levelConfig.score);
+        uiGamePlayManager.SetStarCollect(0f, loadLevelFormData.score);
         uiGamePlayManager.SetProgressStarCollected(starProgress);
 
         if (timeCount)
         {
             uiGamePlayManager.SetModeTime(true);
-            time = levelConfig.time;
-            uiGamePlayManager.InitTimeToLevel(levelConfig.time);
-            uiGamePlayManager.SetTime(levelConfig.time);
+            time = loadLevelFormData.time;
+            uiGamePlayManager.InitTimeToLevel(loadLevelFormData.time);
+            uiGamePlayManager.SetTime(loadLevelFormData.time);
 
             StartCoroutine(UpdateTime());
         }
@@ -132,20 +134,20 @@ public class GameController : SingletonMonoBehaviour<GameController>
         {
             uiGamePlayManager.SetModeTime(false);
         }
-        TileData.Instance.Initialize(levelConfig, boardConfig, 30);
+        TileData.Instance.Initialize(loadLevelFormData, mapData, 30);
         GameManager.Instance.OnSpawnTile(TileData.Instance);
         tileSpawn.StartSpawn();
 
-        //  specialTile.HamOff();
+        specialTile.HamOff();
 
-        //if (totalLevel >= 16)
-        //{
-        //    levelConfig.hammer = 2;
-        //}
-        //else levelConfig.hammer = 0;
+        if (totalLevel >= 16)
+        {
+            loadLevelFormData.hammer = 2;
+        }
+        else loadLevelFormData.hammer = 0;
 
-        //if (levelConfig.hammer > 0)
-        //    specialTile.CreateHam(levelConfig.hammer);
+        if (loadLevelFormData.hammer > 0)
+            specialTile.CreateHam(loadLevelFormData.hammer);
     }
 
     private void OnTileMatched(MatchT match)
@@ -158,7 +160,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
         yield return specialTile.StartMoveHam();
 
         yield return sliderTile.StartGetSize();
-
         if (GameManager.Instance.FindAllTile() == null)
         {
             var shuffleData = GameManager.Instance.Shuffle();
@@ -192,7 +193,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
             yield return null;
         }
-        uiGamePlayManager.SetTime(time);
         SetLose();
     }
 
@@ -220,6 +220,10 @@ public class GameController : SingletonMonoBehaviour<GameController>
         {
             PopupLose.Instance.Show();
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            SceneManager.LoadScene(Const.SCENE_HOME);
+        }
     }
 
     public void CheckWin()
@@ -235,7 +239,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
         totalLevel++;
         PlayerData.Instance.HighestLevel = totalLevel;
         int coin = 20;
-        Debug.LogError(totalLevel);
         PlayerData.Instance.TotalCoin += coin;
 
         PopupWin.Instance.Show(coin);
@@ -243,8 +246,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public void SetLose()
     {
-        //StateGame.PauseGame();
-        Debug.LogError("Lose Game");
+        StateGame.PauseGame();
         PopupLose.Instance.Show();
     }
 }
