@@ -46,6 +46,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         EventAction.OnMatchTile += OnTileMatched;
         EventAction.WinGame += CheckWin;
         InitLevel();
+        SettingData.Instance.StateScence = StateScence.GamePlay;
     }
 
     public void InitLevel()
@@ -199,8 +200,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public void OnClickReplay()
     {
         StopAllCoroutines();
-
-        InitDataStart();
+        //  StateGame.PauseGame();
+        SceneManager.LoadScene(Const.SCENE_GAME);
     }
 
     public void OnCLickNextLevel()

@@ -14,7 +14,10 @@ public class PopupLose : SingletonPopup<PopupLose>
 
     public void Close()
     {
-        base.Hide();
+        base.Hide(() =>
+        {
+            StateGame.Play();
+        });
     }
 
     public void OnClickReplay()

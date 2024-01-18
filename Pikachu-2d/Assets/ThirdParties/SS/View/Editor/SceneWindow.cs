@@ -1,10 +1,10 @@
 ﻿// This code is part of the SS-Scene library, released by Anh Pham (anhpt.csit@gmail.com).
 
-using UnityEditor;
-using UnityEngine;
-using System.IO;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 namespace SS.View
 {

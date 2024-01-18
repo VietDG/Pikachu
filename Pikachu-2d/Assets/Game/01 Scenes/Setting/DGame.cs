@@ -7,6 +7,8 @@ public class DGame : Controller
 {
     public const string SCENE_NAME = Const.SCENE_GAME;
 
+    public Camera cam;
+
     public override string SceneName()
     {
         return SCENE_NAME;
@@ -23,6 +25,7 @@ public class DGame : Controller
     public override void OnShown()
     {
         //GameController.Instance.InitLevel();
+        m_Camera = cam;
     }
 
     public override void OnHidden()

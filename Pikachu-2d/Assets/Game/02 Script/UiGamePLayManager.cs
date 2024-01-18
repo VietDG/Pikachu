@@ -116,4 +116,10 @@ public class UiGamePLayManager : MonoBehaviour
     {
         _coinTxt.text = value.ToString();
     }
+
+    public void OnClickSetting()
+    {
+        PopupSetting.Instance.Show();
+        StateGame.PauseGame();
+    }
 }
