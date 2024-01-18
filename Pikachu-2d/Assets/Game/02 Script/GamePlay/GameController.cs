@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using SS.View;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,7 +46,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         EventAction.OnMatchTile += OnTileMatched;
         EventAction.WinGame += CheckWin;
-        InitLevel();
+        // InitLevel();
         SettingData.Instance.StateScence = StateScence.GamePlay;
     }
 
@@ -201,14 +202,16 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         StopAllCoroutines();
         //  StateGame.PauseGame();
-        SceneManager.LoadScene(Const.SCENE_GAME);
+        //SceneManager.LoadScene(Const.SCENE_GAME);
+        Manager.Load(DGame.SCENE_NAME);
     }
 
     public void OnCLickNextLevel()
     {
         StopAllCoroutines();
 
-        SceneManager.LoadScene(Const.SCENE_GAME);
+        //  SceneManager.LoadScene(Const.SCENE_GAME);
+        Manager.Load(DGame.SCENE_NAME);
     }
 
     public void Update()

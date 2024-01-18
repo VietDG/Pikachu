@@ -16,6 +16,8 @@ public class DGame : Controller
 
     public override void OnActive(object data)
     {
+        m_Canvas.worldCamera = cam;
+        GameController.Instance.InitLevel();
     }
 
     public override void OnReFocus()
@@ -24,8 +26,6 @@ public class DGame : Controller
 
     public override void OnShown()
     {
-        //GameController.Instance.InitLevel();
-        m_Camera = cam;
     }
 
     public override void OnHidden()

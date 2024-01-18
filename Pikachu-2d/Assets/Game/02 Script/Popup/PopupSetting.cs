@@ -1,4 +1,5 @@
 using PopupSystem;
+using SS.View;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
@@ -133,7 +134,8 @@ public class PopupSetting : SingletonPopup<PopupSetting>
     {
         base.Hide(() =>
         {
-            SceneManager.LoadScene(Const.SCENE_HOME);
+            // SceneManager.LoadScene(Const.SCENE_HOME);
+            Manager.Load(DHome.SCENE_NAME);
         });
     }
 

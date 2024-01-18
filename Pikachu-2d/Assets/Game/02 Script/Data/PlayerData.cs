@@ -92,6 +92,19 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
             PlayerPrefs.SetInt(Const.KEY_BOOSTER_SWAP, value);
         }
     }
+
+    public int ProgressValueMax
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(Const.KEY_PROGRESS_LEVEL_VALUE);
+        }
+        set
+        {
+            if (value >= DataManager.Instance.GetProgressGift().MaxProgress()) return;
+            PlayerPrefs.SetInt(Const.KEY_PROGRESS_LEVEL_VALUE, value);
+        }
+    }
     #endregion
     public static PlayerData playerData;
 

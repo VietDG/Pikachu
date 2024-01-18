@@ -121,12 +121,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 8
         width: 152
-        height: 152
+        height: 144
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 76, y: 76, z: 76, w: 76}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 76, y: 68, z: 76, w: 76}
       outline: []
       physicsShape: []
       tessellationDetail: 0

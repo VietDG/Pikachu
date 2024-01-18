@@ -13,9 +13,9 @@ public class HamTile : MonoBehaviour
     public Transform startTrans;
     public Transform endTrans;
 
-    public Animator hammerEffectAnimator1;
+    public Animator animator1;
 
-    public Animator hammerEffectAnimator2;
+    public Animator animator2;
 
     private bool isActive = true;
 
@@ -54,20 +54,20 @@ public class HamTile : MonoBehaviour
 
             MainController.Augment();
 
-            hammerEffectAnimator1.gameObject.SetActive(true);
-            hammerEffectAnimator2.gameObject.SetActive(true);
+            animator1.gameObject.SetActive(true);
+            animator2.gameObject.SetActive(true);
 
             bool isHamerPlay = false;
 
             startTrans.DOMove(t1.transform.localPosition, 0.3f).SetEase(Ease.OutQuad).OnComplete(() =>
                     {
                         isHamerPlay = true;
-                        // hammerEffectAnimator1.Play()
+                        //   hammerEffectAnimator1.Play("Sprite");
                     });
 
             endTrans.DOMove(t2.transform.localPosition, 0.3f).SetEase(Ease.OutQuad).OnComplete(() =>
             {
-                // hammerEffectAnimator1.Play("HammerBeat");
+                // hammerEffectAnimator1.Play("Sprite");
             });
 
             while (!isHamerPlay)
@@ -75,14 +75,14 @@ public class HamTile : MonoBehaviour
                 yield return null;
             }
 
-            while (hammerEffectAnimator1.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            while (animator1.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
             {
                 yield return null;
             }
             yield return null;
 
-            hammerEffectAnimator1.gameObject.SetActive(false);
-            hammerEffectAnimator2.gameObject.SetActive(false);
+            animator1.gameObject.SetActive(false);
+            animator2.gameObject.SetActive(false);
 
             GameManager.Instance.RemoveTile(t1.index, t1.value);
             GameManager.Instance.RemoveTile(t2.index, t2.value);
@@ -95,7 +95,6 @@ public class HamTile : MonoBehaviour
 
         HamActive();
     }
-
 
     public void HamActive()
     {

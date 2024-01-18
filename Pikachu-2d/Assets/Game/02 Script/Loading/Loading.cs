@@ -28,8 +28,8 @@ public class Loading : MonoBehaviour
             _loadingtxt.text = (percent >= 100) ? "100%" : $"{percent}%";
             yield return new WaitForSeconds(0.01f);
         }
-        ///  Manager.Load(DGame.SCENE_NAME);
+        Manager.Load(DGame.SCENE_NAME);
 
-        SceneManager.LoadScene(Const.SCENE_GAME);
+        // SceneManager.LoadScene(Const.SCENE_GAME);
     }
 }

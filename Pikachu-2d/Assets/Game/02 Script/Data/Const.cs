@@ -5,7 +5,7 @@ using UnityEngine;
 public class Const
 {
     public const string SCENE_LOADING = "Loading";
-    public const string SCENE_GAME = "Game";
+    public const string SCENE_GAME = "GamePlay";
     public const string SCENE_HOME = "Home";
 
     #region UserData
@@ -21,5 +21,9 @@ public class Const
     public const string KEY_BOOSTER_SHUFFLE = "booster_shuffle";
     public const string KEY_BOOSTER_SWAP = "booster_swap";
 
+    #endregion
+
+    #region Progress
+    public const string KEY_PROGRESS_LEVEL_VALUE = "Progress_Level_Value";
     #endregion
 }
