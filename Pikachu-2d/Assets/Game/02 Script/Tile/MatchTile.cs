@@ -23,7 +23,7 @@ public class MatchTile : MonoBehaviour
 
     private Coroutine _camCro;
 
-    private Camera _cam;
+    [SerializeField] Camera _cam;
 
     private Vector3 _camOriginalPos;
 
@@ -45,8 +45,6 @@ public class MatchTile : MonoBehaviour
     {
         EventAction.OnMatchTile += OnMatchTile;
         EventAction.OnMatchTileFail += OnMatchTileFail;
-
-        _cam = Camera.main;
 
         for (int i = 0; i < 15; i++)
         {
@@ -122,6 +120,7 @@ public class MatchTile : MonoBehaviour
             spriteLine.color = Color.white;
             sprite[i - 1] = spriteLine;
             spriteLine.transform.localScale = Vector3.one;
+            Debug.LogError("1");
 
             if (isFade)
                 // spriteLine.DOFade(0f, _durationFade).OnComplete(() => spriteLine.gameObject.SetActive(false)).SetDelay(0.2f);
@@ -134,11 +133,13 @@ public class MatchTile : MonoBehaviour
             {
                 float lineLenght = Mathf.Abs(pos1.y - pos2.y);
                 spriteLine.transform.localScale = new Vector3(0.18f, (lineLenght / spriteLine.bounds.size.y) + 0.18f, 1f);
+                Debug.LogError("2");
             }
             else if (Mathf.Abs(pos1.y - pos2.y) < 0.01f)
             {
                 float length = Mathf.Abs(pos1.x - pos2.x);
                 spriteLine.transform.localScale = new Vector3((length / spriteLine.bounds.size.x) + 0.18f, 0.18f, 1f);
+                Debug.LogError("3");
             }
 
             spriteLine.transform.localPosition = (pos1 + pos2) * 0.5f;

@@ -829,6 +829,7 @@ MonoBehaviour:
   uiGamePlayManager: {fileID: 1133120045}
   _camVibrateDuration: 0.25
   _camVibrateLevel: 0.1
+  _cam: {fileID: 1062022704}
   _starsTrans: {fileID: 594899613}
   _lineTrans: {fileID: 1829204619}
 --- !u!1 &274343661

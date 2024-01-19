@@ -2,7 +2,6 @@ using PopupSystem;
 using SS.View;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -116,9 +115,11 @@ public class PopupSetting : SingletonPopup<PopupSetting>
 
     public void OnClickReplay()
     {
+        // StopAllCoroutines();
         base.Hide(() =>
         {
-            SceneManager.LoadScene(Const.SCENE_GAME);
+            // SceneManager.LoadScene(Const.SCENE_GAME);
+            Manager.Load(DGame.SCENE_NAME);
         });
     }
 
