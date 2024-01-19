@@ -100,6 +100,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         {
             loadLevelFormData = LevelData.Instance.GetLevelConfig(totalLevel);
             mapData = LevelData.Instance.GetBoardData(totalLevel);
+            Debug.LogError(loadLevelFormData.shapeid);
 
             //    uiGamePlayManager.gameObject.SetActive(true);
             //   boosterManager.gameObject.SetActive(true);

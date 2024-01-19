@@ -59,13 +59,13 @@ public class HamTile : MonoBehaviour
 
             bool isHamerPlay = false;
 
-            startTrans.DOMove(t1.transform.localPosition, 0.3f).SetEase(Ease.OutQuad).OnComplete(() =>
+            startTrans.DOMove(t1.transform.localPosition, 0.2f).SetEase(Ease.OutQuad).OnComplete(() =>
                     {
                         isHamerPlay = true;
                         //   hammerEffectAnimator1.Play("Sprite");
                     });
 
-            endTrans.DOMove(t2.transform.localPosition, 0.3f).SetEase(Ease.OutQuad).OnComplete(() =>
+            endTrans.DOMove(t2.transform.localPosition, 0.2f).SetEase(Ease.OutQuad).OnComplete(() =>
             {
                 // hammerEffectAnimator1.Play("Sprite");
             });
@@ -74,7 +74,8 @@ public class HamTile : MonoBehaviour
             {
                 yield return null;
             }
-
+            GameManager.Instance.RemoveTile(t1.index, t1.value);
+            GameManager.Instance.RemoveTile(t2.index, t2.value);
             while (animator1.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
             {
                 yield return null;
@@ -84,8 +85,7 @@ public class HamTile : MonoBehaviour
             animator1.gameObject.SetActive(false);
             animator2.gameObject.SetActive(false);
 
-            GameManager.Instance.RemoveTile(t1.index, t1.value);
-            GameManager.Instance.RemoveTile(t2.index, t2.value);
+
 
             MainController.SetAllTileSize();
             animCount--;

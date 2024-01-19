@@ -11,6 +11,7 @@ public class MatchTile : MonoBehaviour
     public bool isSpawnStars = true;
 
     [SerializeField] GameObject _starPref;
+    [SerializeField] GameObject _dotPref;
 
     [SerializeField] UiGamePLayManager uiGamePlayManager;
 
@@ -31,15 +32,17 @@ public class MatchTile : MonoBehaviour
 
     private List<GameObject> _starList = new List<GameObject>();
 
+    private List<GameObject> _dotList = new List<GameObject>();
+
     private int _matchStarCount = 0;
 
-    private float _moveDuration = 1f;
+    // private float _moveDuration = 1f;
 
-    private float _moveDelay = 0.25f;
+    // private float _moveDelay = 0.25f;
 
     private SpriteRenderer[] _lineHint;
 
-    [SerializeField] Transform _starsTrans, _lineTrans;
+    [SerializeField] Transform _starsTrans, _lineTrans, _dotTrans;
 
     private void Awake()
     {
@@ -108,7 +111,6 @@ public class MatchTile : MonoBehaviour
             Pos.x = localPos.x;
             Pos.y = localPos.y;
             SetAnim(true);
-
         }
 
         for (int i = 1; i < pos.Length; i++)
@@ -120,7 +122,6 @@ public class MatchTile : MonoBehaviour
             spriteLine.color = Color.white;
             sprite[i - 1] = spriteLine;
             spriteLine.transform.localScale = Vector3.one;
-            Debug.LogError("1");
 
             if (isFade)
                 // spriteLine.DOFade(0f, _durationFade).OnComplete(() => spriteLine.gameObject.SetActive(false)).SetDelay(0.2f);
@@ -132,19 +133,16 @@ public class MatchTile : MonoBehaviour
             if (Mathf.Abs(pos1.x - pos2.x) < 0.01f)
             {
                 float lineLenght = Mathf.Abs(pos1.y - pos2.y);
-                spriteLine.transform.localScale = new Vector3(0.18f, (lineLenght / spriteLine.bounds.size.y) + 0.18f, 1f);
-                Debug.LogError("2");
+                spriteLine.transform.localScale = new Vector3(0.18f * 2, ((lineLenght / spriteLine.bounds.size.y) + 0.18f * 2), 1f);
             }
             else if (Mathf.Abs(pos1.y - pos2.y) < 0.01f)
             {
                 float length = Mathf.Abs(pos1.x - pos2.x);
-                spriteLine.transform.localScale = new Vector3((length / spriteLine.bounds.size.x) + 0.18f, 0.18f, 1f);
-                Debug.LogError("3");
+                spriteLine.transform.localScale = new Vector3(((length / spriteLine.bounds.size.x) + 0.18f * 2), 0.18f * 2, 1f);
             }
 
             spriteLine.transform.localPosition = (pos1 + pos2) * 0.5f;
         }
-
         return sprite;
     }
 
@@ -234,7 +232,7 @@ public class MatchTile : MonoBehaviour
         CreatStarPos(finalLocalPos.x, finalLocalPos.y);
 
         PlayerData.Instance.TotalStar += _matchStarCount;
-        uiGamePlayManager.StarCollected(_matchStarCount, _moveDuration + _moveDelay);
+        //    uiGamePlayManager.StarCollected(_matchStarCount, _moveDuration + _moveDelay);
     }
 
     //set vi tri star
