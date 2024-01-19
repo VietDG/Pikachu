@@ -827,7 +827,6 @@ MonoBehaviour:
   isSpawnStars: 1
   _starPref: {fileID: 7534263362439026553, guid: 3fd1a5c89d6d3954cb544a1f2a4aa093, type: 3}
   uiGamePlayManager: {fileID: 1133120045}
-  _durationFade: 0.25
   _camVibrateDuration: 0.25
   _camVibrateLevel: 0.1
   _starsTrans: {fileID: 594899613}
@@ -4019,7 +4018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1825205495
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4300,7 +4299,7 @@ MonoBehaviour:
   sliderTile: {fileID: 1629526447}
   shuffleTile: {fileID: 1257281945}
   tileSpawn: {fileID: 1695360225}
-  totalLevel: 1000
+  totalLevel: 0
 --- !u!1 &1976738928
 GameObject:
   m_ObjectHideFlags: 0

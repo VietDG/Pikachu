@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class DataManager : SingletonMonoBehaviour<DataManager>
 {
-    [SerializeField] private ProgressData _progressData;
 
-    public ProgressData GetProgressGift()
-    {
-        return _progressData;
-    }
 }

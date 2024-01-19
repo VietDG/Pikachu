@@ -161,6 +161,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         yield return specialTile.StartMoveHam();
 
+        yield return new WaitForSeconds(0.5f);
         yield return sliderTile.StartGetSize();
         if (GameManager.Instance.FindAllTile() == null)
         {

@@ -14,7 +14,7 @@ public class MatchTile : MonoBehaviour
 
     [SerializeField] UiGamePLayManager uiGamePlayManager;
 
-    [SerializeField] float _durationFade = 0.25f;
+    //  [SerializeField] float _durationFade = 0.25f;
 
     [Header("------------VALUE-----------")]
 
@@ -124,17 +124,21 @@ public class MatchTile : MonoBehaviour
             spriteLine.transform.localScale = Vector3.one;
 
             if (isFade)
-                spriteLine.DOFade(0f, _durationFade).OnComplete(() => spriteLine.gameObject.SetActive(false)).SetDelay(0.2f);
+                // spriteLine.DOFade(0f, _durationFade).OnComplete(() => spriteLine.gameObject.SetActive(false)).SetDelay(0.2f);
+                FunctionCommon.DelayTime(0.4f, () =>
+                {
+                    spriteLine.gameObject.SetActive(false);
+                });
 
             if (Mathf.Abs(pos1.x - pos2.x) < 0.01f)
             {
                 float lineLenght = Mathf.Abs(pos1.y - pos2.y);
-                spriteLine.transform.localScale = new Vector3(0.18f, lineLenght / spriteLine.bounds.size.y, 1f);
+                spriteLine.transform.localScale = new Vector3(0.18f, (lineLenght / spriteLine.bounds.size.y) + 0.18f, 1f);
             }
             else if (Mathf.Abs(pos1.y - pos2.y) < 0.01f)
             {
                 float length = Mathf.Abs(pos1.x - pos2.x);
-                spriteLine.transform.localScale = new Vector3(length / spriteLine.bounds.size.x, 0.18f, 1f);
+                spriteLine.transform.localScale = new Vector3((length / spriteLine.bounds.size.x) + 0.18f, 0.18f, 1f);
             }
 
             spriteLine.transform.localPosition = (pos1 + pos2) * 0.5f;
@@ -240,9 +244,15 @@ public class MatchTile : MonoBehaviour
         starTrans.localPosition = pos;
         _matchStarCount++;
 
+        //starTrans.DOMove(uiGamePlayManager._starObj[0].transform.position, _moveDuration)/*.SetDelay(_moveDelay)*/.SetEase(Ease.Linear).
+        //    OnComplete(() => starTrans.gameObject.SetActive(false));
+
         starTrans.DOKill();
-        starTrans.DOMove(uiGamePlayManager._starObj[0].transform.position, _moveDuration)/*.SetDelay(_moveDelay)*/.SetEase(Ease.Linear).
-            OnComplete(() => starTrans.gameObject.SetActive(false));
+        starTrans.DORotate(new Vector3(0, 0, 90), 0.4f).SetEase(Ease.Linear).SetDelay(0.1f).OnComplete(() =>
+        {
+            starTrans.gameObject.SetActive(false);
+            starTrans.rotation = Quaternion.identity;
+        });
     }
 
     private GameObject GetStars()

@@ -294,7 +294,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 }
             }
 
-            itemTile.PlayVfx();
+            //itemTile.PlayVfx();
             itemTile.OnRemoveTile();
             StartCoroutine(RemoveTile(itemTile));
         }
@@ -310,6 +310,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private IEnumerator RemoveTile(ItemTile itemTile)
     {
+        yield return new WaitForSeconds(0.5f);
+        itemTile.PlayVfx();
         yield return new WaitForSeconds(1f);
         itemTile.gameObject.SetActive(false);
     }
