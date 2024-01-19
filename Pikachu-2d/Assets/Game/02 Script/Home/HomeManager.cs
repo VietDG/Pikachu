@@ -31,4 +31,5 @@ public class HomeManager : MonoBehaviour
     {
         PopupSetting.Instance.Show();
     }
+
 }

@@ -20,7 +20,10 @@ public class PopupSetting : SingletonPopup<PopupSetting>
 
     public void Close()
     {
-        base.Hide();
+        base.Hide(() =>
+        {
+            StateGame.Play();
+        });
     }
 
     private void Start()
