@@ -93,35 +93,13 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
         }
     }
 
-    //public int ProgressValueMax
-    //{
-    //    get
-    //    {
-    //        return PlayerPrefs.GetInt(Const.KEY_PROGRESS_LEVEL_VALUE);
-    //    }
-    //    set
-    //    {
-    //        if (value >= DataManager.Instance.GetProgressGift().MaxProgress()) return;
-    //        PlayerPrefs.SetInt(Const.KEY_PROGRESS_LEVEL_VALUE, value);
-    //    }
-    //}
     #endregion
     public static PlayerData playerData;
 
-    private static bool isLoad = false;
-
-    //#if UNITY_EDITOR
-    //    private static readonly string directory = @"E:\Data\LevelDataPikachu";
-    //#else
-    //    private static readonly string directory = Application.persistentDataPath;
-    //#endif
-    //    private static string _fileName = "UserData" + "" + ".txt";
-
-    private static string path;
+    private static bool isChecker = false;
 
     private void Start()
     {
-        //Load();
         Save();
     }
 
@@ -129,48 +107,31 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
     {
         get
         {
-            return isLoad;
+            return isChecker;
         }
     }
 
     public static void Save()
     {
-        if (playerData == null || !isLoad) return;
-
-        // string filePath = directory + _fileName;
-
-        // path = Application.persistentDataPath + "UserData.txt";
+        if (playerData == null || !isChecker) return;
 
         string json = JsonUtility.ToJson(playerData, true);
         File.WriteAllText(Application.dataPath + "/UserData.json", json);
     }
 
-    public static bool Load(bool isLoadAgain = false)
+    public static bool Load(bool isCheck = false)
     {
-        if (isLoad == true && isLoadAgain == false) return false;
-
-        //string filePath = directory + _fileName;
-
-        //FileStream fileStream = File.Open(filePath, FileMode.OpenOrCreate);
-        //StreamReader sr = new StreamReader(fileStream);
-        //string playerDataJson = sr.ReadToEnd();
-        //sr.Close();
-        //fileStream.Close();
-
-        //  path = Application.persistentDataPath + "UserData.txt";
+        if (isChecker == true && isCheck == false) return false;
 
         if (playerData == null)
         {
-            //playerData = new PlayerData();
             string fileContent = File.ReadAllText(Application.dataPath + "/UserData.json");
 
             playerData = JsonUtility.FromJson<PlayerData>(fileContent);
         }
 
-        isLoad = true;
+        isChecker = true;
 
-        Debug.LogError("Load");
-
-        return isLoad;
+        return isChecker;
     }
 }

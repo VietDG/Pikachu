@@ -14,8 +14,6 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] RectTransform _botTrans;
 
-    //  [SerializeField] SpriteRenderer _bg;
-
     public void InitCam()
     {
         var gameManager = GameManager.Instance;
@@ -59,9 +57,6 @@ public class CameraController : MonoBehaviour
 
     private void SetBgSize(Vector2 cameraSize)
     {
-        //Vector2 bgSize = _bg.bounds.size;
-
-        // float spriteSize = bgSize.x / bgSize.y;
         Vector2 bigSize = cameraSize;
         Vector2 smallSize = new Vector2(bigSize.x, bigSize.x);
 
@@ -70,10 +65,6 @@ public class CameraController : MonoBehaviour
             smallSize *= bigSize.y / smallSize.y;
         }
 
-        // _bg.transform.localScale *= smallSize.x / bgSize.x;
-
-        //  Vector3 bgPos = _bg.transform.localPosition;
         Vector3 camPos = _cam.transform.localPosition;
-        // _bg.transform.localPosition = new Vector3(camPos.x, camPos.y, bgPos.y);
     }
 }

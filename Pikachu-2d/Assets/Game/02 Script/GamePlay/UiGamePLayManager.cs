@@ -62,7 +62,7 @@ public class UiGamePLayManager : MonoBehaviour
         if (_runTime != (int)timer)
         {
             _runTime = (int)timer;
-            DateTimeUtility.ToMinuteSecond(_stringBuilder, _runTime);
+            UitilyTime.SetMinuteAndSencond(_stringBuilder, _runTime);
             _timeTxt.text = _stringBuilder.ToString();
         }
     }

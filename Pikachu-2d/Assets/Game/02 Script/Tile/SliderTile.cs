@@ -37,24 +37,24 @@ public class SliderTile : MonoBehaviour
         if (sizeList.Count > 0 && GameManager.Instance.GetTileCount() > 10)
         {
             indexSize++;
-            Size size = sizeList[indexSize % sizeList.Count];
+            Size sizes = sizeList[indexSize % sizeList.Count];
 
             MainController.Augment();
 
             yield return new WaitForSeconds(0.15f);
 
             var itemTile = GameManager.Instance.itemTiles;
-            int w = GameManager.Instance.Width;
-            int h = GameManager.Instance.Height;
+            int wedth = GameManager.Instance.Width;
+            int height = GameManager.Instance.Height;
 
             List<ItemTile> moveTiles = new List<ItemTile>();
             List<Vector3> positions = new List<Vector3>();
 
-            if (size == Size.Down)
+            if (sizes == Size.Down)
             {
-                for (int index = 0; index < w; index++)
+                for (int index = 0; index < wedth; index++)
                 {
-                    for (int t = 1; t < h; t++)
+                    for (int t = 1; t < height; t++)
                     {
                         var data = itemTile[index][t];
 
@@ -77,11 +77,11 @@ public class SliderTile : MonoBehaviour
                     }
                 }
             }
-            else if (size == Size.Up)
+            else if (sizes == Size.Up)
             {
-                for (int index = 0; index < w; index++)
+                for (int index = 0; index < wedth; index++)
                 {
-                    for (int t = h - 2; t >= 0; t--)
+                    for (int t = height - 2; t >= 0; t--)
                     {
                         var tile = itemTile[index][t];
 
@@ -89,7 +89,7 @@ public class SliderTile : MonoBehaviour
                         {
                             int value = t;
 
-                            while (value < h - 1 && itemTile[index][value + 1] == null)
+                            while (value < height - 1 && itemTile[index][value + 1] == null)
                             {
                                 value++;
                             }
@@ -104,11 +104,11 @@ public class SliderTile : MonoBehaviour
                     }
                 }
             }
-            else if (size == Size.Right)
+            else if (sizes == Size.Right)
             {
-                for (int value = 0; value < h; value++)
+                for (int value = 0; value < height; value++)
                 {
-                    for (int i = w - 2; i >= 0; i--)
+                    for (int i = wedth - 2; i >= 0; i--)
                     {
                         var tile = itemTile[i][value];
 
@@ -116,7 +116,7 @@ public class SliderTile : MonoBehaviour
                         {
                             int index = i;
 
-                            while (index < w - 1 && itemTile[index + 1][value] == null)
+                            while (index < wedth - 1 && itemTile[index + 1][value] == null)
                             {
                                 index++;
                             }
@@ -128,11 +128,11 @@ public class SliderTile : MonoBehaviour
                     }
                 }
             }
-            else if (size == Size.Left)
+            else if (sizes == Size.Left)
             {
-                for (int value = 0; value < h; value++)
+                for (int value = 0; value < height; value++)
                 {
-                    for (int t = 1; t < w; t++)
+                    for (int t = 1; t < wedth; t++)
                     {
                         var data = itemTile[t][value];
 
@@ -165,9 +165,9 @@ public class SliderTile : MonoBehaviour
 #if UNITY_EDITOR
             var vec = new List<Vector2Int>();
 
-            for (int value = 0; value < h; value++)
+            for (int value = 0; value < height; value++)
             {
-                for (int index = 0; index < w; index++)
+                for (int index = 0; index < wedth; index++)
                 {
                     var tile = itemTile[index][value];
 

@@ -36,10 +36,6 @@ public class MatchTile : MonoBehaviour
 
     private int _matchStarCount = 0;
 
-    // private float _moveDuration = 1f;
-
-    // private float _moveDelay = 0.25f;
-
     private SpriteRenderer[] _lineHint;
 
     [SerializeField] Transform _starsTrans, _lineTrans, _dotTrans;
@@ -125,7 +121,6 @@ public class MatchTile : MonoBehaviour
             spriteLine.transform.localScale = Vector3.one;
 
             if (isFade)
-                // spriteLine.DOFade(0f, _durationFade).OnComplete(() => spriteLine.gameObject.SetActive(false)).SetDelay(0.2f);
                 FunctionCommon.DelayTime(0.4f, () =>
                 {
                     spriteLine.gameObject.SetActive(false);

@@ -14,15 +14,15 @@ public class TileSelected : MonoBehaviour
         EventAction.OnSelectTile -= OnSelectTile;
     }
 
-    private void OnSelectTile(ItemTile tile, bool selected)
+    private void OnSelectTile(ItemTile itemTile, bool isSelect)
     {
         foreach (var item in GameManager.Instance.itemTileList)
         {
             item.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
             //  item.SetAnim(false);
-            if (selected && item == tile)
+            if (isSelect && item == itemTile)
             {
-                tile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
+                itemTile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
             }
         }
     }

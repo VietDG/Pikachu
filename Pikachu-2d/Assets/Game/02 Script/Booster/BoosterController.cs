@@ -22,9 +22,9 @@ public abstract class BoosterController : MonoBehaviour
 
     public TMP_Text amoutText;
 
-    public Func<int> getCount;
+    public Func<int> boosterCount;
 
-    public Action<int> setCount;
+    public Action<int> setBoosterCount;
 
     public TypeBooster typeBooster;
 
@@ -32,12 +32,12 @@ public abstract class BoosterController : MonoBehaviour
 
     public void UseBooster()
     {
-        int count = getCount();
+        int c = boosterCount();
 
-        if (count > 0)
+        if (c > 0)
         {
             if (isUseBooster())
-                setCount(count - 1);
+                setBoosterCount(c - 1);
 
             StartAction();
         }
@@ -69,18 +69,18 @@ public abstract class BoosterController : MonoBehaviour
 
     public void StartAction()
     {
-        int count = getCount();
+        int c = boosterCount();
 
-        if (count != 0)
+        if (c != 0)
         {
             redDot.SetActive(true);
-            amoutText.text = count.ToString();
+            amoutText.text = c.ToString();
             ads.SetActive(false);
         }
         else
         {
             redDot.SetActive(false);
-            amoutText.text = count.ToString();
+            amoutText.text = c.ToString();
             ads.SetActive(true);
         }
     }

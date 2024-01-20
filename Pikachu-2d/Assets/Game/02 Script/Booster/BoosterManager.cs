@@ -13,25 +13,25 @@ public class BoosterManager : MonoBehaviour
 
     public void Start()
     {
-        boosterTileTexture.setCount = (value) => PlayerData.Instance.BoosterSwap = value;
-        boosterTileTexture.getCount = () => PlayerData.Instance.BoosterSwap;
+        boosterTileTexture.setBoosterCount = (value) => PlayerData.Instance.BoosterSwap = value;
+        boosterTileTexture.boosterCount = () => PlayerData.Instance.BoosterSwap;
         SetupBoosterView(boosterTileTexture);
 
-        boosterShuffle.setCount = (value) => PlayerData.Instance.BoosterShuffle = value;
-        boosterShuffle.getCount = () => PlayerData.Instance.BoosterShuffle;
+        boosterShuffle.setBoosterCount = (value) => PlayerData.Instance.BoosterShuffle = value;
+        boosterShuffle.boosterCount = () => PlayerData.Instance.BoosterShuffle;
         SetupBoosterView(boosterShuffle);
 
-        boosterFindMatch.setCount = (value) => PlayerData.Instance.BoosterFindMatch = value;
-        boosterFindMatch.getCount = () => PlayerData.Instance.BoosterFindMatch;
+        boosterFindMatch.setBoosterCount = (value) => PlayerData.Instance.BoosterFindMatch = value;
+        boosterFindMatch.boosterCount = () => PlayerData.Instance.BoosterFindMatch;
         SetupBoosterView(boosterFindMatch);
     }
 
-    private void SetupBoosterView(BoosterController boosterView)
+    private void SetupBoosterView(BoosterController boosterController)
     {
-        var button = boosterView.GetComponent<Button>();
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => boosterView.UseBooster());
+        var b = boosterController.GetComponent<Button>();
+        b.onClick.RemoveAllListeners();
+        b.onClick.AddListener(() => boosterController.UseBooster());
 
-        boosterView.StartAction();
+        boosterController.StartAction();
     }
 }
