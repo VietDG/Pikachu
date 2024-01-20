@@ -93,17 +93,12 @@ public class GameController : SingletonMonoBehaviour<GameController>
                     5, 7, -1, -1, -1 // vi tri button lv 1
                 }
             };
-            //    uiGamePlayManager.gameObject.SetActive(false);
-            //    boosterManager.gameObject.SetActive(false);
         }
         else
         {
             loadLevelFormData = LevelData.Instance.GetLevelConfig(totalLevel);
             mapData = LevelData.Instance.GetBoardData(totalLevel);
-            Debug.LogError(loadLevelFormData.shapeid);
 
-            //    uiGamePlayManager.gameObject.SetActive(true);
-            //   boosterManager.gameObject.SetActive(true);
             sliderTile.SetSlider(loadLevelFormData.up, loadLevelFormData.down, loadLevelFormData.left, loadLevelFormData.right);
 
             if (totalLevel == 2)

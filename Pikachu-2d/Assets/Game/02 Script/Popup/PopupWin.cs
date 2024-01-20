@@ -1,4 +1,5 @@
 ﻿using PopupSystem;
+using SS.View;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,14 +8,16 @@ using UnityEngine.SceneManagement;
 
 public class PopupWin : SingletonPopup<PopupWin>
 {
-    [SerializeField] TMP_Text _coinTxt;
+    // [SerializeField] TMP_Text _coinTxt;
 
-    private int _coin;
+    //  private int _coin;
+    [SerializeField] TMP_Text _levelTxt;
 
     public void Show(int value)
     {
         base.Show();
-        _coinTxt.text = $"{value}";
+        //    _coinTxt.text = $"{value}";
+        _levelTxt.text = $"Level {PlayerData.Instance.HighestLevel - 1}";
     }
 
     public void Close()
@@ -27,6 +30,14 @@ public class PopupWin : SingletonPopup<PopupWin>
         base.Hide(() =>
         {
             StateGame.NextLevels();
+        });
+    }
+
+    public void Home()
+    {
+        base.Hide(() =>
+        {
+            Manager.Load(DHome.SCENE_NAME);
         });
     }
 }

@@ -52,6 +52,7 @@ public class MatchTile : MonoBehaviour
         for (int i = 0; i < 15; i++)
         {
             SpawnStarPrefab();
+            SpawnDot();
         }
 
         for (int i = 0; i < 6; i++)
@@ -165,6 +166,7 @@ public class MatchTile : MonoBehaviour
                 foreach (var item in GameManager.Instance.itemTileList)
                 {
                     item.SetAnim(false);
+                    ClearDot();
                 }
                 if (_lineHint != null && _lineHint.Length > 0)
                 {
@@ -199,6 +201,7 @@ public class MatchTile : MonoBehaviour
         _camCro = null;
     }
 
+    #region Star
     private void CreateStarts(MatchT matchTile)
     {
         _matchStarCount = 0;
@@ -275,6 +278,7 @@ public class MatchTile : MonoBehaviour
 
         return g;
     }
+    #endregion
 
     private GameObject GetLine()
     {
@@ -298,4 +302,64 @@ public class MatchTile : MonoBehaviour
 
         return g;
     }
+
+    #region Dot
+    public void CreatDot(MatchT matchTile)
+    {
+        for (int i = 1; i < matchTile.posList.Count; i++)
+        {
+            Vector2Int l1 = matchTile.posList[i - 1];
+            Vector2Int l2 = matchTile.posList[i];
+
+            if (l1.x == l2.x)
+            {
+                CreateDotPos(l1.x, l1.y);
+            }
+            else if (l1.y == l2.y)
+            {
+                CreateDotPos(l1.x, l1.y);
+            }
+        }
+
+        Vector2Int finalLocalPos = matchTile.posList[matchTile.posList.Count - 1];
+        CreateDotPos(finalLocalPos.x, finalLocalPos.y);
+    }
+
+    public void ClearDot()
+    {
+        for (int i = 0; i < _dotList.Count; i++)
+        {
+            _dotList[i].gameObject.SetActive(false);
+        }
+    }
+
+    private void CreateDotPos(int x, int y)
+    {
+        Vector3 pos = GameManager.Instance.GetPosTile(x, y);
+        var dotTrans = GetDot().transform;
+        dotTrans.localPosition = pos;
+    }
+
+    private GameObject GetDot()
+    {
+        for (int i = 0; i < _dotList.Count; i++)
+        {
+            if (_dotList[i].activeSelf == false)
+            {
+                _dotList[i].SetActive(true);
+                return _dotList[i];
+            }
+        }
+        return SpawnDot();
+    }
+
+    private GameObject SpawnDot()//sinh ra cham
+    {
+        GameObject g = Instantiate(_dotPref, _dotTrans);
+        g.SetActive(false);
+        _dotList.Add(g);
+
+        return g;
+    }
+    #endregion
 }

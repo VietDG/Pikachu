@@ -38,6 +38,7 @@ public class FindTileBooster : BoosterController
         if (matchTile != null)
         {
             this.matchTile.CreateMatchLine(matchTile, false);
+            this.matchTile.CreatDot(matchTile);
         }
 
         return true;
