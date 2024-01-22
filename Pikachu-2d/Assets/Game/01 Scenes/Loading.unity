@@ -1350,7 +1350,7 @@ MonoBehaviour:
   gameMusics:
   - {fileID: 8300000, guid: 40b15174f5411634583e81b1e5ac368b, type: 3}
   homeMusics: []
-  clickSound: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: 04d550cec2db6224daee5ff9beaf5719, type: 3}
   failClickSound: {fileID: 0}
   popupOpenSfx: {fileID: 0}
   popupCloseSfx: {fileID: 0}

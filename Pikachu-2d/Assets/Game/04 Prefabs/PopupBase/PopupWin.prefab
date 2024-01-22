@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   wasPlayAnim: 0
-  showAnimationClip: {fileID: 0}
+  showAnimationClip: {fileID: 7400000, guid: e40a885b5b7665d4597a31a47c4144be, type: 2}
   hideAnimationClip: {fileID: 0}
   _levelTxt: {fileID: 296923193438535611}
 --- !u!1 &308572814603955134

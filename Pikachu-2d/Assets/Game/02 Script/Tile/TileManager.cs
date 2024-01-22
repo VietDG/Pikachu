@@ -25,10 +25,11 @@ public static class TileManager
                         GameManager.Instance.RemoveTile(itemTile.index, itemTile.value);
                         GameManager.Instance.RemoveTile(tiles.index, tiles.value);
                         itemTile = null;
-                        SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("effect_sound"));
+                        SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("TileMatching"));
                     }
                     else
                     {
+                        SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("DisableTile"));
                         EventAction.OnSelectTile?.Invoke(itemTile, false);
                         EventAction.OnMatchTileFail?.Invoke(itemTile, tiles);//giong nhau ma khong an duoc
                         itemTile = null;

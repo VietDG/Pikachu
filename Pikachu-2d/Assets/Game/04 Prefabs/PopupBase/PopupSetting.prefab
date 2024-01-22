@@ -505,9 +505,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI.Base.Modals._ModalSettings, Assembly-CSharp
-        m_MethodName: OnClickBtnOpenPrivacy
+      - m_Target: {fileID: 7687236681657618660}
+        m_TargetAssemblyTypeName: SfxTapController, Assembly-CSharp
+        m_MethodName: OnClickButtonUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -609,6 +609,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7687236681657618660}
+        m_TargetAssemblyTypeName: SfxTapController, Assembly-CSharp
+        m_MethodName: OnClickButtonUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9058631869205629570}
         m_TargetAssemblyTypeName: PopupSetting, Assembly-CSharp
         m_MethodName: OnClickLangue
@@ -885,6 +897,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7687236681657618660}
+        m_TargetAssemblyTypeName: SfxTapController, Assembly-CSharp
+        m_MethodName: OnClickButtonUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9058631869205629570}
         m_TargetAssemblyTypeName: PopupSetting, Assembly-CSharp
         m_MethodName: OnClickVibrate
@@ -2127,6 +2151,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7687236681657618660}
+        m_TargetAssemblyTypeName: SfxTapController, Assembly-CSharp
+        m_MethodName: OnClickButtonUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9058631869205629570}
         m_TargetAssemblyTypeName: PopupSetting, Assembly-CSharp
         m_MethodName: OnClickTutorial
@@ -3648,6 +3684,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7687236681657618660}
+        m_TargetAssemblyTypeName: SfxTapController, Assembly-CSharp
+        m_MethodName: OnClickButtonUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9058631869205629570}
         m_TargetAssemblyTypeName: PopupSetting, Assembly-CSharp
         m_MethodName: OnClickSfx
@@ -3887,9 +3935,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI.Base.Modals._ModalSettings, Assembly-CSharp
-        m_MethodName: OnClickBtnInviteFriends
+      - m_Target: {fileID: 7687236681657618660}
+        m_TargetAssemblyTypeName: SfxTapController, Assembly-CSharp
+        m_MethodName: OnClickButtonUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4760,9 +4808,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI.Base.Modals._ModalSettings, Assembly-CSharp
-        m_MethodName: OnClickBtnOpenTandC
+      - m_Target: {fileID: 7687236681657618660}
+        m_TargetAssemblyTypeName: SfxTapController, Assembly-CSharp
+        m_MethodName: OnClickButtonUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5147,6 +5195,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7687236681657618660}
+        m_TargetAssemblyTypeName: SfxTapController, Assembly-CSharp
+        m_MethodName: OnClickButtonUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9058631869205629570}
         m_TargetAssemblyTypeName: PopupSetting, Assembly-CSharp
         m_MethodName: OnClickMusic
@@ -5386,6 +5446,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7687236681657618660}
+        m_TargetAssemblyTypeName: SfxTapController, Assembly-CSharp
+        m_MethodName: OnClickButtonUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9058631869205629570}
         m_TargetAssemblyTypeName: PopupSetting, Assembly-CSharp
         m_MethodName: OnClickReplay
@@ -5437,6 +5509,7 @@ GameObject:
   - component: {fileID: 4985741012890673700}
   - component: {fileID: 6233749525593662249}
   - component: {fileID: 9058631869205629570}
+  - component: {fileID: 7687236681657618660}
   m_Layer: 5
   m_Name: PopupSetting
   m_TagString: Untagged
@@ -5501,7 +5574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   wasPlayAnim: 0
-  showAnimationClip: {fileID: 0}
+  showAnimationClip: {fileID: 7400000, guid: e40a885b5b7665d4597a31a47c4144be, type: 2}
   hideAnimationClip: {fileID: 0}
   _sfxOn: {fileID: 8275488464450693744}
   _sfxOff: {fileID: 4956411678532426860}
@@ -5513,6 +5586,18 @@ MonoBehaviour:
   _replayBtn: {fileID: 7458214395620866610}
   _langueBtn: {fileID: 817609918302833838}
   _homeBtn: {fileID: 8792996088372956981}
+--- !u!114 &7687236681657618660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480813200179585042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e493a942efbf3a14f8e8b1aebc61ff33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7540640474677944029
 GameObject:
   m_ObjectHideFlags: 0
@@ -6456,6 +6541,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7687236681657618660}
+        m_TargetAssemblyTypeName: SfxTapController, Assembly-CSharp
+        m_MethodName: OnClickButtonUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9058631869205629570}
         m_TargetAssemblyTypeName: PopupSetting, Assembly-CSharp
         m_MethodName: OnClickMap

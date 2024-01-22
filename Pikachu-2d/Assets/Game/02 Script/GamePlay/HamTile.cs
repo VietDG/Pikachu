@@ -63,6 +63,8 @@ public class HamTile : MonoBehaviour
                     {
                         isHamerPlay = true;
                         //   hammerEffectAnimator1.Play("Sprite");
+
+                        //    SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("bua"));
                     });
 
             endTrans.DOMove(t2.transform.localPosition, 0.2f).SetEase(Ease.OutQuad).OnComplete(() =>
@@ -76,7 +78,6 @@ public class HamTile : MonoBehaviour
             }
             GameManager.Instance.RemoveTile(t1.index, t1.value);
             GameManager.Instance.RemoveTile(t2.index, t2.value);
-            SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("effect_sound"));
             while (animator1.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
             {
                 yield return null;

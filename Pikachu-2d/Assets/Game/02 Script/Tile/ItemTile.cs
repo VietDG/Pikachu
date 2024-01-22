@@ -61,6 +61,7 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
     public void PlayVfx()
     {
         _effect.Play();
+        SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("effect_sound"));
         _animator.gameObject.SetActive(false);
     }
 }
