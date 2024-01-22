@@ -76,6 +76,7 @@ public class HamTile : MonoBehaviour
             }
             GameManager.Instance.RemoveTile(t1.index, t1.value);
             GameManager.Instance.RemoveTile(t2.index, t2.value);
+            SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("effect_sound"));
             while (animator1.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
             {
                 yield return null;

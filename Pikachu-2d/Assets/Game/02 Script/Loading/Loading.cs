@@ -31,5 +31,7 @@ public class Loading : MonoBehaviour
             Manager.Load(DHome.SCENE_NAME);
         else
             Manager.Load(DGame.SCENE_NAME);
+
+        SoundManager.Instance.PlayGameMusic();
     }
 }

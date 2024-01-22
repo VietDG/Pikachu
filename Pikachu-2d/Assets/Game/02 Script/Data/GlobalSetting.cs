@@ -8,4 +8,9 @@ public class GlobalSetting : MonoBehaviour
     {
         DontDestroyOnLoad(this);
     }
+
+    public static AudioClip GetSFX(string audioName)
+    {
+        return Resources.Load<AudioClip>("SFX/" + audioName);
+    }
 }

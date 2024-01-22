@@ -45,6 +45,7 @@ public class PopupSetting : SingletonPopup<PopupSetting>
         }
 
         SettingData.Instance.SOUND = !SettingData.Instance.SOUND;
+        SoundManager.Instance.SoundHandle(SettingData.Instance.SOUND);
     }
 
     public void OnClickMusic()
@@ -60,6 +61,7 @@ public class PopupSetting : SingletonPopup<PopupSetting>
             _musicOn.SetActive(true);
         }
         SettingData.Instance.MUSIC = !SettingData.Instance.MUSIC;
+        SoundManager.Instance.MusicHandle(SettingData.Instance.MUSIC);
     }
 
     public void OnClickVibrate()

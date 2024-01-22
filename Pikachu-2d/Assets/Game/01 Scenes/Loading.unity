@@ -1243,9 +1243,9 @@ AudioSource:
   m_GameObject: {fileID: 942021400}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243261077453141770, guid: 42194081964db374189a3faf13aa0297, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1342,12 +1342,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ccff6affd96044fbf51d934738ef72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 0}
-  mixer: {fileID: 0}
-  musicGroup: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  voiceGroup: {fileID: 0}
-  gameMusics: []
+  music: {fileID: 942021402}
+  mixer: {fileID: 24100000, guid: 42194081964db374189a3faf13aa0297, type: 2}
+  musicGroup: {fileID: 243261077453141770, guid: 42194081964db374189a3faf13aa0297, type: 2}
+  sfxGroup: {fileID: 243166154105399332, guid: 42194081964db374189a3faf13aa0297, type: 2}
+  voiceGroup: {fileID: -279297290044496824, guid: 42194081964db374189a3faf13aa0297, type: 2}
+  gameMusics:
+  - {fileID: 8300000, guid: 40b15174f5411634583e81b1e5ac368b, type: 3}
   homeMusics: []
   clickSound: {fileID: 0}
   failClickSound: {fileID: 0}

@@ -25,6 +25,7 @@ public static class TileManager
                         GameManager.Instance.RemoveTile(itemTile.index, itemTile.value);
                         GameManager.Instance.RemoveTile(tiles.index, tiles.value);
                         itemTile = null;
+                        SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("effect_sound"));
                     }
                     else
                     {
