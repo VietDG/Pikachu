@@ -27,8 +27,8 @@ public class TileData : Singleton<TileData>
         amout = 0;
         widths = Mathf.Max(2, loadBoardFormData.row);
         heights = Mathf.Max(2, loadBoardFormData.col);
-        type = loadlevelFormData.kind;
-        isShuffle = !loadBoardFormData.containTileIndex;
+        type = loadlevelFormData.type;
+        isShuffle = !loadBoardFormData.isShuf;
 
         dataTile = new int[widths][];
         for (int i = 0; i < widths; i++)

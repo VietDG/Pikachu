@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class MapData
 {
-    public bool containTileIndex;
+    public bool isShuf;
     public int row;
     public int col;
     public int width;

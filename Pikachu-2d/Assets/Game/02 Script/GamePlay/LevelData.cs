@@ -29,8 +29,10 @@ public class LevelData : SingletonMonoBehaviour<LevelData>
 
     public MapData GetBoardData(int level)
     {
-        int mapID = GetLevelConfig(level).shapeid;
-        var mapData = JsonUtility.FromJson<MapData>(Resources.Load<TextAsset>("Text/Shape" + mapID.ToString()).text);
+        int mapID = GetLevelConfig(level).levelid;
+        Debug.LogError(level);
+        Debug.LogError(GetLevelConfig(level).levelid);
+        var mapData = JsonUtility.FromJson<MapData>(Resources.Load<TextAsset>("Level/Shape" + mapID.ToString()).text);
 
         return mapData;
     }

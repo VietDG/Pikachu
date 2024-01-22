@@ -6,17 +6,17 @@ using UnityEngine;
 [Serializable]
 public class LoadLevelFormData
 {
-    public int shapeid;
-    public int time;
-    public int kind;
-    public int score;
-    public int boom;
-    public int hammer = 1;
+    public int levelid;
+    public int leveltime;
+    public int type;
+    public int totalscore;
+    public int levelboom;
+    public int ham;
 
-    public int repeat;
-    public bool up;
-    public bool down;
-    public bool left;
-    public bool right;
-    public int movenum;
+    public int loop;
+    public bool moveup;
+    public bool movedown;
+    public bool moveleft;
+    public bool moveright;
+    public int move;
 }

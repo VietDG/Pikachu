@@ -76,12 +76,12 @@ public class GameController : SingletonMonoBehaviour<GameController>
         {
             loadLevelFormData = new LoadLevelFormData()
             {
-                time = -1
+                leveltime = -1
             };
 
             mapData = new MapData()
             {
-                containTileIndex = true,
+                isShuf = true,
                 row = 5,
                 col = 5,
                 datas = new int[25]
@@ -99,31 +99,31 @@ public class GameController : SingletonMonoBehaviour<GameController>
             loadLevelFormData = LevelData.Instance.GetLevelConfig(totalLevel);
             mapData = LevelData.Instance.GetBoardData(totalLevel);
 
-            sliderTile.SetSlider(loadLevelFormData.up, loadLevelFormData.down, loadLevelFormData.left, loadLevelFormData.right);
+            sliderTile.SetSlider(loadLevelFormData.moveup, loadLevelFormData.movedown, loadLevelFormData.moveleft, loadLevelFormData.moveright);
 
             if (totalLevel == 2)
             {
-                loadLevelFormData.time = 0;
+                loadLevelFormData.leveltime = 0;
             }
         }
 
-        matchTile.isSpawnStars = totalLevel > 1;// neu level > 1 spawm sao qua moi man
+        //   matchTile.isSpawnStars = totalLevel > 1;// neu level > 1 spawm sao qua moi man
 
-        timeCount = loadLevelFormData.time > 0;
+        timeCount = loadLevelFormData.leveltime > 0;
     }
 
     private void InitDataStart()
     {
         uiGamePlayManager.InitLevel();
-        uiGamePlayManager.SetStarCollect(0f, loadLevelFormData.score);
+        uiGamePlayManager.SetStarCollect(0f, loadLevelFormData.totalscore);
         uiGamePlayManager.SetProgressStarCollected(starProgress);
 
         if (timeCount)
         {
             uiGamePlayManager.SetModeTime(true);
-            time = loadLevelFormData.time;
-            uiGamePlayManager.InitTimeToLevel(loadLevelFormData.time);
-            uiGamePlayManager.SetTime(loadLevelFormData.time);
+            time = loadLevelFormData.leveltime;
+            uiGamePlayManager.InitTimeToLevel(loadLevelFormData.leveltime);
+            uiGamePlayManager.SetTime(loadLevelFormData.leveltime);
 
             StartCoroutine(UpdateTime());
         }
@@ -139,12 +139,12 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         if (totalLevel >= 16)
         {
-            loadLevelFormData.hammer = 2;
+            loadLevelFormData.ham = 2;
         }
-        else loadLevelFormData.hammer = 0;
+        else loadLevelFormData.ham = 0;
 
-        if (loadLevelFormData.hammer > 0)
-            specialTile.CreateHam(loadLevelFormData.hammer);
+        if (loadLevelFormData.ham > 0)
+            specialTile.CreateHam(loadLevelFormData.ham);
     }
 
     private void OnTileMatched(MatchT match)
@@ -235,9 +235,13 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public IEnumerator WaitWin()
     {
         yield return new WaitForSeconds(1f);
+
         StateGame.PauseGame();
+        PlayerData.Instance.TileSpriteIndex++;
+
         totalLevel++;
         PlayerData.Instance.HighestLevel = totalLevel;
+
         int coin = 20;
         PlayerData.Instance.TotalCoin += coin;
 
