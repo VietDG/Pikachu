@@ -16,13 +16,26 @@ public class TileSelected : MonoBehaviour
 
     private void OnSelectTile(ItemTile itemTile, bool isSelect)
     {
-        foreach (var item in GameManager.Instance.itemTileList)
+        if (PlayerData.Instance.HighestLevel <= 1)
         {
-            item.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
-            //  item.SetAnim(false);
-            if (isSelect && item == itemTile)
+            if (itemTile)
             {
                 itemTile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
+            }
+            else
+            {
+                itemTile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+        else
+        {
+            foreach (var item in GameManager.Instance.itemTileList)
+            {
+                item.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+                if (isSelect && item == itemTile)
+                {
+                    itemTile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
+                }
             }
         }
     }

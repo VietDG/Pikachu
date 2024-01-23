@@ -10,11 +10,12 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
 {
     public SpriteRenderer ava;
 
+    public int idTile;
+
     public int index;
 
     public int value;
 
-    public int idTile;
 
     public Animator _animator;
 

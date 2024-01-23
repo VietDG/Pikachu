@@ -17,6 +17,7 @@ public class UiGamePLayManager : MonoBehaviour
     [SerializeField] GameObject _timeObj;
 
     [SerializeField] Image _starSlider;
+    [SerializeField] GameObject _mask;
 
     public GameObject[] _starObj;
 
@@ -46,6 +47,10 @@ public class UiGamePLayManager : MonoBehaviour
     public void InitLevel()
     {
         _levelTxt.text = "Level " + PlayerData.Instance.HighestLevel.ToString();
+        if (PlayerData.Instance.HighestLevel <= 1)
+        {
+            _mask.SetActive(true);
+        }
     }
 
     public void InitTimeToLevel(float time)

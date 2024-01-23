@@ -10,6 +10,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
 {
     public UiGamePLayManager uiGamePlayManager;
 
+    public TuttorialManager tuttorialManager;
+
     public BoosterManager boosterManager;
 
     public CameraController camController;
@@ -99,9 +101,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
                 {
                     -1, 0, -1, 1, 2,
                     -1, 3, 1, 4, 5,
-                    2, 6, 9, 6, 4,
-                    7, 0, -1, 8, 3,
-                    5, 7, -1, 9, 8 // vi tri button lv 1
+                    2, 6, -1, 6, 4,
+                    7, 0, -1, -1, 3,
+                    5, 7, -1, -1, -1 // vi tri button lv 1
                 }
             };
         }
@@ -156,6 +158,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         if (loadLevelFormData.ham > 0)
             specialTile.CreateHam(loadLevelFormData.ham);
+
+        tuttorialManager.SetTut(totalLevel);
     }
 
     private void OnTileMatched(MatchT match)
