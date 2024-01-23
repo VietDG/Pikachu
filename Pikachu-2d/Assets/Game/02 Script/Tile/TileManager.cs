@@ -40,12 +40,14 @@ public static class TileManager
                     itemTile = null;
                     itemTile = tiles;
                     EventAction.OnSelectTile?.Invoke(itemTile, true);
+                    SoundManager.Instance.PlaySfxOverride(GlobalSetting.GetSFX("EnableTile"));
                 }
             }
             else
             {
                 itemTile = tiles;
                 EventAction.OnSelectTile?.Invoke(itemTile, true);
+                SoundManager.Instance.PlaySfxOverride(GlobalSetting.GetSFX("EnableTile"));
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : SingletonMonoBehaviour<GameController>
 {
@@ -26,6 +27,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
     private MapData mapData;
 
     private LoadLevelFormData loadLevelFormData;
+
+    [SerializeField] Image _bg;
 
     public int totalLevel;
 
@@ -57,7 +60,15 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         camController.InitCam();
 
+        SetBG();
+
         StateGame.Play();
+    }
+
+
+    public void SetBG()
+    {
+        _bg.sprite = BackGroundManager.Instance._themeList.GetBg();
     }
 
     private void OnDestroy()
@@ -88,9 +99,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
                 {
                     -1, 0, -1, 1, 2,
                     -1, 3, 1, 4, 5,
-                    2, 6, -1, 6, 4,
-                    7, 0, -1, -1, 3,
-                    5, 7, -1, -1, -1 // vi tri button lv 1
+                    2, 6, 9, 6, 4,
+                    7, 0, -1, 8, 3,
+                    5, 7, -1, 9, 8 // vi tri button lv 1
                 }
             };
         }
@@ -238,6 +249,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         StateGame.PauseGame();
         PlayerData.Instance.TileSpriteIndex++;
+        PlayerData.Instance.ThemeIndex++;
 
         totalLevel++;
         PlayerData.Instance.HighestLevel = totalLevel;

@@ -13,6 +13,7 @@ public class Const
     public const string KEY_TOTAL_COIN = "total_coin";
     public const string KEY_TOTAL_STARS = "total_star";
     public const string KEY_TILE_SPRITE_INDEX = "tile_sprite_index";
+    public const string KEY_THEME = "theme";
     #endregion
 
     #region  BoosterData

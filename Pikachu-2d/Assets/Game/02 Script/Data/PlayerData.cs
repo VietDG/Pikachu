@@ -56,6 +56,18 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
         }
     }
 
+    public int ThemeIndex
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(Const.KEY_THEME, 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(Const.KEY_THEME, value);
+        }
+    }
+
     public int BoosterFindMatch
     {
         get
