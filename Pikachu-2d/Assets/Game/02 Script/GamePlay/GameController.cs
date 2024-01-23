@@ -38,9 +38,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     private bool timeCount = true;
 
-    private float[] starProgress = new float[] { 0.455f, 0.73f, 0.99f };
-
-
     public override void Awake()
     {
         Application.targetFrameRate = 60;
@@ -50,7 +47,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         EventAction.OnMatchTile += OnTileMatched;
         EventAction.WinGame += CheckWin;
-        // InitLevel();
         SettingData.Instance.StateScence = StateScence.GamePlay;
     }
 
@@ -64,6 +60,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         SetBG();
 
+        if (PlayerData.Instance.HighestLevel == 2) return;
         StateGame.Play();
     }
 
@@ -103,7 +100,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
                     -1, 3, 1, 4, 5,
                     2, 6, -1, 6, 4,
                     7, 0, -1, -1, 3,
-                    5, 7, -1, -1, -1 // vi tri button lv 1
+                    5, 7, -1, -1, -1
                 }
             };
         }
@@ -114,22 +111,13 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
             sliderTile.SetSlider(loadLevelFormData.moveup, loadLevelFormData.movedown, loadLevelFormData.moveleft, loadLevelFormData.moveright);
 
-            if (totalLevel == 2)
-            {
-                loadLevelFormData.leveltime = 0;
-            }
         }
-
-        //   matchTile.isSpawnStars = totalLevel > 1;// neu level > 1 spawm sao qua moi man
-
         timeCount = loadLevelFormData.leveltime > 0;
     }
 
     private void InitDataStart()
     {
         uiGamePlayManager.InitLevel();
-        uiGamePlayManager.SetStarCollect(0f, loadLevelFormData.totalscore);
-        uiGamePlayManager.SetProgressStarCollected(starProgress);
 
         if (timeCount)
         {
@@ -212,8 +200,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public void OnClickReplay()
     {
         StopAllCoroutines();
-        //  StateGame.PauseGame();
-        //SceneManager.LoadScene(Const.SCENE_GAME);
         Manager.Load(DGame.SCENE_NAME);
     }
 
@@ -221,7 +207,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         StopAllCoroutines();
 
-        //  SceneManager.LoadScene(Const.SCENE_GAME);
         Manager.Load(DGame.SCENE_NAME);
     }
 

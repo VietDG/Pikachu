@@ -942,8 +942,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a25c295e621b24e4c919d84ab1309932, type: 2}
-  m_sharedMaterial: {fileID: -5199972368390174567, guid: a25c295e621b24e4c919d84ab1309932, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1447,6 +1447,7 @@ Transform:
   - {fileID: 718667239}
   - {fileID: 942021401}
   - {fileID: 726053803}
+  - {fileID: 1775605364}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1562,7 +1563,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1664615275}
-  - component: {fileID: 1664615276}
   - component: {fileID: 1664615277}
   m_Layer: 0
   m_Name: PlayerController
@@ -1586,18 +1586,6 @@ Transform:
   m_Father: {fileID: 1342291317}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1664615276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664615274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16667fe0d6a38748b666d54c272a5df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1664615277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1610,3 +1598,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1184520326823e48adf15e9e03048c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1775605363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1775605364}
+  - component: {fileID: 1775605365}
+  m_Layer: 0
+  m_Name: GameLanguage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1775605364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775605363}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1342291317}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1775605365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775605363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0aa5712b8dda443845edaa560305cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  docID: 1q15yhiyUwSheqoFouZZm68ttYnlgyfn-DTfGMcVUI0g
+  sheetID: 1395035456
+  asset: {fileID: 4900000, guid: 68fc6bf7b1ccefe40b1eb599f1e07a99, type: 3}
+  langs:
+  - name: English
+    lang_code: EN
+    font: {fileID: 12800000, guid: 9ea6b73de61906544a947fd2158b25ce, type: 3}
+    tm_font: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
+  - name: "Ti\xEA\u0301ng Vi\xEA\u0323t"
+    lang_code: VI
+    font: {fileID: 12800000, guid: 9ea6b73de61906544a947fd2158b25ce, type: 3}
+    tm_font: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
+  - name: Korean
+    lang_code: KO
+    font: {fileID: 12800000, guid: 9ea6b73de61906544a947fd2158b25ce, type: 3}
+    tm_font: {fileID: 11400000, guid: 15ffcd4d10dbaaf448eca1abc66e3a73, type: 2}
+  - name: German
+    lang_code: DE
+    font: {fileID: 12800000, guid: 9ea6b73de61906544a947fd2158b25ce, type: 3}
+    tm_font: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
+  - name: Spanish
+    lang_code: ES
+    font: {fileID: 12800000, guid: 9ea6b73de61906544a947fd2158b25ce, type: 3}
+    tm_font: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
+  - name: "Portugu\xEAs"
+    lang_code: PT
+    font: {fileID: 12800000, guid: 9ea6b73de61906544a947fd2158b25ce, type: 3}
+    tm_font: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
+  - name: Italian
+    lang_code: IT
+    font: {fileID: 12800000, guid: 9ea6b73de61906544a947fd2158b25ce, type: 3}
+    tm_font: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
+  - name: Ha Lan
+    lang_code: NL
+    font: {fileID: 12800000, guid: 9ea6b73de61906544a947fd2158b25ce, type: 3}
+    tm_font: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
+  - name: French
+    lang_code: FR
+    font: {fileID: 12800000, guid: 9ea6b73de61906544a947fd2158b25ce, type: 3}
+    tm_font: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
+  - name: Japanese
+    lang_code: JA
+    font: {fileID: 12800000, guid: 9ea6b73de61906544a947fd2158b25ce, type: 3}
+    tm_font: {fileID: 11400000, guid: 40c97045159f168409761200a341318b, type: 2}
+  default_code: EN
+  crr_lang_code: 

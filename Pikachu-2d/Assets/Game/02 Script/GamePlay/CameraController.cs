@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] Camera _cam;
 
-    [SerializeField] Canvas _canvas;
+    public Canvas _canvas;
 
     [SerializeField] RectTransform _topTrans;
 
