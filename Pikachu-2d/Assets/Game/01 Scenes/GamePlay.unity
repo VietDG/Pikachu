@@ -3200,8 +3200,8 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: 
-  loop: 0
+  _animationName: tap
+  loop: 1
   timeScale: 1
 --- !u!23 &1241032935
 MeshRenderer:
