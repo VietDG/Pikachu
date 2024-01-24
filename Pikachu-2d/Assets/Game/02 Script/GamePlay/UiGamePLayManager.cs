@@ -17,10 +17,10 @@ public class UiGamePLayManager : MonoBehaviour
     public GameObject _timeObj;
 
     public GameObject _mask;
+    public float _totalTime { get; set; }
 
     [Header("-----------------------VALUE--------------------------")]
 
-    private float _totalTime;
 
     private int _runTime;
 

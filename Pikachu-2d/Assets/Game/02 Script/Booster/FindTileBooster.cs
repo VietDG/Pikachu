@@ -41,6 +41,7 @@ public class FindTileBooster : BoosterController
             this.matchTile.CreatDot(matchTile);
         }
 
+        TutChangeSprite();
         return true;
     }
 

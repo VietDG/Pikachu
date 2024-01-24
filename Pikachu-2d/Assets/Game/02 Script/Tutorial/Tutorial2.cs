@@ -34,7 +34,6 @@ public class Tutorial2 : MonoBehaviour
     public void Skip()
     {
         gameObject.SetActive(false);
-        StateGame.Play();
         Current.uiGamePlayManager.SetMask(false);
         Current.camController._canvas.sortingLayerName = "Default";
     }

@@ -30,7 +30,6 @@ public class Tutorial4 : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         GameController.Instance.uiGamePlayManager._mask.SetActive(false);
-        StateGame.Play();
         GameController.Instance.camController._canvas.sortingLayerName = "Default";// set layer cho canvas
         BoosterManager.Instance.boosterShuffle.GetComponent<Canvas>().sortingLayerName = "Default";
 

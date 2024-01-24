@@ -34,7 +34,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public int totalLevel;
 
-    private float time;
+    public float time { get; set; }
 
     private bool timeCount = true;
 
@@ -46,6 +46,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         EventAction.OnNextLevel += OnCLickNextLevel;
 
         EventAction.OnMatchTile += OnTileMatched;
+        EventAction.OnSelectTile += OnSelectTile;
         EventAction.WinGame += CheckWin;
         SettingData.Instance.StateScence = StateScence.GamePlay;
     }
@@ -59,9 +60,17 @@ public class GameController : SingletonMonoBehaviour<GameController>
         camController.InitCam();
 
         SetBG();
+    }
 
-        if (PlayerData.Instance.HighestLevel == 2) return;
-        StateGame.Play();
+    private void OnSelectTile(ItemTile itemTile, bool isPlay)
+    {
+        if (isPlay)
+        {
+            if (!StateGame.IsPlay())
+            {
+                StateGame.Play();
+            }
+        }
     }
 
 
@@ -75,6 +84,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         EventAction.OnNextLevel -= OnCLickNextLevel;
 
         EventAction.OnMatchTile -= OnTileMatched;
+        EventAction.OnSelectTile -= OnSelectTile;
         EventAction.WinGame -= CheckWin;
     }
 
@@ -103,6 +113,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
                     5, 7, -1, -1, -1
                 }
             };
+            GameController.Instance.boosterManager.gameObject.SetActive(false);
+            GameController.Instance.uiGamePlayManager.gameObject.SetActive(false);
         }
         else
         {
@@ -171,7 +183,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
     }
 
-    private IEnumerator UpdateTime()
+    public IEnumerator UpdateTime()
     {
         yield return null;
 

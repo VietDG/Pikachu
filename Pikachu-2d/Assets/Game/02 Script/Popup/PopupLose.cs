@@ -1,4 +1,4 @@
-using PopupSystem;
+﻿using PopupSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,14 +12,6 @@ public class PopupLose : SingletonPopup<PopupLose>
         //StateGame.PauseGame();
     }
 
-    public void Close()
-    {
-        base.Hide(() =>
-        {
-            StateGame.Play();
-        });
-    }
-
     public void OnClickReplay()
     {
         base.Hide(() =>
@@ -28,8 +20,23 @@ public class PopupLose : SingletonPopup<PopupLose>
         });
     }
 
-    public void OnClickConfirlm()
+    public void OnClickHome()
     {
+        base.Hide(() =>
+        {
+            SceneManager.LoadScene(Const.SCENE_HOME);
+        });
+    }
 
+    public void OnClickRevive()
+    {
+        StateGame.Play();
+        StartCoroutine(GameController.Instance.UpdateTime());
+        base.Hide(() =>
+        {
+            GameController.Instance.time = LevelData.Instance.GetLevelConfig(PlayerData.Instance.HighestLevel).leveltime;
+            GameController.Instance.uiGamePlayManager._totalTime = LevelData.Instance.GetLevelConfig(PlayerData.Instance.HighestLevel).leveltime;
+            GameController.Instance.uiGamePlayManager.InitTimeToLevel(LevelData.Instance.GetLevelConfig(PlayerData.Instance.HighestLevel).leveltime);
+        });
     }
 }

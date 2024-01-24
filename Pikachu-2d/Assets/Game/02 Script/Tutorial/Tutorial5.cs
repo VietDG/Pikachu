@@ -28,7 +28,6 @@ public class Tutorial5 : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         GameController.Instance.uiGamePlayManager._mask.SetActive(false);
-        StateGame.Play();
         GameController.Instance.camController._canvas.sortingLayerName = "Default";// set layer cho canvas
         BoosterManager.Instance.boosterFindMatch.GetComponent<Canvas>().sortingLayerName = "Default";
 
