@@ -43,4 +43,10 @@ public class FindTileBooster : BoosterController
 
         return true;
     }
+
+    public void TutChangeSprite()
+    {
+        if (PlayerData.Instance.IsShowTutLevel5 == true) return;
+        TuttorialManager.Instance._tut5.Close();
+    }
 }

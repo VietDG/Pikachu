@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Const
 {
+    #region Scence
     public const string SCENE_LOADING = "Loading";
     public const string SCENE_GAME = "GamePlay";
     public const string SCENE_HOME = "Home";
+    #endregion
 
     #region UserData
     public const string KEY_HIGHEST_LEVEL = "highest_level";
@@ -26,5 +28,11 @@ public class Const
 
     #region Progress
     public const string KEY_PROGRESS_LEVEL_VALUE = "Progress_Level_Value";
+    #endregion
+
+    #region Tutorial
+    public const string TUTORIAL_LEVEL_3 = "tutorial_level_3";
+    public const string TUTORIAL_LEVEL_4 = "tutorial_level_4";
+    public const string TUTORIAL_LEVEL_5 = "tutorial_level_5";
     #endregion
 }

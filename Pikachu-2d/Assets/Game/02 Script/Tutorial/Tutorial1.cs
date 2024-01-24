@@ -52,6 +52,8 @@ public class Tutorial1 : MonoBehaviour
         EventAction.OnMatchTileFail += FailedTile;
 
         StartCoroutine(PlayeTutLevel1());
+        GameController.Instance.uiGamePlayManager._mask.SetActive(true);
+
     }
 
     private IEnumerator PlayeTutLevel1()

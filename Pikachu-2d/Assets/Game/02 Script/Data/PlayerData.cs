@@ -106,6 +106,45 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
     }
 
     #endregion
+
+    #region Tutorial
+
+    public bool IsShowTutLevel3
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(Const.TUTORIAL_LEVEL_3, 0) == 1;
+        }
+        set
+        {
+            PlayerPrefs.SetInt(Const.TUTORIAL_LEVEL_3, value ? 1 : 0);
+        }
+    }
+
+    public bool IsShowTutLevel4
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(Const.TUTORIAL_LEVEL_4, 0) == 1;
+        }
+        set
+        {
+            PlayerPrefs.SetInt(Const.TUTORIAL_LEVEL_4, value ? 1 : 0);
+        }
+    }
+
+    public bool IsShowTutLevel5
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(Const.TUTORIAL_LEVEL_5, 0) == 1;
+        }
+        set
+        {
+            PlayerPrefs.SetInt(Const.TUTORIAL_LEVEL_5, value ? 1 : 0);
+        }
+    }
+    #endregion
     public static PlayerData playerData;
 
     private static bool isChecker = false;

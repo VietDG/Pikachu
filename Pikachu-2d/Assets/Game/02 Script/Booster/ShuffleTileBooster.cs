@@ -17,6 +17,13 @@ public class ShuffleTileBooster : BoosterController
             StartCoroutine(shuffleTile.StartShuffleTile(tile.itemTiles, tile.pos));
         }
 
+        TutShuffle();
         return true;
+    }
+
+    private void TutShuffle()
+    {
+        if (PlayerData.Instance.IsShowTutLevel4 == true) return;
+        TuttorialManager.Instance._tut4.Close();
     }
 }

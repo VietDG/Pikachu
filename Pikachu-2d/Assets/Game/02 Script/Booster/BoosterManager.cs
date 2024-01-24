@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BoosterManager : MonoBehaviour
+public class BoosterManager : SingletonMonoBehaviour<BoosterManager>
 {
     public ChangeSpriteBooster boosterTileTexture;
 

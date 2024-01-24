@@ -17,6 +17,7 @@ public class Tutorial2 : MonoBehaviour
 
         StateGame.PauseGame();
         HandleTut();
+        GameController.Instance.uiGamePlayManager._mask.SetActive(true);
     }
 
     private void HandleTut()

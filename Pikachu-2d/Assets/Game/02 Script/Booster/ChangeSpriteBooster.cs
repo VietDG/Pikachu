@@ -14,7 +14,14 @@ public class ChangeSpriteBooster : BoosterController
         var tile = GameManager.Instance.GetItemTile();
 
         changeSprite.StartChangeSprite(tile, GameManager.Instance.GetWidth(), GameManager.Instance.GetHeight());
+        TutChangeSprite();
 
         return true;
+    }
+
+    public void TutChangeSprite()
+    {
+        if (PlayerData.Instance.IsShowTutLevel3 == true) return;
+        TuttorialManager.Instance._tut3.Close();
     }
 }
