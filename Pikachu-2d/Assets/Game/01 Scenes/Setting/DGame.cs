@@ -26,6 +26,10 @@ public class DGame : Controller
 
     public override void OnShown()
     {
+        if (PlayerData.Instance.HighestLevel == 7)
+        {
+            PopupTutHamer.Instance.Show();
+        }
     }
 
     public override void OnHidden()

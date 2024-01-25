@@ -562,6 +562,7 @@ MonoBehaviour:
   - {fileID: 1314548905088514590, guid: cb1716aca926ed64999e4e5a6b796b64, type: 3}
   - {fileID: 763073926394924513, guid: 6c9e6645e5c930e4db088c885dbb0209, type: 3}
   - {fileID: 9058631869205629570, guid: 2aa606f7208be0c4ea65246821913b5f, type: 3}
+  - {fileID: 965295924194618677, guid: f8836ab4bb42c65428b666051600b146, type: 3}
   transparent: {fileID: 609486190}
   parent: {fileID: 1408495353}
   hasPopupShowing: 0
@@ -1239,12 +1240,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935565263}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 2
+  m_AspectMode: 0
   m_AspectRatio: 0.5625
 --- !u!1 &942021400
 GameObject:

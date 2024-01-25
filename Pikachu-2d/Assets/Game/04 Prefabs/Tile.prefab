@@ -5025,10 +5025,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ava: {fileID: 6715683727571419327}
+  _layer: {fileID: 2838077307460643021}
+  _layerWhite: {fileID: 21300000, guid: aa82cd7f3eac06b49accd5064f80367d, type: 3}
+  _layerGreen: {fileID: 21300000, guid: 4b6a31f0c6bdc5c479f8996d1d90aee5, type: 3}
+  _layerYellow: {fileID: 21300000, guid: 0ec9bbc10b1db054b818280cca62d4a2, type: 3}
   idTile: 0
   index: 0
   value: 0
   _animator: {fileID: 7512858223785832629}
+  isAnim: 0
   _effect: {fileID: 131657990291979030}
   Lerp: {x: 0.8, y: 0.8}
 --- !u!1 &2838077307460643023

@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class MatchTile : MonoBehaviour
@@ -73,7 +74,8 @@ public class MatchTile : MonoBehaviour
 
     private void OnMatchTileFail(ItemTile item1, ItemTile item2)
     {
-        Debug.LogError("khong an duoc");
+        item1.SetLayerWhite();
+        item2.SetLayerWhite();
         if (_camCro != null)
         {
             StopCoroutine(_camCro);
@@ -96,6 +98,21 @@ public class MatchTile : MonoBehaviour
         }
     }
 
+    public void UsingHint(MatchT matchTile)
+    {
+        Vector3[] pos = new Vector3[matchTile.posList.Count];
+
+        for (int i = 0; i < pos.Length; i++)
+        {
+            Vector2Int localPos = matchTile.posList[i];
+            pos[i] = GameManager.Instance.GetPosTile(localPos.x, localPos.y);
+            Pos.x = localPos.x;
+            Pos.y = localPos.y;
+            SetAnim(true);
+        }
+        FindTileBooster.isUsing = true;
+    }
+
     public SpriteRenderer[] CreateLine(MatchT matchTile, bool isFade = true, bool isHint = false)
     {
         Vector3[] pos = new Vector3[matchTile.posList.Count];
@@ -107,8 +124,15 @@ public class MatchTile : MonoBehaviour
             pos[i] = GameManager.Instance.GetPosTile(localPos.x, localPos.y);
             Pos.x = localPos.x;
             Pos.y = localPos.y;
-            SetAnim(true);
+            //  SetAnim(true);
         }
+
+        foreach (var item in GameManager.Instance.itemTileList)
+        {
+            item.SetAnim(false);
+        }
+
+        FindTileBooster.isUsing = false;
 
         for (int i = 1; i < pos.Length; i++)
         {

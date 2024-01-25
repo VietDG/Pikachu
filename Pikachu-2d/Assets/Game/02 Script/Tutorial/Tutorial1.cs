@@ -122,8 +122,8 @@ public class Tutorial1 : MonoBehaviour
 
         failGuilde1.SetActive(true);
 
-        yield return new WaitForSeconds(0.8f);
-        failGuilde1.SetActive(failGuilde2);
+        yield return new WaitForSeconds(0.5f);
+        failGuilde1.SetActive(false);
 
         yield return new WaitForSeconds(_delayTime);
 
@@ -141,8 +141,8 @@ public class Tutorial1 : MonoBehaviour
         Skip();
 
         failGuilde2.SetActive(true);
-        yield return new WaitForSeconds(0.8f);
-        failGuilde2.SetActive(failGuilde2);
+        yield return new WaitForSeconds(0.5f);
+        failGuilde2.SetActive(false);
 
         yield return new WaitForSeconds(_delayTime);
 

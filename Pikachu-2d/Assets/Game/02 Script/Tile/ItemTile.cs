@@ -10,14 +10,19 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
 {
     public SpriteRenderer ava;
 
+    public SpriteRenderer _layer;
+
+    [SerializeField] Sprite _layerWhite, _layerGreen, _layerYellow;
+
     public int idTile;
 
     public int index;
 
     public int value;
 
-
     public Animator _animator;
+
+    public bool isAnim;
 
     [SerializeField] ParticleSystem _effect;
 
@@ -51,12 +56,31 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
         if (isPlayAnim)
         {
             _animator.enabled = true;
+            SetLayerGreen();
+            isAnim = true;
         }
         else
         {
             _animator.enabled = false;
             _animator.gameObject.transform.localScale = new Vector2(0.7f, 0.7f);
+            SetLayerWhite();
+            isAnim = false;
         }
+    }
+
+    public void SetLayerWhite()
+    {
+        _layer.sprite = _layerWhite;
+    }
+
+    public void SetLayerGreen()
+    {
+        _layer.sprite = _layerGreen;
+    }
+
+    public void SetLayerYellow()
+    {
+        _layer.sprite = _layerYellow;
     }
 
     public void PlayVfx()

@@ -8,6 +8,8 @@ public class FindTileBooster : BoosterController
 
     private SpriteRenderer[] ava;
 
+    public static bool isUsing = false;
+
     public void Awake()
     {
         EventAction.OnSelectTile += OnTileSelect;
@@ -33,14 +35,16 @@ public class FindTileBooster : BoosterController
 
     public override bool isUseBooster()
     {
+        if (MainController.Block() || isUsing == true)
+            return false;
         MatchT matchTile = GameManager.Instance.FindAllTile();
 
         if (matchTile != null)
         {
-            this.matchTile.CreateMatchLine(matchTile, false);
-            this.matchTile.CreatDot(matchTile);
+            //this.matchTile.CreateMatchLine(matchTile, false);
+            // this.matchTile.CreatDot(matchTile);
+            this.matchTile.UsingHint(matchTile);
         }
-
         TutChangeSprite();
         return true;
     }

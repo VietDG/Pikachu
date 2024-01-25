@@ -16,11 +16,12 @@ public class UiGamePLayManager : MonoBehaviour
 
     public GameObject _timeObj;
 
+    [SerializeField] Image _iconTime;
+
     public GameObject _mask;
     public float _totalTime { get; set; }
 
     [Header("-----------------------VALUE--------------------------")]
-
 
     private int _runTime;
 
@@ -57,6 +58,7 @@ public class UiGamePLayManager : MonoBehaviour
         if (timer <= 60)
         {
             _timeTxt.color = Color.red;
+            _iconTime.color = Color.red;
         }
     }
 

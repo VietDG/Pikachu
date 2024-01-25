@@ -150,7 +150,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         specialTile.HamOff();
 
-        if (totalLevel >= 16)
+        if (totalLevel >= 7)
         {
             loadLevelFormData.ham = 2;
         }
@@ -171,7 +171,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         yield return specialTile.StartMoveHam();
 
-        yield return new WaitForSeconds(0.5f);
+        // yield return new WaitForSeconds(0.5f);
         yield return sliderTile.StartGetSize();
         if (GameManager.Instance.FindAllTile() == null)
         {
@@ -234,7 +234,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            SceneManager.LoadScene(Const.SCENE_HOME);
+            PopupTutHamer.Instance.Show();
         }
     }
 

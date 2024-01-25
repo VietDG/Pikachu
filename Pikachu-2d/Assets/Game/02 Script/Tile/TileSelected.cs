@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class TileSelected : MonoBehaviour
 {
@@ -20,21 +21,28 @@ public class TileSelected : MonoBehaviour
         {
             if (itemTile)
             {
-                itemTile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
+                itemTile.SetLayerYellow();
             }
             else
             {
-                itemTile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+                itemTile.SetLayerWhite();
             }
         }
         else
         {
             foreach (var item in GameManager.Instance.itemTileList)
             {
-                item.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+                if (item.isAnim == true)
+                {
+                    item.SetLayerGreen();
+                }
+                else
+                {
+                    item.SetLayerWhite();
+                }
                 if (isSelect && item == itemTile)
                 {
-                    itemTile.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
+                    item.SetLayerYellow();
                 }
             }
         }
