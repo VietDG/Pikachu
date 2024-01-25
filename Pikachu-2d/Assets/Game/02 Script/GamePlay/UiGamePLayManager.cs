@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class UiGamePLayManager : MonoBehaviour
 {
     [Header("-----------------------REFERENCE----------------------")]
-    [SerializeField] TMP_Text _levelTxt, _timeTxt;
+    [SerializeField] TMP_Text _levelTxt, _levelOutLineTxt, _timeTxt;
 
     [SerializeField] Image _timeSliderImg;
 
@@ -26,13 +26,10 @@ public class UiGamePLayManager : MonoBehaviour
 
     private StringBuilder _stringBuilder = new StringBuilder();
 
-    private void Start()
-    {
-    }
-
     public void InitLevel()
     {
         _levelTxt.text = "Level " + PlayerData.Instance.HighestLevel.ToString();
+        _levelOutLineTxt.text = _levelTxt.text;
     }
 
     public void SetMask(bool value)
@@ -56,6 +53,10 @@ public class UiGamePLayManager : MonoBehaviour
             _runTime = (int)timer;
             UitilyTime.SetMinuteAndSencond(_stringBuilder, _runTime);
             _timeTxt.text = _stringBuilder.ToString();
+        }
+        if (timer <= 60)
+        {
+            _timeTxt.color = Color.red;
         }
     }
 

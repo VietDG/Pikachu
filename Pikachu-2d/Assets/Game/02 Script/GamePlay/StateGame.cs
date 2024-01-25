@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class StateGame
 {
-    private static bool isPlay = true;
+    private static bool isPlay;
 
     private static bool isPause;
 

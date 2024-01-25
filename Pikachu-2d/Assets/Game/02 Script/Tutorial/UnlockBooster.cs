@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class UnlockBooster : MonoBehaviour
 {
-    [SerializeField]
-    private int _levelUnlock;
+    public int _levelUnlock;
     [SerializeField] private GameObject _mask, _amoutBooster;
     [SerializeField] TMP_Text _levelTxt, _levelOutlineTxt;
 

@@ -28,10 +28,14 @@ public abstract class BoosterController : MonoBehaviour
 
     public TypeBooster typeBooster;
 
+    public UnlockBooster unlockBooster;
+
     public abstract bool isUseBooster();
 
     public void UseBooster()
     {
+        if (PlayerData.Instance.HighestLevel < unlockBooster._levelUnlock) return;
+
         int c = boosterCount();
 
         if (c > 0)

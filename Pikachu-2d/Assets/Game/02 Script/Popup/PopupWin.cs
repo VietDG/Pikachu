@@ -8,15 +8,11 @@ using UnityEngine.SceneManagement;
 
 public class PopupWin : SingletonPopup<PopupWin>
 {
-    // [SerializeField] TMP_Text _coinTxt;
-
-    //  private int _coin;
     [SerializeField] TMP_Text _levelTxt;
 
     public void Show(int value)
     {
         base.Show();
-        //    _coinTxt.text = $"{value}";
         _levelTxt.text = $"Level {PlayerData.Instance.HighestLevel - 1}";
     }
 
