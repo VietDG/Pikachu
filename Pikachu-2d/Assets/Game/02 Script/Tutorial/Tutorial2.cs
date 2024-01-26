@@ -15,13 +15,16 @@ public class Tutorial2 : MonoBehaviour
 
     public void StartTut()
     {
-        this.gameObject.SetActive(true);
-        _canvasGroup.alpha = 0;
-        _canvasGroup.DOFade(1, 1f);
+        FunctionCommon.DelayTime(1f, () =>
+        {
+            this.gameObject.SetActive(true);
+            _canvasGroup.alpha = 0;
+            _canvasGroup.DOFade(1, 1f);
 
-        StateGame.PauseGame();
-        HandleTut();
-        GameController.Instance.uiGamePlayManager._mask.SetActive(true);
+            StateGame.PauseGame();
+            HandleTut();
+            GameController.Instance.uiGamePlayManager._mask.SetActive(true);
+        });
     }
 
     private void HandleTut()

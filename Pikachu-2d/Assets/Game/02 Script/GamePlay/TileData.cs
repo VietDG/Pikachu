@@ -317,7 +317,7 @@ public class MatchT
     public List<Vector2Int> posList = new List<Vector2Int>();
 }
 
-public static class IList
+public static class IListTile
 {
     public static void Shuffle<T>(this IList<T> list)
     {

@@ -15,10 +15,7 @@ public class TuttorialManager : SingletonMonoBehaviour<TuttorialManager>
     {
         this.level = level;
 
-        FunctionCommon.DelayTime(1f, () =>
-        {
-            InitLevelTut();
-        });
+        InitLevelTut();
     }
 
     private void InitLevelTut()

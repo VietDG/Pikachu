@@ -14,12 +14,15 @@ public class Tutorial4 : MonoBehaviour
     {
         if (PlayerData.Instance.IsShowTutLevel4 == true) return;
 
-        this.gameObject.SetActive(true);
-        _canvasGroup.alpha = 0;
-        _canvasGroup.DOFade(1, 1f);
+        FunctionCommon.DelayTime(1f, () =>
+        {
+            this.gameObject.SetActive(true);
+            _canvasGroup.alpha = 0;
+            _canvasGroup.DOFade(1, 1f);
 
-        HandleTut();
-        GameController.Instance.uiGamePlayManager._mask.SetActive(true);
+            HandleTut();
+            GameController.Instance.uiGamePlayManager._mask.SetActive(true);
+        });
     }
 
     public void HandleTut()
