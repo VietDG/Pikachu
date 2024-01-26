@@ -133,7 +133,10 @@ public class PopupSetting : SingletonPopup<PopupSetting>
 
     public void OnClickLangue()
     {
-        Debug.LogError("PopupLangue");
+        base.Hide(() =>
+        {
+            PopupLanguage.Instance.Show();
+        });
     }
 
     public void OnClickMap()

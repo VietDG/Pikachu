@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HomeUiManager : MonoBehaviour
 {
-    [SerializeField] TMP_Text _levelTxt, _levelOutlineTxt, _level, _levelOutline;
+    [SerializeField] TMP_Text _levelTxt, _levelOutlineTxt;
     [SerializeField] Image _bg;
 
     private void Start()
@@ -19,8 +19,6 @@ public class HomeUiManager : MonoBehaviour
     {
         _levelTxt.text = $"{PlayerData.Instance.HighestLevel}";
         _levelOutlineTxt.text = $"{PlayerData.Instance.HighestLevel}";
-        _level.text = "level";
-        _levelOutline.text = "level";
     }
 
     public void SetBGHome()
