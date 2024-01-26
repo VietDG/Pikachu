@@ -11,6 +11,8 @@ public class BoosterManager : SingletonMonoBehaviour<BoosterManager>
 
     public FindTileBooster boosterFindMatch;
 
+    public Transform _swapTrans, _shuffleTrans, _findTrans;
+
     public void Start()
     {
         boosterTileTexture.setBoosterCount = (value) => PlayerData.Instance.BoosterSwap = value;

@@ -19,6 +19,7 @@ public class UiGamePLayManager : MonoBehaviour
     [SerializeField] Image _iconTime;
 
     public GameObject _mask;
+    public Transform _timeTrans;
     public float _totalTime { get; set; }
 
     [Header("-----------------------VALUE--------------------------")]

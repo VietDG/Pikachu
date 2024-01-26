@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 
 public class Tutorial4 : MonoBehaviour
 {
+    [SerializeField] CanvasGroup _canvasGroup;
     [SerializeField] Transform _trans;
 
     public void StartTut()
@@ -13,6 +15,9 @@ public class Tutorial4 : MonoBehaviour
         if (PlayerData.Instance.IsShowTutLevel4 == true) return;
 
         this.gameObject.SetActive(true);
+        _canvasGroup.alpha = 0;
+        _canvasGroup.DOFade(1, 1f);
+
         HandleTut();
         GameController.Instance.uiGamePlayManager._mask.SetActive(true);
     }
@@ -20,7 +25,7 @@ public class Tutorial4 : MonoBehaviour
     public void HandleTut()
     {
         var data = BoosterManager.Instance.boosterShuffle;
-        _trans.transform.localPosition = new Vector2(BoosterManager.Instance.boosterShuffle.transform.localPosition.x, BoosterManager.Instance.boosterShuffle.transform.localPosition.y + 100);
+        _trans.transform.localPosition = new Vector2(BoosterManager.Instance._shuffleTrans.localPosition.x, BoosterManager.Instance._shuffleTrans.localPosition.y + 100);
 
         data.GetComponent<Canvas>().sortingLayerName = "Ui1";//set layer cua time object cao hon layer cua canvas
         GameController.Instance.camController._canvas.sortingLayerName = "Ui";// set layer cho canvas

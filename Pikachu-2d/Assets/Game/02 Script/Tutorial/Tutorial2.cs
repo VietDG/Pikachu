@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Tutorial2 : MonoBehaviour
 {
+    [SerializeField] CanvasGroup _canvasGroup;
     [SerializeField]
     private Canvas _canvas;
     [SerializeField]
@@ -14,6 +16,8 @@ public class Tutorial2 : MonoBehaviour
     public void StartTut()
     {
         this.gameObject.SetActive(true);
+        _canvasGroup.alpha = 0;
+        _canvasGroup.DOFade(1, 1f);
 
         StateGame.PauseGame();
         HandleTut();
@@ -22,7 +26,7 @@ public class Tutorial2 : MonoBehaviour
 
     private void HandleTut()
     {
-        _handTrans.transform.localPosition = Current.uiGamePlayManager._timeObj.transform.localPosition;// vị trí bàn tay
+        _handTrans.transform.localPosition = Current.uiGamePlayManager._timeTrans.transform.localPosition;// vị trí bàn tay
 
         var data = Current.uiGamePlayManager._timeObj.AddComponent<Canvas>();//add canvas cho time object
 
