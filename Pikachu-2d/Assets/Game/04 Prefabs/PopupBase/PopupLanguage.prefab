@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: English
+  m_text: "ESPA\xD1OL"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
   m_sharedMaterial: {fileID: -2863382913683373488, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
@@ -1380,7 +1380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: English
+  m_text: "PORTUGU\xCAS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
   m_sharedMaterial: {fileID: -2863382913683373488, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
@@ -1407,7 +1407,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
+  m_fontSize: 43.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2733,10 +2733,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: English
+  m_text: "\u65E5\u672C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
-  m_sharedMaterial: {fileID: -2863382913683373488, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 40c97045159f168409761200a341318b, type: 2}
+  m_sharedMaterial: {fileID: -863607828187287002, guid: 40c97045159f168409761200a341318b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2945,10 +2945,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: English
+  m_text: "\uD55C\uAD6D\uC5B4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
-  m_sharedMaterial: {fileID: -2863382913683373488, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 15ffcd4d10dbaaf448eca1abc66e3a73, type: 2}
+  m_sharedMaterial: {fileID: -3553025679770591249, guid: 15ffcd4d10dbaaf448eca1abc66e3a73, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3171,7 +3171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: English
+  m_text: NEDERLANDS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
   m_sharedMaterial: {fileID: -2863382913683373488, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
@@ -3198,7 +3198,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
+  m_fontSize: 39.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3536,7 +3536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: English
+  m_text: "FRAN\xC7AIS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
   m_sharedMaterial: {fileID: -2863382913683373488, guid: 11cd095bffed8a84a9cbaa001e364b9d, type: 2}
@@ -3563,7 +3563,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
+  m_fontSize: 53.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

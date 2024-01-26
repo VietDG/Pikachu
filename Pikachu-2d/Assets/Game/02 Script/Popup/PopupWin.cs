@@ -13,7 +13,7 @@ public class PopupWin : SingletonPopup<PopupWin>
     public void Show(int value)
     {
         base.Show();
-        _levelTxt.text = $"Level {PlayerData.Instance.HighestLevel - 1}";
+        _levelTxt.text = string.Format(GameLanguage.Get("txt_level_value"), PlayerData.Instance.HighestLevel);
     }
 
     public void Close()
