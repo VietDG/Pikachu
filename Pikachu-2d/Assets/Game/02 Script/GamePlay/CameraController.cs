@@ -39,9 +39,6 @@ public class CameraController : MonoBehaviour
         Vector3 camPos = _cam.transform.localPosition;
         _cam.transform.localPosition = new Vector3(camPos.x, -(gamePos - 0.5f) * _cam.orthographicSize * 2f, camPos.z);
 
-        Vector2 camSize = new Vector2(_cam.aspect * _cam.orthographicSize * 2f, _cam.orthographicSize * 2f);
-
-        SetBgSize(camSize);
     }
 
     private Vector2 SetCanvasSize()
@@ -53,18 +50,5 @@ public class CameraController : MonoBehaviour
         float matchSize = canvasSize.matchWidthOrHeight;
         float scaleSize = Mathf.Pow(x, 1f - matchSize) * Mathf.Pow(y, matchSize);
         return new Vector2(Screen.width / scaleSize, Screen.height / scaleSize);
-    }
-
-    private void SetBgSize(Vector2 cameraSize)
-    {
-        Vector2 bigSize = cameraSize;
-        Vector2 smallSize = new Vector2(bigSize.x, bigSize.x);
-
-        if (smallSize.y < bigSize.y)
-        {
-            smallSize *= bigSize.y / smallSize.y;
-        }
-
-        Vector3 camPos = _cam.transform.localPosition;
     }
 }

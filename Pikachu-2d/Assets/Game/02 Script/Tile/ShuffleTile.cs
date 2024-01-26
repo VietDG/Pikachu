@@ -21,7 +21,11 @@ public class ShuffleTile : MonoBehaviour
         {
             tileStartPositions[i] = tiles[i].transform.localPosition;
         }
-
+        foreach (var item in GameManager.Instance.itemTileList)
+        {
+            item.SetAnim(false);
+        }
+        FindTileBooster.isUsing = false;
         t = 0f;
         DOTween.To(() => t, (value) => t = value, 1f, moveDuration).SetDelay(delayTime).
             OnUpdate(() =>
