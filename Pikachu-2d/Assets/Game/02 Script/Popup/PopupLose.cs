@@ -30,7 +30,7 @@ public class PopupLose : SingletonPopup<PopupLose>
 
     public void OnClickRevive()
     {
-        StateGame.Play();
+        // StateGame.Play();
         StartCoroutine(GameController.Instance.UpdateTime());
         base.Hide(() =>
         {
