@@ -48,6 +48,8 @@ public class GameLanguage : MonoBehaviour
         if (crr_lang_code == "")
         {
             // Check device language
+            crr_lang_code = "EN";
+            SetLanguage(crr_lang_code);
             Debug.Log("System Language: " + Application.systemLanguage.ToString());
             switch (Application.systemLanguage)
             {

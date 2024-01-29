@@ -6,10 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class PopupLose : SingletonPopup<PopupLose>
 {
+    [SerializeField] GameObject _haveWifi, _noWifi;
     public void Show()
     {
         base.Show();
         //StateGame.PauseGame();
+    }
+
+    private void Start()
+    {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            _noWifi.gameObject.SetActive(true);
+        }
+        else
+        {
+            _haveWifi.gameObject.SetActive(true);
+        }
     }
 
     public void OnClickReplay()
