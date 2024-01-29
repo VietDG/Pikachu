@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1921648927820726248}
   m_Layer: 0
-  m_Name: FailGuide_2
+  m_Name: MatchFaild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3792416684804963257}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 8122529216867601816}
   - component: {fileID: 6496234935508106853}
   m_Layer: 0
-  m_Name: New Sprite (3)
+  m_Name: x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 7351243936727125880}
   - component: {fileID: 6296821102293842326}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: ava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

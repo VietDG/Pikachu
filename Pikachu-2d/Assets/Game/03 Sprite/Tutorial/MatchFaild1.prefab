@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5213899586699783993}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: Line3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1891250396702736599}
   - component: {fileID: 3504174618281374506}
   m_Layer: 0
-  m_Name: New Sprite (3)
+  m_Name: x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7393072500449832562}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Line2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6784472311978850038}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Line1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 7622830470880757084}
   - component: {fileID: 7780645585126319124}
   m_Layer: 0
-  m_Name: New Sprite (4)
+  m_Name: x1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 6631354806208505869}
   - component: {fileID: 1349303353100151408}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: ava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 1303339947641722809}
   - component: {fileID: 3066331324786075895}
   m_Layer: 0
-  m_Name: New Sprite (2)
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 1234464750264736246}
   - component: {fileID: 8308458490725661041}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 6976321632090669868}
   - component: {fileID: 9048790246756839225}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: ava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 1465573887861841119}
   - component: {fileID: 8519370632290729048}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: ava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -695,7 +695,7 @@ GameObject:
   - component: {fileID: 6513106376340556001}
   - component: {fileID: 3260630903556100325}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: ava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -779,7 +779,7 @@ GameObject:
   - component: {fileID: 5195205436538798390}
   - component: {fileID: 2687092536259354418}
   m_Layer: 0
-  m_Name: New Sprite (1)
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -862,7 +862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8083124577953854119}
   m_Layer: 0
-  m_Name: FailGuide_1
+  m_Name: MatchFaild1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -902,7 +902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3190957580143222003}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: Line4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
