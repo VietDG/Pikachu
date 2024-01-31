@@ -10,7 +10,6 @@ public class PopupLose : SingletonPopup<PopupLose>
     public void Show()
     {
         base.Show();
-        //StateGame.PauseGame();
     }
 
     private void Start()
@@ -23,6 +22,10 @@ public class PopupLose : SingletonPopup<PopupLose>
         {
             _haveWifi.gameObject.SetActive(true);
         }
+
+        GameController.Instance.time = LevelData.Instance.GetLevelConfig(PlayerData.Instance.HighestLevel).leveltime;
+        GameController.Instance.uiGamePlayManager.InitTimeToLevel(LevelData.Instance.GetLevelConfig(PlayerData.Instance.HighestLevel).leveltime);
+        GameController.Instance.uiGamePlayManager.SetTime(LevelData.Instance.GetLevelConfig(PlayerData.Instance.HighestLevel).leveltime);
     }
 
     public void OnClickReplay()
@@ -35,21 +38,37 @@ public class PopupLose : SingletonPopup<PopupLose>
 
     public void OnClickHome()
     {
-        base.Hide(() =>
+        AdsManager.Instance.ShowInterstitial(() =>
+        {
+            base.Hide(() =>
         {
             SceneManager.LoadScene(Const.SCENE_HOME);
+        });
         });
     }
 
     public void OnClickRevive()
     {
-        // StateGame.Play();
-        StartCoroutine(GameController.Instance.UpdateTime());
-        base.Hide(() =>
+        bool isShowVideo = false;
+        AdsManager.Instance.ShowRewardedAd(() =>
         {
-            GameController.Instance.time = LevelData.Instance.GetLevelConfig(PlayerData.Instance.HighestLevel).leveltime;
-            GameController.Instance.uiGamePlayManager._totalTime = LevelData.Instance.GetLevelConfig(PlayerData.Instance.HighestLevel).leveltime;
-            GameController.Instance.uiGamePlayManager.InitTimeToLevel(LevelData.Instance.GetLevelConfig(PlayerData.Instance.HighestLevel).leveltime);
-        });
+            isShowVideo = true;
+        }, () =>
+        {
+            if (isShowVideo)
+            {
+                base.Hide(() =>
+                {
+                    SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("booster_revive"));
+                    EventAction.OnRevive?.Invoke();
+
+                });
+            }
+            else
+            {
+                Debug.LogError("xem het quang cao di con me may");
+            }
+
+        }, null);
     }
 }

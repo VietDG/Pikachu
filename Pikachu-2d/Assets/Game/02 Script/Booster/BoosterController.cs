@@ -48,7 +48,22 @@ public abstract class BoosterController : MonoBehaviour
         else
         {
             //xem quang cao
-            SetBoosterAds();
+            bool isShowVideo = false;
+            AdsManager.Instance.ShowRewardedAd(() =>
+            {
+                isShowVideo = true;
+            }, () =>
+            {
+                if (isShowVideo)
+                {
+                    SetBoosterAds();
+                }
+                else
+                {
+                    Debug.LogError("xem het quang cao di con me may");
+                }
+
+            }, null);
         }
     }
 

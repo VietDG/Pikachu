@@ -13,14 +13,23 @@ public class EventAction
 
     public static Action WinGame;
     public static Action OnNextLevel;
+
+    public static Action OnRevive;
     #endregion
 
     #region Tile
     public static Action<ItemTile, bool> OnSelectTile;
     public static Action<MatchT> OnMatchTile;
     public static Action<ItemTile, ItemTile> OnMatchTileFail;
+
+    public static Action OnRemoveBoom;
     #endregion
     #region Line
 
+    #endregion
+
+    #region Ads
+    public static Action OnShowBanner;
+    public static Action OnHideBanner;
     #endregion
 }

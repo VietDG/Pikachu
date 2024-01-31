@@ -72,7 +72,7 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
     {
         get
         {
-            return PlayerPrefs.GetInt(Const.KEY_BOOSTER_FIND_MATCH, 50);
+            return PlayerPrefs.GetInt(Const.KEY_BOOSTER_FIND_MATCH, 5);
         }
         set
         {
@@ -84,7 +84,7 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
     {
         get
         {
-            return PlayerPrefs.GetInt(Const.KEY_BOOSTER_SHUFFLE, 50);
+            return PlayerPrefs.GetInt(Const.KEY_BOOSTER_SHUFFLE, 5);
         }
 
         set
@@ -97,7 +97,7 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
     {
         get
         {
-            return PlayerPrefs.GetInt(Const.KEY_BOOSTER_SWAP, 50);
+            return PlayerPrefs.GetInt(Const.KEY_BOOSTER_SWAP, 5);
         }
         set
         {
@@ -145,6 +145,22 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
         }
     }
     #endregion
+
+    #region Ads
+    public bool IsNotRemoveAds
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(Const.REMOVE_ADS, 1) == 1;
+        }
+        set
+        {
+            PlayerPrefs.SetInt(Const.REMOVE_ADS, !value ? 0 : 1);
+        }
+    }
+
+    #endregion
+
     public static PlayerData playerData;
 
     private static bool isChecker = false;

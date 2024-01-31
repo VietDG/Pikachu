@@ -41,14 +41,16 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public override void Awake()
     {
         Application.targetFrameRate = 60;
-        CameraDestroy.Instance.SetCam(false);
+        // CameraDestroy.Instance.SetCam(false);
 
         EventAction.OnNextLevel += OnCLickNextLevel;
 
         EventAction.OnMatchTile += OnTileMatched;
         EventAction.OnSelectTile += OnSelectTile;
         EventAction.WinGame += CheckWin;
+        EventAction.OnRevive += Revive;
         SettingData.Instance.StateScence = StateScence.GamePlay;
+        InitLevel();
     }
 
     public void InitLevel()
@@ -86,6 +88,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         EventAction.OnMatchTile -= OnTileMatched;
         EventAction.OnSelectTile -= OnSelectTile;
         EventAction.WinGame -= CheckWin;
+        EventAction.OnRevive -= Revive;
     }
 
     private void LoadLevelData()
@@ -150,6 +153,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         specialTile.HamOff();
 
+        //if (PlayerData.Instance.HighestLevel > 10)
+        //    specialTile.InitBoom(1);
+
         if (totalLevel >= 7)
         {
             loadLevelFormData.ham = 2;
@@ -183,6 +189,12 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
     }
 
+    private void Revive()
+    {
+        StateGame.Play();
+        StartCoroutine(UpdateTime());
+    }
+
     public IEnumerator UpdateTime()
     {
         yield return null;
@@ -213,6 +225,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         StopAllCoroutines();
         Manager.Load(DGame.SCENE_NAME);
+        InitDataStart();
     }
 
     public void OnCLickNextLevel()
@@ -241,6 +254,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public void CheckWin()
     {
         PlayerData.Save();
+        SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("win level"));
         StartCoroutine(WaitWin());
     }
 

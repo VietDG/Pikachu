@@ -13,6 +13,7 @@ public class ChangeSpriteBooster : BoosterController
 
         var tile = GameManager.Instance.GetItemTile();
 
+        SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("ChangeImg"));
         changeSprite.StartChangeSprite(tile, GameManager.Instance.GetWidth(), GameManager.Instance.GetHeight());
         TutChangeSprite();
 

@@ -35,4 +35,15 @@ public class Const
     public const string TUTORIAL_LEVEL_4 = "tutorial_level_4";
     public const string TUTORIAL_LEVEL_5 = "tutorial_level_5";
     #endregion
+
+    #region Ads
+
+    public const string REMOVE_ADS = "remove_ads";
+    #endregion
+
+    #region
+    public const string CLAIM_PROGRESS = "claim_progress";
+    public const string KEY_PROCESS_GIFT_VALUE_MAX = "progress_gift_value_max";
+    public const string KEY_PROCESS_GIFT_CURRENT_VALUE = "progress_gift_current_value";
+    #endregion
 }

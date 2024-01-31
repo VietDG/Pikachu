@@ -120,8 +120,7 @@ public class PopupSetting : SingletonPopup<PopupSetting>
         // StopAllCoroutines();
         base.Hide(() =>
         {
-            // SceneManager.LoadScene(Const.SCENE_GAME);
-            Manager.Load(DGame.SCENE_NAME);
+            GameController.Instance.OnClickReplay();
         });
     }
 
@@ -166,4 +165,46 @@ public class PopupSetting : SingletonPopup<PopupSetting>
             _langueBtn.SetActive(false);
         }
     }
+
+    public void ShowPolivacy()
+    {
+        Application.OpenURL("https://percas.vn/privacy-policy/");
+    }
+
+    #region Invite
+    string subject = "Download now and play:";
+    //  string body = "Download now and play: " + "https://play.google.com/store/apps/details?id=color.bird.sort.puzzle.match.puzzle.sorting.game"; //Message text+Your link
+
+#if UNITY_IOS
+
+
+
+#endif
+    public void OnInviteButtonClick()
+    {
+        ShareLink_Game();
+    }
+
+    public void OpenOurApp()
+    {
+#if UNITY_ANDROID
+        Application.OpenURL("https://play.google.com/store/apps/details?id=color.bird.sort.puzzle.match.puzzle.sorting.game");
+#elif UNITY_IOS
+        Application.OpenURL("https://apps.apple.com/us/app/bird-story-the-adventure/id1630112758");
+#endif
+    }
+    public void ShareLink_Game()
+    {
+        NativeShare nativeShare = new NativeShare();
+        nativeShare.Clear();
+        nativeShare.SetSubject(subject);
+#if UNITY_ANDROID
+        nativeShare.SetUrl("https://play.google.com/store/apps/details?id=color.bird.sort.puzzle.match.puzzle.sorting.game");
+#elif UNITY_IOS
+        nativeShare.SetUrl("https://apps.apple.com/app/bird-story-the-adventure/id1630112758");
+#endif
+
+        nativeShare.Share();
+    }
+    #endregion
 }

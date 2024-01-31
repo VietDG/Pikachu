@@ -56,10 +56,15 @@ public class UiGamePLayManager : MonoBehaviour
             UitilyTime.SetMinuteAndSencond(_stringBuilder, _runTime);
             _timeTxt.text = _stringBuilder.ToString();
         }
-        if (timer <= 60)
+        if (timer <= 10)
         {
             _timeTxt.color = Color.red;
             _iconTime.color = Color.red;
+        }
+        else
+        {
+            _timeTxt.color = Color.white;
+            _iconTime.color = Color.white;
         }
     }
 

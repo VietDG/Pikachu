@@ -57,10 +57,10 @@ public class GameLanguage : MonoBehaviour
                     crr_lang_code = "EN";
                     SetLanguage(crr_lang_code);
                     break;
-                case SystemLanguage.Vietnamese:
-                    crr_lang_code = "VI";
-                    SetLanguage(crr_lang_code);
-                    break;
+                //case SystemLanguage.Vietnamese:
+                //    crr_lang_code = "VI";
+                //    SetLanguage(crr_lang_code);
+                //  break;
                 case SystemLanguage.Korean:
                     crr_lang_code = "KO";
                     SetLanguage(crr_lang_code);

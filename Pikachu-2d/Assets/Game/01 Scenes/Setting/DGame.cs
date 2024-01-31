@@ -17,7 +17,7 @@ public class DGame : Controller
     public override void OnActive(object data)
     {
         m_Canvas.worldCamera = cam;
-        GameController.Instance.InitLevel();
+        // GameController.Instance.InitLevel();
     }
 
     public override void OnReFocus()
@@ -30,6 +30,7 @@ public class DGame : Controller
         {
             PopupTutHamer.Instance.Show();
         }
+        EventAction.OnShowBanner?.Invoke();
     }
 
     public override void OnHidden()

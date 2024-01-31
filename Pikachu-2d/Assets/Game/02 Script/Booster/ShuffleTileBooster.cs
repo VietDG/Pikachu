@@ -14,6 +14,7 @@ public class ShuffleTileBooster : BoosterController
         var tile = GameManager.Instance.Shuffle();
         if (tile != null)
         {
+            SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("Shuffle"));
             StartCoroutine(shuffleTile.StartShuffleTile(tile.itemTiles, tile.pos));
         }
 

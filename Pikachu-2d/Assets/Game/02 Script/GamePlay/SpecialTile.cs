@@ -5,8 +5,12 @@ using UnityEngine;
 public class SpecialTile : MonoBehaviour
 {
     public HamTile hamTilePrefab;
+    public BoomTile boomTilePrefab;
 
     public List<HamTile> hamPool = new List<HamTile>();
+    public List<BoomTile> boomPool = new List<BoomTile>();
+
+    private int _boomCount;
 
     public void CreateHam(int value)
     {
@@ -22,6 +26,63 @@ public class SpecialTile : MonoBehaviour
             ham.InitHam();
         }
     }
+
+    #region Boom
+    public void InitBoom(int value)
+    {
+        _boomCount = value;
+        CreateBoom();
+    }
+
+    public void CreateBoom()
+    {
+        var tileGroupList = new List<List<ItemTile>>((GameManager.Instance.GetTileDict().Values));
+        if (tileGroupList.Count > 0)
+        {
+            var tiles = tileGroupList[UnityEngine.Random.Range(0, tileGroupList.Count)];
+            if (tiles.Count > 0)
+            {
+                var tile = tiles[UnityEngine.Random.Range(0, tiles.Count)];
+                if (_boomCount > 0)
+                {
+                    var bomb = GetBomb();
+                    bomb.gameObject.SetActive(true);
+                    bomb.itemTile = tileGroupList[0][0];
+                    bomb.SpawnBoom();
+                    _boomCount--;
+
+                    if (_boomCount >= 1)
+                    {
+                        EventAction.OnRemoveBoom = CreateBoom;
+                    }
+                }
+            }
+        }
+    }
+
+
+    private BoomTile GetBomb()
+    {
+        for (int i = 0; i < boomPool.Count; i++)
+        {
+            if (boomPool[i].gameObject.activeSelf == false)
+            {
+                boomPool[i].gameObject.SetActive(true);
+                return boomPool[i];
+            }
+        }
+        return SpawnBomb();
+    }
+
+    private BoomTile SpawnBomb()
+    {
+        BoomTile bomb = Instantiate(boomTilePrefab);
+        bomb.gameObject.SetActive(false);
+        boomPool.Add(bomb);
+
+        return bomb;
+    }
+    #endregion
 
     public IEnumerator StartMoveHam()
     {

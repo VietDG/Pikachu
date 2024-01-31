@@ -10,7 +10,7 @@ public class HomeManager : MonoBehaviour
 
     private void Awake()
     {
-        CameraDestroy.Instance.SetCam(true);
+        //  CameraDestroy.Instance.SetCam(true);
     }
     void Start()
     {

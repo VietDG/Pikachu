@@ -41,6 +41,7 @@ public class FindTileBooster : BoosterController
 
         if (matchTile != null)
         {
+            SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("Hint"));
             //this.matchTile.CreateMatchLine(matchTile, false);
             // this.matchTile.CreatDot(matchTile);
             this.matchTile.UsingHint(matchTile);

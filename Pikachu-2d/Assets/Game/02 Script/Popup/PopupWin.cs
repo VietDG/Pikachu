@@ -40,17 +40,23 @@ public class PopupWin : SingletonPopup<PopupWin>
 
     public void NextLevel()
     {
-        base.Hide(() =>
+        AdsManager.Instance.ShowInterstitial(() =>
         {
-            StateGame.NextLevels();
+            base.Hide(() =>
+            {
+                StateGame.NextLevels();
+            });
         });
     }
 
     public void Home()
     {
-        base.Hide(() =>
+        AdsManager.Instance.ShowInterstitial(() =>
+        {
+            base.Hide(() =>
         {
             Manager.Load(DHome.SCENE_NAME);
+        });
         });
     }
 }
