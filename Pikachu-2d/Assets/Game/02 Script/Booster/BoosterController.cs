@@ -18,6 +18,8 @@ public abstract class BoosterController : MonoBehaviour
 
     public GameObject ads;
 
+    public GameObject noWifi;
+
     public GameObject redDot;
 
     public TMP_Text amoutText;
@@ -98,9 +100,16 @@ public abstract class BoosterController : MonoBehaviour
         }
         else
         {
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                noWifi.SetActive(true);
+            }
+            else
+            {
+                ads.SetActive(true);
+            }
             redDot.SetActive(false);
             amoutText.text = c.ToString();
-            ads.SetActive(true);
         }
     }
 }

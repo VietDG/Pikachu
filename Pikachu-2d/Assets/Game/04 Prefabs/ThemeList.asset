@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ThemeList
   m_EditorClassIdentifier: 
   _bg:
-  - {fileID: 2024283979, guid: 6df4650e65fee1a479069d0eb65459e5, type: 3}
-  - {fileID: 21300000, guid: e0843362c382ff843916dcc5bb629a74, type: 3}
-  - {fileID: 2024283979, guid: 6df4650e65fee1a479069d0eb65459e5, type: 3}
-  - {fileID: 21300000, guid: e0843362c382ff843916dcc5bb629a74, type: 3}
+  - {fileID: -1849042106, guid: 2c3ccbad6babd1d448dc279c80f74c36, type: 3}
+  - {fileID: -1181936173, guid: ca8fa3006a3b2f04e9bb1aaf683a9669, type: 3}
+  - {fileID: 1760309236, guid: 5a8aee55a66ab2a47b62a57c27d9915e, type: 3}
+  - {fileID: 964295837, guid: 7a964aae7449f0c45a97c6088e366dd6, type: 3}
+  - {fileID: 1970830457, guid: 034abef428f403e41a5a7c17734552c2, type: 3}

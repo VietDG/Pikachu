@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tile2Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 65cf1f3ca95934d49a8d936c57d6e3b6, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: eef47ce10ad57ea4699045c754aded52, type: 3}
+  - {fileID: 21300000, guid: 40094a125ffe62a44bd5398ec99befec, type: 3}
+  - {fileID: 21300000, guid: 8fdf4a63f2efdba4e90810036939e2d7, type: 3}
+  - {fileID: 21300000, guid: 92c16704f9ef5d846b83842a01e36e93, type: 3}
+  - {fileID: 21300000, guid: 55aa5434f23085344983b2af960408ff, type: 3}
+  - {fileID: 21300000, guid: 72db4364f79d2f543acc362fec33c838, type: 3}
+  - {fileID: 21300000, guid: 476796e4706d54545bbbff58394d2c03, type: 3}
+  - {fileID: 21300000, guid: 281d01673481d7349a9dc355e4146be5, type: 3}
+  - {fileID: 21300000, guid: 6e3f8777b294991479707822ff5b4121, type: 3}
+  - {fileID: 21300000, guid: be142cf7afc808648a5ddae33465bdf0, type: 3}
+  - {fileID: 21300000, guid: 86fc5608d201e154dbb2b3fc9ee1cf6f, type: 3}
+  - {fileID: 21300000, guid: cfaa2a28377bc13489e525a4e3db6f68, type: 3}
+  - {fileID: 21300000, guid: cb46f3b849fd6ed49a4f596ddf1e45d3, type: 3}
+  - {fileID: 21300000, guid: 85d63f59e5d72ab4ea2bda503b54e683, type: 3}
+  - {fileID: 21300000, guid: 143e7c79c0d2755469e75babab1b767a, type: 3}
+  - {fileID: 21300000, guid: 41655e4aea7a1f642987522ee42d89ec, type: 3}
+  - {fileID: 21300000, guid: b7b3523b861170e4f926a81dd2aafe9b, type: 3}
+  - {fileID: 21300000, guid: d49bb8bba1ea2184796dc1bfb2ba9295, type: 3}
+  - {fileID: 21300000, guid: b34f999c14057d646aab2c709e337f9d, type: 3}
+  - {fileID: 21300000, guid: 37a81a9c298e8cf4284a25c5644656ef, type: 3}
+  - {fileID: 21300000, guid: 037a848eb48b56e44b9aaf14ef1729ac, type: 3}
+  - {fileID: 21300000, guid: c4e1bc8ec8fc808429b083697360ce35, type: 3}
+  - {fileID: 21300000, guid: 3ed7d13f95541df4ca5844958874b9b4, type: 3}
+  - {fileID: 21300000, guid: 250c4daf57fd8c940be67dfd40a60a7f, type: 3}
+  - {fileID: 21300000, guid: 9ccfaeff9914c224484f90eb06bda057, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - 3
+  - 11 (1)
+  - 15
+  - 10 (1)
+  - 11
+  - 17 (31)
+  - 1
+  - 5
+  - 13 (1)
+  - 6
+  - 9 (1)
+  - 16
+  - 4
+  - 9
+  - 14
+  - 2
+  - 16 (1)
+  - 12
+  - 10
+  - 17 (30)
+  - 14 (1)
+  - 7
+  - 12 (1)
+  - 8
+  - 13
+  m_RenderDataMap: {}
+  m_Tag: Tile2Atlas
+  m_IsVariant: 0

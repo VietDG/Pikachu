@@ -10,6 +10,7 @@ public class PopupLose : SingletonPopup<PopupLose>
     public void Show()
     {
         base.Show();
+        StateGame.IsPause();
     }
 
     private void Start()

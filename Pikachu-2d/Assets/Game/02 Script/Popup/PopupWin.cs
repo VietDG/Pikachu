@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PopupWin : SingletonPopup<PopupWin>
 {
     [SerializeField] TMP_Text _levelTxt;
     [SerializeField] AnimBase _animBase;
-    [SerializeField]
-    SkeletonAnimation _anim;
+    [SerializeField] Image _nextBG;
 
     public void Show(int value)
     {
@@ -22,7 +22,13 @@ public class PopupWin : SingletonPopup<PopupWin>
 
     private void Start()
     {
+        SetNextBG();
         PlayAnim();
+    }
+
+    private void SetNextBG()
+    {
+        _nextBG.sprite = BackGroundManager.Instance._themeList.GetBg();
     }
 
     private void PlayAnim()

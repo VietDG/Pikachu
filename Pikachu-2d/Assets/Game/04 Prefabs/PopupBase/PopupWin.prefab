@@ -79,6 +79,7 @@ MonoBehaviour:
   _levelTxt: {fileID: 296923193438535611}
   _animBase: {fileID: 3838683222329928082}
   _anim: {fileID: 0}
+  _nextBG: {fileID: 1690244060010202547}
 --- !u!1 &308572814603955134
 GameObject:
   m_ObjectHideFlags: 0
