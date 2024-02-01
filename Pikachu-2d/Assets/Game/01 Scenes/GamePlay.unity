@@ -7000,6 +7000,7 @@ GameObject:
   - component: {fileID: 1728937101}
   - component: {fileID: 1728937102}
   - component: {fileID: 1728937103}
+  - component: {fileID: 1728937104}
   m_Layer: 0
   m_Name: TextTime
   m_TagString: Untagged
@@ -7124,6 +7125,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1728937104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728937100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3cf150168c1b7b49b4fbda03372aa4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1733304581
 GameObject:
   m_ObjectHideFlags: 0

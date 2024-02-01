@@ -610,6 +610,7 @@ MonoBehaviour:
   - {fileID: 9058631869205629570, guid: 2aa606f7208be0c4ea65246821913b5f, type: 3}
   - {fileID: 965295924194618677, guid: f8836ab4bb42c65428b666051600b146, type: 3}
   - {fileID: 1266225205293474444, guid: 93781ed100f6b5b428ecb99d813cb00f, type: 3}
+  - {fileID: 1414764932307838405, guid: f48f1f9d866ff224bad10952fbc607ce, type: 3}
   transparent: {fileID: 609486190}
   parent: {fileID: 1408495353}
   hasPopupShowing: 0
@@ -1486,7 +1487,6 @@ MonoBehaviour:
   INITIAL_BANNER_AD_LEVEL: 5
   INTER_FEQUENCY_TIME: 300
   IS_INTER_ACTIVE: 1
-  BASE_COIN_VALUE: 0
 --- !u!1 &1342291315
 GameObject:
   m_ObjectHideFlags: 0

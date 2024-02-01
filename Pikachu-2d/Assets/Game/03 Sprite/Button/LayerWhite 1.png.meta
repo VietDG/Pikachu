@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c8ea98fcb1839214296a571549ce9f4d
+guid: eca91a78baae49d49b63566c7fced555
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BorderGreen_0
+      name: LayerWhite 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39a235d1996ebc9488ab233376e920ba
-      internalID: 1393271777
+      spriteID: b84ff160cc7ea20429e142cd5cd8f6a0
+      internalID: 2079052724
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BorderGreen_0: 1393271777
+      LayerWhite 1_0: 2079052724
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

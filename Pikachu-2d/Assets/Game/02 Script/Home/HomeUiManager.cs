@@ -17,8 +17,8 @@ public class HomeUiManager : MonoBehaviour
 
     private void SetLevel()
     {
-        _levelTxt.text = $"{PlayerData.Instance.HighestLevel}";
-        _levelOutlineTxt.text = $"{PlayerData.Instance.HighestLevel}";
+        _levelTxt.text = string.Format(GameLanguage.Get("txt_level_value"), PlayerData.Instance.HighestLevel);
+        _levelOutlineTxt.text = string.Format(GameLanguage.Get("txt_level_value"), PlayerData.Instance.HighestLevel);
     }
 
     public void SetBGHome()

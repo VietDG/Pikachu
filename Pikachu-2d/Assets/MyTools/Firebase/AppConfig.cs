@@ -66,7 +66,6 @@ public class AppConfig : SingletonMonoBehaviour<AppConfig>
     public int INTER_FEQUENCY_TIME = 0;
     //  public string WELCOM_TEXT;
     public bool IS_INTER_ACTIVE;
-    public int BASE_COIN_VALUE;
     /// <summary>
     /// Noti Event
     /// </summary>

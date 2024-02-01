@@ -128,7 +128,10 @@ public class PopupSetting : SingletonPopup<PopupSetting>
     public void OnClickTutorial()
     {
         //PopupTUtorial Show
-        Debug.LogError("ShowTutorial");
+        base.Hide(() =>
+        {
+            PopupTutPlay.Instance.Show();
+        });
     }
 
     public void OnClickLangue()
