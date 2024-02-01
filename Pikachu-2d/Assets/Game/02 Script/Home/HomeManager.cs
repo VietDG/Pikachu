@@ -11,6 +11,7 @@ public class HomeManager : MonoBehaviour
     private void Awake()
     {
         //  CameraDestroy.Instance.SetCam(true);
+        EventAction.OnHideBanner();
     }
     void Start()
     {

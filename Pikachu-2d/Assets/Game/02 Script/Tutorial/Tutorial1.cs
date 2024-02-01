@@ -42,17 +42,20 @@ public class Tutorial1 : MonoBehaviour
 
     public void StartTut()
     {
-        gameObject.SetActive(true);
+        FunctionCommon.DelayTime(1f, () =>
+        {
+            gameObject.SetActive(true);
 
-        _width = GameManager.Instance.Width;
-        _height = GameManager.Instance.Height;
-        tileTut = GameManager.Instance.itemTiles;
+            _width = GameManager.Instance.Width;
+            _height = GameManager.Instance.Height;
+            tileTut = GameManager.Instance.itemTiles;
 
-        EventAction.OnMatchTile += Matchtile;
-        EventAction.OnMatchTileFail += FailedTile;
+            EventAction.OnMatchTile += Matchtile;
+            EventAction.OnMatchTileFail += FailedTile;
 
-        StartCoroutine(PlayeTutLevel1());
-        GameController.Instance.uiGamePlayManager._mask.SetActive(true);
+            StartCoroutine(PlayeTutLevel1());
+            GameController.Instance.uiGamePlayManager._mask.SetActive(true);
+        });
 
     }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PopupSetting : SingletonPopup<PopupSetting>
 {
     [SerializeField]
@@ -190,7 +191,7 @@ public class PopupSetting : SingletonPopup<PopupSetting>
 #if UNITY_ANDROID
         Application.OpenURL("https://play.google.com/store/apps/details?id=color.bird.sort.puzzle.match.puzzle.sorting.game");
 #elif UNITY_IOS
-        Application.OpenURL("https://apps.apple.com/us/app/bird-story-the-adventure/id1630112758");
+                Application.OpenURL("https://apps.apple.com/us/app/bird-story-the-adventure/id1630112758");
 #endif
     }
     public void ShareLink_Game()
@@ -201,7 +202,7 @@ public class PopupSetting : SingletonPopup<PopupSetting>
 #if UNITY_ANDROID
         nativeShare.SetUrl("https://play.google.com/store/apps/details?id=color.bird.sort.puzzle.match.puzzle.sorting.game");
 #elif UNITY_IOS
-        nativeShare.SetUrl("https://apps.apple.com/app/bird-story-the-adventure/id1630112758");
+                nativeShare.SetUrl("https://apps.apple.com/app/bird-story-the-adventure/id1630112758");
 #endif
 
         nativeShare.Share();

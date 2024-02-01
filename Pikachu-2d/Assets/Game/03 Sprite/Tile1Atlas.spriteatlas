@@ -40,7 +40,6 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 05c9c71002ff1aa41a1f6733390fb817, type: 3}
   - {fileID: 21300000, guid: 6c369961770d4a24f8f2a90c5613f522, type: 3}
-  - {fileID: 21300000, guid: a1dee5f104068e04fae669647f263b70, type: 3}
   - {fileID: 21300000, guid: 485f6c92095c6e64fb420fa309acba33, type: 3}
   - {fileID: 21300000, guid: dbed77f269c54424d948b834afe79ea3, type: 3}
   - {fileID: 21300000, guid: ebad9193143ef224689c1c3b333dbb52, type: 3}
@@ -60,6 +59,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 70eb8f68df1b05a40b61e7b7c55c3c17, type: 3}
   - {fileID: 21300000, guid: d7eed669b3d771c43a2d40c34f394d29, type: 3}
   - {fileID: 21300000, guid: b43fd0c998cc5b84f92f5749d1c42f0d, type: 3}
+  - {fileID: 21300000, guid: f470c64a9a4e2c747af8e5acc6546ce1, type: 3}
   - {fileID: 21300000, guid: 573467da679dacd46aca955e17ebddc9, type: 3}
   - {fileID: 21300000, guid: 8bd4504bde5a57c42ab655cda5609dd5, type: 3}
   - {fileID: 21300000, guid: 91cc7fbd036045c4b8fbba2145322022, type: 3}
@@ -72,7 +72,6 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - 17 (1)
   - 17 (9)
-  - 6 (1)
   - 17 (11)
   - 17 (15)
   - 17 (7)
@@ -92,6 +91,7 @@ SpriteAtlas:
   - 17 (28)
   - 17 (4)
   - 17 (29)
+  - 6 (2)
   - 17 (21)
   - 17 (5)
   - 17 (12)
