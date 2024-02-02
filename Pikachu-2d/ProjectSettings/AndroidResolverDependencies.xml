@@ -22,7 +22,7 @@
   </files>
   <settings>
     <setting name="androidAbis" value="armeabi-v7a" />
-    <setting name="bundleId" value="wordle.wordguess.puzzle.wordgame.percas.net" />
+    <setting name="bundleId" value="net.percas.connect.puzzle.tile.master" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradlePropertiesTemplateEnabled" value="True" />
