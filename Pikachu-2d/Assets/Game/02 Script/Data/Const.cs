@@ -45,5 +45,15 @@ public class Const
     public const string CLAIM_PROGRESS = "claim_progress";
     public const string KEY_PROCESS_GIFT_VALUE_MAX = "progress_gift_value_max";
     public const string KEY_PROCESS_GIFT_CURRENT_VALUE = "progress_gift_current_value";
+
+    public const string KEY_TOTAL_PLAY = "total_play";
+    public const string KEY_TOTAL_WIN = "total_win";
+    public const string KEY_TOTAL_LOSE = "total_lose";
+    public const string COUNT_TOTAL_AD_INTER_SHOWN = "COUT_TOTAL_AD_INTER_SHOW";
+    public const string COUNT_TOTAL_AD_INTER_CLOSE = "COUT_TOTAL_AD_INTER_CLOSE";
+    public const string COUNT_TOTAL_AD_REWARD_SHOWN = "COUNT_TOTAL_REWARD_SHOW";
+    public const string COUNT_TOTAL_AD_REWARD_COMPLETED = "COUT_TOTAL_REWARD_COMPELTE";
+
+
     #endregion
 }

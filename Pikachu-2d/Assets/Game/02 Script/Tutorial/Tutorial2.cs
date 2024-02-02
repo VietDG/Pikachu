@@ -29,7 +29,8 @@ public class Tutorial2 : MonoBehaviour
 
     private void HandleTut()
     {
-        _handTrans.transform.localPosition = Current.uiGamePlayManager._timeTrans.transform.localPosition;// vị trí bàn tay
+        // _handTrans.transform.localPosition = Current.uiGamePlayManager._timeTrans.transform.localPosition;// vị trí bàn tay
+        _handTrans.gameObject.SetActive(true);
 
         var data = Current.uiGamePlayManager._timeObj.AddComponent<Canvas>();//add canvas cho time object
 
@@ -40,6 +41,7 @@ public class Tutorial2 : MonoBehaviour
 
     public void Skip()
     {
+        _handTrans.gameObject.SetActive(false);
         gameObject.SetActive(false);
         Current.uiGamePlayManager.SetMask(false);
         Current.camController._canvas.sortingLayerName = "Default";

@@ -31,5 +31,13 @@ public class EventAction
     #region Ads
     public static Action OnShowBanner;
     public static Action OnHideBanner;
+
+    public static Action EventTrackLevelPlay;
+    public static Action EventTrackLevelWin;
+    public static Action EventTrackLoseLevel;
+    public static Action EventtTotalAdInterShown;
+    public static Action EventInterClose;
+    public static Action EventRewardShow;
+    public static Action EventRewardComplete;
     #endregion
 }

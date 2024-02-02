@@ -156,6 +156,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         //if (PlayerData.Instance.HighestLevel > 10)
         //    specialTile.InitBoom(1);
 
+        PlayerData.Instance.TotalPlay += 1;
         if (totalLevel >= 7)
         {
             loadLevelFormData.ham = 2;
@@ -260,17 +261,19 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public IEnumerator WaitWin()
     {
-        yield return new WaitForSeconds(1f);
-
         StateGame.PauseGame();
+        PlayerData.Instance.TotalWin += 1;
         PlayerData.Instance.TileSpriteIndex++;
         PlayerData.Instance.ThemeIndex++;
 
         totalLevel++;
+
         PlayerData.Instance.HighestLevel = totalLevel;
 
         int coin = 20;
         PlayerData.Instance.TotalCoin += coin;
+        yield return new WaitForSeconds(1f);
+
 
         PopupWin.Instance.Show(coin);
     }
@@ -278,6 +281,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public void SetLose()
     {
         StateGame.PauseGame();
+        PlayerData.Instance.TotalLose += 1;
         PopupLose.Instance.Show();
     }
 }

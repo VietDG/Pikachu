@@ -146,6 +146,7 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
     }
     #endregion
 
+
     #region Ads
     public bool IsNotRemoveAds
     {
@@ -158,6 +159,97 @@ public class PlayerData : SingletonMonoBehaviour<PlayerData>
             PlayerPrefs.SetInt(Const.REMOVE_ADS, !value ? 0 : 1);
         }
     }
+
+    //public int CountTotalAdInterClicked
+    //{
+    //    get { return PlayerPrefs.GetInt(Const.COUNT_TOTAL_AD_INTER_CLICKED, 0); }
+    //    set
+    //    {
+    //        PlayerPrefs.SetInt(Const.COUNT_TOTAL_AD_INTER_CLICKED, value);
+    //        EvtTotalAdInterClicked?.Invoke();
+    //    }
+    //}
+
+    public int TotalPlay
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(Const.KEY_TOTAL_PLAY, 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(Const.KEY_TOTAL_PLAY, value);
+            EventAction.EventTrackLevelPlay?.Invoke();
+        }
+    }
+
+    public int TotalWin
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(Const.KEY_TOTAL_WIN, 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(Const.KEY_TOTAL_WIN, value);
+            EventAction.EventTrackLevelWin?.Invoke();
+        }
+    }
+
+    public int TotalLose
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(Const.KEY_TOTAL_LOSE, 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(Const.KEY_TOTAL_LOSE, value);
+            EventAction.EventTrackLoseLevel?.Invoke();
+        }
+    }
+
+    public int CountTotalAdInterShown
+    {
+        get { return PlayerPrefs.GetInt(Const.COUNT_TOTAL_AD_INTER_SHOWN, 0); }
+        set
+        {
+            PlayerPrefs.SetInt(Const.COUNT_TOTAL_AD_INTER_SHOWN, value);
+            EventAction.EventtTotalAdInterShown?.Invoke();
+        }
+    }
+
+    public int CountTotalAdInterHidden
+    {
+        get { return PlayerPrefs.GetInt(Const.COUNT_TOTAL_AD_INTER_CLOSE, 0); }
+        set
+        {
+            PlayerPrefs.SetInt(Const.COUNT_TOTAL_AD_INTER_CLOSE, value);
+            EventAction.EventInterClose?.Invoke();
+        }
+    }
+
+    public int CountTotalShowReward
+    {
+        get { return PlayerPrefs.GetInt(Const.COUNT_TOTAL_AD_REWARD_SHOWN, 0); }
+        set
+        {
+            PlayerPrefs.SetInt(Const.COUNT_TOTAL_AD_REWARD_SHOWN, value);
+            EventAction.EventRewardShow?.Invoke();
+        }
+    }
+
+
+    public int CoutTotalAdRewardComplete
+    {
+        get { return PlayerPrefs.GetInt(Const.COUNT_TOTAL_AD_REWARD_COMPLETED, 0); }
+        set
+        {
+            PlayerPrefs.SetInt(Const.COUNT_TOTAL_AD_REWARD_COMPLETED, value);
+            EventAction.EventRewardComplete?.Invoke();
+        }
+    }
+
 
     #endregion
 

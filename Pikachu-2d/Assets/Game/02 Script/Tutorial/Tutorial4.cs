@@ -28,7 +28,8 @@ public class Tutorial4 : MonoBehaviour
     public void HandleTut()
     {
         var data = BoosterManager.Instance.boosterShuffle;
-        _trans.transform.localPosition = new Vector2(BoosterManager.Instance._shuffleTrans.localPosition.x, BoosterManager.Instance._shuffleTrans.localPosition.y + 100);
+        //  _trans.transform.localPosition = new Vector2(BoosterManager.Instance._shuffleTrans.localPosition.x, BoosterManager.Instance._shuffleTrans.localPosition.y + 100);
+        _trans.gameObject.SetActive(true);
 
         data.GetComponent<Canvas>().sortingLayerName = "Ui1";//set layer cua time object cao hon layer cua canvas
         GameController.Instance.camController._canvas.sortingLayerName = "Ui";// set layer cho canvas
@@ -36,6 +37,7 @@ public class Tutorial4 : MonoBehaviour
 
     public void Close()
     {
+        _trans.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
         GameController.Instance.uiGamePlayManager._mask.SetActive(false);
         GameController.Instance.camController._canvas.sortingLayerName = "Default";// set layer cho canvas

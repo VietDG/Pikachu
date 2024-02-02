@@ -33,14 +33,14 @@ public class FirebaseManager : SingletonMonoBehaviour<FirebaseManager>
 
         Init();
 
-        //  GlobalEventManager.EvtSendEvent += SendEvent;
-        //  GlobalEventManager.EvtUpdateUserProperties += SetUserPropeties;
+        GlobalEventManager.EvtSendEvent += SendEvent;
+        GlobalEventManager.EvtUpdateUserProperties += SetUserPropeties;
     }
 
     private void OnDestroy()
     {
-        //   GlobalEventManager.EvtSendEvent -= SendEvent;
-        //   GlobalEventManager.EvtUpdateUserProperties -= SetUserPropeties;
+        GlobalEventManager.EvtSendEvent -= SendEvent;
+        GlobalEventManager.EvtUpdateUserProperties -= SetUserPropeties;
     }
 
     #endregion
@@ -116,10 +116,11 @@ public class FirebaseManager : SingletonMonoBehaviour<FirebaseManager>
                 // Debug.Log($"{TAG}: Read config");
                 FirebaseRemoteConfig.DefaultInstance.ActivateAsync();
 
-                AppConfig.Instance.INITIAL_BANNER_AD_LEVEL = GetFetchValue("initial_banner_ad_level", AppConfig.Instance.initialBannerAdLevel);
+                AppConfig.Instance.INITIAL_BANNER_AD_LEVEL = GetFetchValue("banner_ad_level", AppConfig.Instance.initialBannerAdLevel);
                 AppConfig.Instance.INTER_FEQUENCY_TIME = GetFetchValue("inter_frequency_time", AppConfig.Instance.interFrequencyTime);
                 // AppConfig.Instance.WELCOM_TEXT = GetFetStringValue("welcome_text", AppConfig.Instance.WelcomeText);
-                AppConfig.Instance.IS_INTER_ACTIVE = GetFetBooleanValue("inter_active");
+                //  AppConfig.Instance.IS_INTER_ACTIVE = GetFetBooleanValue("inter_active");
+                AppConfig.Instance.INITIAL_INTER_AD_LEVEL = GetFetchValue("inter_ad_level", AppConfig.Instance.initialInterAdLevel);
 
                 //FetchNotiContent();
             }

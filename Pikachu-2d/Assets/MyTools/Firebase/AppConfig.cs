@@ -33,7 +33,6 @@ public class AppConfig : SingletonMonoBehaviour<AppConfig>
         set { _adFrequencyTime = value; }
     }
 
-    public bool CanShowInter => PlayerData.Instance.HighestLevel > LevelCompletedToShowAd;
     public bool CanShowBanner = false;
 
     [Header("PRICES")]
@@ -41,6 +40,7 @@ public class AppConfig : SingletonMonoBehaviour<AppConfig>
     [Space(10)]
     public int initialBannerAdLevel = 0;
     public int interFrequencyTime = 0;
+    public int initialInterAdLevel = 0;
     // [SerializeField] private string _welcomeText = Const.KEY_WELCOM;
     //  public string WelcomeText { get => _welcomeText; }
 
@@ -64,6 +64,7 @@ public class AppConfig : SingletonMonoBehaviour<AppConfig>
     [Space(10)]
     public int INITIAL_BANNER_AD_LEVEL = 0;
     public int INTER_FEQUENCY_TIME = 0;
+    public int INITIAL_INTER_AD_LEVEL = 0;
     //  public string WELCOM_TEXT;
     public bool IS_INTER_ACTIVE;
     /// <summary>
@@ -98,6 +99,8 @@ public class AppConfig : SingletonMonoBehaviour<AppConfig>
         //  WELCOM_TEXT = WelcomeText;
 
         IS_INTER_ACTIVE = _isInterActive;
+
+        INITIAL_INTER_AD_LEVEL = initialInterAdLevel;
 
         //Event Noti
         /*  this.ID_CONTENT = _idContent;

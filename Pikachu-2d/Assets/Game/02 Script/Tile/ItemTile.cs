@@ -62,7 +62,7 @@ public class ItemTile : MonoBehaviour, IPointerClickHandler
         else
         {
             _animator.enabled = false;
-            _animator.gameObject.transform.localScale = new Vector2(0.8f, 0.8f);
+            _animator.gameObject.transform.localScale = new Vector2(0.7f, 0.7f);
             SetLayerWhite();
             isAnim = false;
         }

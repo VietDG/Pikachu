@@ -114,7 +114,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
 
     public void ShowBanner()
     {
-        if (NetworkRequirement() /*&& PlayerData.Instance.IsNotRemoveAds*/ && AppConfig.Instance.CanShowBanner)
+        if (NetworkRequirement() /*&& PlayerData.Instance.IsNotRemoveAds*/ && AppConfig.Instance.CanShowBanner && PlayerData.Instance.HighestLevel >= AppConfig.Instance.INITIAL_BANNER_AD_LEVEL)
         {
             MaxSdk.ShowBanner(banner_AdUnitId);
             isShowBanner = true;
@@ -193,7 +193,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
 
     private void OnInterstitialDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
-        //PlayerData.Instance.CountTotalAdInterShown += 1;
+        PlayerData.Instance.CountTotalAdInterShown += 1;
         LastTimeShowInter = DateTime.Now;
     }
 
@@ -212,6 +212,8 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
     {
         acCloseInter?.Invoke();
         acCloseInter = null;
+
+        PlayerData.Instance.CountTotalAdInterHidden += 1;
         LastTimeShowInter = DateTime.Now;
         // Interstitial ad is hidden. Pre-load the next ad.
         LoadInterstitial();
@@ -220,7 +222,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
     public void ShowInterstitial(Action Close_CallBack = null, bool forceShow = false)
     {
         if (ShowLoadingAd) return;
-        if (!forceShow && (!NetworkRequirement() || /*!PlayerData.Instance.IsNotRemoveAds ||*/ !AppConfig.Instance.CanShowInter /*|| !canShowInterAd*/))
+        if (!forceShow && (!NetworkRequirement() && /*!PlayerData.Instance.IsNotRemoveAds ||*/ /*|| !canShowInterAd*/ PlayerData.Instance.HighestLevel > AppConfig.Instance.INITIAL_INTER_AD_LEVEL))
         {
             Close_CallBack?.Invoke();
             return;
@@ -302,7 +304,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
     private void OnRewardedAdDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         //Debug.LogError($"OnRewardedAdDisplayedEvent");
-        //  PlayerData.Instance.CountTotalAdVideoShown += 1;
+        PlayerData.Instance.CountTotalShowReward += 1;
         _lastTimeShowAppOpen = DateTime.Now;
     }
 
@@ -333,7 +335,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
         // The rewarded ad displayed and the user should receive the reward.
         actVideoRewardedCallback?.Invoke();
         actVideoRewardedCallback = null;
-        //  PlayerData.Instance.CountTotalAdVideoCompleted += 1;
+        PlayerData.Instance.CoutTotalAdRewardComplete += 1;
     }
 
     private void OnRewardedAdRevenuePaidEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)

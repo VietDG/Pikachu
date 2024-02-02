@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalSetting : MonoBehaviour
+public class GlobalSetting : SingletonMonoBehaviour<GlobalSetting>
 {
-    private void Awake()
+    [SerializeField] int _buildNumber;
+    public override void Awake()
     {
         DontDestroyOnLoad(this);
     }
@@ -12,5 +13,10 @@ public class GlobalSetting : MonoBehaviour
     public static AudioClip GetSFX(string audioName)
     {
         return Resources.Load<AudioClip>("SFX/" + audioName);
+    }
+
+    public int GetBuildNumber()
+    {
+        return this._buildNumber;
     }
 }
