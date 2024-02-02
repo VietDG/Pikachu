@@ -20,19 +20,19 @@ public class Loading : MonoBehaviour
     private void Awake()
     {
         _bgLoading.sprite = BackGroundManager.Instance._themeList.GetBg();
+    }
+
+
+    void Start()
+    {
+        StartCoroutine(Load());
+        StartCoroutine(LoadingText());
         InitInfor();
     }
 
     private void InitInfor()
     {
         _version.text = GameLanguage.Get("txt_version") + $" {Application.version} - " + GameLanguage.Get("txt_build_number") + $" {GlobalSetting.Instance.GetBuildNumber()}";
-    }
-
-    void Start()
-    {
-        StartCoroutine(Load());
-        StartCoroutine(LoadingText());
-        SetAnimLogo();
     }
 
     IEnumerator Load()

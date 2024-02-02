@@ -8,12 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/01 Scenes/Loading.unity
     guid: bccf11de3d865c0489728a777b1fb42e
-  - enabled: 0
-    path: Assets/Game/01 Scenes/Home.unity
-    guid: 3b44ce8607e7a5e4a803caa6927ccdd2
-  - enabled: 0
-    path: Assets/Game/01 Scenes/Game.unity
-    guid: 305098034ca72b64b96beb610d82900b
   - enabled: 1
     path: Assets/Game/01 Scenes/GamePlay.unity
     guid: 2de2663b5d087004594355702c706c6b

@@ -5,6 +5,7 @@
     <package>com.applovin.mediation:mintegral-adapter:16.6.21.0</package>
     <package>com.applovin:applovin-sdk:12.1.0</package>
     <package>com.google.android.gms:play-services-base:17.6.0</package>
+    <package>com.google.android.ump:user-messaging-platform:2.1.0</package>
     <package>com.google.firebase:firebase-analytics:20.0.0</package>
     <package>com.google.firebase:firebase-analytics-unity:8.8.0</package>
     <package>com.google.firebase:firebase-app-unity:8.8.0</package>
@@ -22,7 +23,7 @@
   </files>
   <settings>
     <setting name="androidAbis" value="armeabi-v7a" />
-    <setting name="bundleId" value="net.percas.connect.puzzle.tile.master" />
+    <setting name="bundleId" value="net.percas.onet.connect.puzzle.tile.master" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradlePropertiesTemplateEnabled" value="True" />
